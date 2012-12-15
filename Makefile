@@ -7,7 +7,7 @@ endif
 default: test
 
 TARGETS = libHecate.so
-TESTS = Percentage
+TESTS = Percentage Stat
 
 clean:
 	rm -rf build
@@ -20,7 +20,7 @@ all: $(TARGETS)
 libHecate.so: build/libHecate.so
 	cp -f build/libHecate.so $@
 
-HECATE = Percentage
+HECATE = Percentage Stat
 HECATE_OBJS = $(foreach i,$(HECATE),build/src/$(i).o)
 HECATE_FLAGS = $(CXXFLAGS) -fPIC
 HECATE_LDFLAGS = $(LDFLAGS) -shared
