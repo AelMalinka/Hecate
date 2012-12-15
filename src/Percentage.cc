@@ -6,7 +6,10 @@
 
 using namespace Entropy::Hecate;
 
-Percentage::Percentage() = default;
+Percentage::Percentage()
+	: _val(0)
+{}
+
 Percentage::Percentage(const Percentage &) = default;
 Percentage::Percentage(Percentage &&) = default;
 Percentage::~Percentage() = default;
