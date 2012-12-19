@@ -15,7 +15,7 @@ Percentage::Percentage(Percentage &&) = default;
 Percentage::~Percentage() = default;
 Percentage &Percentage::operator = (const Percentage &) = default;
 
-Percentage::Percentage(const short &o)
+Percentage::Percentage(const unsigned short &o)
 	: _val(o)
 {}
 
@@ -71,41 +71,41 @@ Percentage &Percentage::operator %=(const Percentage &o)
 	return *this;
 }
 
-bool Percentage::operator < (const short &o) const
+bool Percentage::operator < (const unsigned short &o) const
 {
 	return _val < o;
 }
 
-bool Percentage::operator == (const short &o) const
+bool Percentage::operator == (const unsigned short &o) const
 {
 	return _val == o;
 }
 
-Percentage &Percentage::operator +=(const short &o)
+Percentage &Percentage::operator +=(const unsigned short &o)
 {
 	_val += o;
 	return *this;
 }
 
-Percentage &Percentage::operator -=(const short &o)
+Percentage &Percentage::operator -=(const unsigned short &o)
 {
 	_val -= o;
 	return *this;
 }
 
-Percentage &Percentage::operator *=(const short &o)
+Percentage &Percentage::operator *=(const unsigned short &o)
 {
 	_val *= o;
 	return *this;
 }
 
-Percentage &Percentage::operator /=(const short &o)
+Percentage &Percentage::operator /=(const unsigned short &o)
 {
 	_val /= o;
 	return *this;
 }
 
-Percentage &Percentage::operator %=(const short &o)
+Percentage &Percentage::operator %=(const unsigned short &o)
 {
 	_val %= o;
 	return *this;

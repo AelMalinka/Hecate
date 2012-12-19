@@ -12,7 +12,7 @@ using namespace Entropy::Hecate;
 using namespace testing;
 
 namespace {
-	struct StatTest : public TestWithParam<tuple<short, short, string>> {};
+	struct StatTest : public TestWithParam<tuple<unsigned short, unsigned short, string>> {};
 
 	TEST_P(StatTest, Equal) {
 		EXPECT_EQ(
@@ -29,36 +29,36 @@ namespace {
 	}
 
 	TEST_P(StatTest, Add) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Stat<> p1(get<2>(GetParam()), a), p2(get<2>(GetParam()), b);
 		EXPECT_EQ((p1 + p2), (a + b));
 	}
 
 	TEST_P(StatTest, Subtract) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Stat<> p1(get<2>(GetParam()), a), p2(get<2>(GetParam()), b);
 		EXPECT_EQ((p1 - p2), (a - b));
 	}
 
 	TEST_P(StatTest, Multiply) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Stat<> p1(get<2>(GetParam()), a), p2(get<2>(GetParam()), b);
 		EXPECT_EQ((p1 * p2), (a * b));
 	}
 
 	TEST_P(StatTest, Divide) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Stat<> p1(get<2>(GetParam()), a), p2(get<2>(GetParam()), b);
 		EXPECT_EQ((p1 / p2), (a / b));
 	}
 
 	TEST_P(StatTest, Modulus) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Stat<> p1(get<2>(GetParam()), a), p2(get<2>(GetParam()), b);
 		EXPECT_EQ((p1 % p2), (a % b));
 	}
@@ -74,7 +74,7 @@ namespace {
 		EXPECT_EQ(a, get<2>(GetParam()));
 	}
 
-	tuple<short, short, string> const values[] = {
+	tuple<unsigned short, unsigned short, string> const values[] = {
 		make_tuple(0, 1, "Strength"),
 		make_tuple(100, 42, "Dexterity"),
 		make_tuple(50, 25, "Constitution"),

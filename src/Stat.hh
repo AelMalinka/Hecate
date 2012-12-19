@@ -33,7 +33,7 @@
 				public:
 					Stat();
 					Stat(const std::string &);
-					Stat(const std::string &, const short);
+					Stat(const std::string &, const unsigned short);
 					virtual ~Stat();
 				protected:
 					typedef typename T::extractor extractor;
@@ -72,7 +72,7 @@
 			{}
 
 			template<typename T>
-			Stat<T>::Stat(const std::string &n, const short v)
+			Stat<T>::Stat(const std::string &n, const unsigned short v)
 				: container(n), Percentage(v)
 			{}
 

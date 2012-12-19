@@ -12,8 +12,8 @@ using namespace Entropy::Hecate;
 using namespace testing;
 
 namespace {
-	struct PercentageTest : public TestWithParam<tuple<short, short>> {};
-	struct ShortTest : public TestWithParam<tuple<short, short>> {};
+	struct PercentageTest : public TestWithParam<tuple<unsigned short, unsigned short>> {};
+	struct ShortTest : public TestWithParam<tuple<unsigned short, unsigned short>> {};
 
 	TEST_P(PercentageTest, Equal) {
 		EXPECT_EQ(
@@ -44,71 +44,71 @@ namespace {
 	}
 
 	TEST_P(PercentageTest, Add) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a), p2(b);
 		EXPECT_EQ((p1 + p2), (a + b));
 	}
 
 	TEST_P(PercentageTest, Subtract) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a), p2(b);
 		EXPECT_EQ((p1 - p2), (a - b));
 	}
 
 	TEST_P(PercentageTest, Multiply) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a), p2(b);
 		EXPECT_EQ((p1 * p2), (a * b));
 	}
 
 	TEST_P(PercentageTest, Divide) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a), p2(b);
 		EXPECT_EQ((p1 / p2), (a / b));
 	}
 
 	TEST_P(PercentageTest, Modulus) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a), p2(b);
 		EXPECT_EQ((p1 % p2), (a % b));
 	}
 
 	TEST_P(ShortTest, Add) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a);
 		EXPECT_EQ((p1 + b), (a + b));
 	}
 
 	TEST_P(ShortTest, Subtract) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a);
 		EXPECT_EQ((p1 - b), (a - b));
 	}
 
 	TEST_P(ShortTest, Multiply) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a);
 		EXPECT_EQ((p1 * b), (a * b));
 	}
 
 	TEST_P(ShortTest, Divide) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a);
 		EXPECT_EQ((p1 / b), (a / b));
 	}
 
 	TEST_P(ShortTest, Modulus) {
-		short a = get<0>(GetParam());
-		short b = get<1>(GetParam());
+		unsigned short a = get<0>(GetParam());
+		unsigned short b = get<1>(GetParam());
 		Percentage p1(a);
 		EXPECT_EQ((p1 % b), (a % b));
 	}
@@ -117,7 +117,7 @@ namespace {
 		second number can't be zero (Division & Modulus)
 		both numbers can't be the same (NotEqual)
 	*/
-	tuple<short, short> const values[] = {
+	tuple<unsigned short, unsigned short> const values[] = {
 //		make_tuple(0, 0),	//2012-12-15 AMR TODO: division by zero
 //		make_tuple(1, 0),	//2012-12-15 AMR TODO: division by zero
 		make_tuple(0, 1),

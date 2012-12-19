@@ -16,15 +16,15 @@
 				boost::integer_arithmetic<Percentage>,
 				boost::incrementable<Percentage>,
 				boost::decrementable<Percentage>,
-				boost::less_than_comparable<Percentage, short>,
-				boost::equality_comparable<Percentage, short>,
-				boost::integer_arithmetic<Percentage, short>
+				boost::less_than_comparable<Percentage, unsigned short>,
+				boost::equality_comparable<Percentage, unsigned short>,
+				boost::integer_arithmetic<Percentage, unsigned short>
 			{
 				public:
 					Percentage();
 					Percentage(const Percentage &);
 					Percentage(Percentage &&);
-					Percentage(const short &);
+					Percentage(const unsigned short &);
 					virtual ~Percentage();
 					Percentage &operator = (const Percentage &);
 					bool operator < (const Percentage &) const;
@@ -36,16 +36,16 @@
 					Percentage &operator *=(const Percentage &);
 					Percentage &operator /=(const Percentage &);
 					Percentage &operator %=(const Percentage &);
-					bool operator < (const short &) const;
-					bool operator == (const short &) const;
-					Percentage &operator +=(const short &);
-					Percentage &operator -=(const short &);
-					Percentage &operator *=(const short &);
-					Percentage &operator /=(const short &);
-					Percentage &operator %=(const short &);
+					bool operator < (const unsigned short &) const;
+					bool operator == (const unsigned short &) const;
+					Percentage &operator +=(const unsigned short &);
+					Percentage &operator -=(const unsigned short &);
+					Percentage &operator *=(const unsigned short &);
+					Percentage &operator /=(const unsigned short &);
+					Percentage &operator %=(const unsigned short &);
 				protected:
 				private:
-					short _val;
+					unsigned short _val;
 			};
 		}
 	}
