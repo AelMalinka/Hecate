@@ -48,13 +48,11 @@
 					StatPrototype(const std::string &);
 					virtual ~StatPrototype();
 					bool operator == (const std::string &) const;
-				protected:
 					struct extractor {
 						const std::string &operator () (const StatPrototype &) const;
 					};
 				private:
 					std::string _name;
-				template<typename> friend class Stat;
 			};
 		}
 	}
