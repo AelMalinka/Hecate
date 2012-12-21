@@ -14,20 +14,6 @@ using namespace testing;
 namespace {
 	struct StatTest : public TestWithParam<tuple<unsigned short, unsigned short, string>> {};
 
-	TEST_P(StatTest, Equal) {
-		EXPECT_EQ(
-			Stat<>(get<2>(GetParam()), get<0>(GetParam())),
-			get<0>(GetParam())
-		);
-	}
-
-	TEST_P(StatTest, NotEqual) {
-		EXPECT_NE(
-			Stat<>(get<2>(GetParam()), get<0>(GetParam())),
-			get<1>(GetParam())
-		);
-	}
-
 	TEST_P(StatTest, Add) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
@@ -66,12 +52,21 @@ namespace {
 	TEST_P(StatTest, Construct) {
 		Stat<> a(get<2>(GetParam()));
 		EXPECT_EQ(a, get<2>(GetParam()));
+		Stat<> b(get<2>(GetParam()), get<0>(GetParam()));
+		EXPECT_EQ(b, get<0>(GetParam()));
+		EXPECT_EQ(b, get<2>(GetParam()));
 	}
 
 	TEST_P(StatTest, Assign) {
-		Stat<> a;
-		a = get<2>(GetParam());
+		Stat<> a(get<2>(GetParam()));
+		a = get<0>(GetParam());
+		EXPECT_EQ(a, get<0>(GetParam()));
 		EXPECT_EQ(a, get<2>(GetParam()));
+	}
+
+	TEST_P(StatTest, Get) {
+		Stat<> a(get<2>(GetParam()));
+		a = get<0>(GetParam());
 	}
 
 	tuple<unsigned short, unsigned short, string> const values[] = {

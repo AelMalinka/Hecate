@@ -32,8 +32,9 @@
 			{
 				public:
 					Stat();
-					Stat(const std::string &);
+					explicit Stat(const std::string &);
 					Stat(const std::string &, const unsigned short);
+					Stat<T> &operator = (const unsigned short);
 					virtual ~Stat();
 				protected:
 					typedef typename T::extractor extractor;
@@ -48,7 +49,7 @@
 					StatPrototype(const std::string &);
 					virtual ~StatPrototype();
 					bool operator == (const std::string &) const;
-					struct extractor {
+					struct extractor {	// 2012-12-19 AMR TODO: explore gcc failing to friend
 						const std::string &operator () (const StatPrototype &) const;
 					};
 				private:
@@ -78,6 +79,13 @@
 
 			template<typename T>
 			Stat<T>::~Stat() = default;
+
+			template<typename T>
+			Stat<T> &Stat<T>::operator = (const unsigned short o)
+			{
+				Percentage::operator = (o);
+				return *this;
+			}
 		}
 	}
 
