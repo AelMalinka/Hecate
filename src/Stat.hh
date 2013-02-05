@@ -28,7 +28,7 @@
 					>,
 					boost::flyweights::no_tracking
 				>,
-				public Percentage
+				public Percentage<>
 			{
 				public:
 					Stat();
@@ -64,17 +64,17 @@
 		{
 			template<typename T>
 			Stat<T>::Stat()
-				: container(), Percentage()
+				: container(), Percentage<>()
 			{}
 
 			template<typename T>
 			Stat<T>::Stat(const std::string &n)
-				: container(n), Percentage()
+				: container(n), Percentage<>()
 			{}
 
 			template<typename T>
 			Stat<T>::Stat(const std::string &n, const unsigned short v)
-				: container(n), Percentage(v)
+				: container(n), Percentage<>(v)
 			{}
 
 			template<typename T>
@@ -83,7 +83,7 @@
 			template<typename T>
 			Stat<T> &Stat<T>::operator = (const unsigned short o)
 			{
-				Percentage::operator = (o);
+				Percentage<>::operator = (o);
 				return *this;
 			}
 		}
