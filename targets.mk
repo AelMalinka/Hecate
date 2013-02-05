@@ -6,16 +6,16 @@ libHecate.so: build/libHecate.so
 	cp -f build/libHecate.so $@
 
 libHecate.so = Percentage Stat
-HECATE_OBJS = $(foreach i,$(libHecate.so),build/src/$(i).o)
-HECATE_FLAGS = $(CXXFLAGS) -fPIC
-HECATE_LDFLAGS = $(LDFLAGS) -shared
+libHecate.so_OBJS = $(foreach i,$(libHecate.so),build/src/$(i).o)
+libHecate.so_FLAGS = $(CXXFLAGS) -fPIC
+libHecate.so_LDFLAGS = $(LDFLAGS) -shared
 
-$(HECATE_OBJS): build/src/%.o: src/%.cc
+$(libHecate.so_OBJS): build/src/%.o: src/%.cc
 	mkdir -p build/src
-	$(CXX) $(HECATE_FLAGS) -c -o $@ $<
+	$(CXX) $(libHecate.so_FLAGS) -c -o $@ $<
 
-build/libHecate.so: $(HECATE_OBJS)
-	$(CC) $(HECATE_LDFLAGS) -o $@ $(HECATE_OBJS)
+build/libHecate.so: $(libHecate.so_OBJS)
+	$(CC) $(libHecate.so_LDFLAGS) -o $@ $(libHecate.so_OBJS)
 
 TEST_BINS = $(foreach test,$(TESTS),build/test/$(test).t)
 TEST_FLAGS = $(CXXFLAGS) -Isrc
