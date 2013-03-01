@@ -5,7 +5,7 @@ TESTS = Percentage
 libHecate.so: build/libHecate.so
 	cp -f build/libHecate.so $@
 
-libHecate.so = 
+libHecate.so = main
 libHecate.so_OBJS = $(foreach i,$(libHecate.so),build/src/$(i).o)
 libHecate.so_FLAGS = $(CXXFLAGS) -fPIC -I../Main/build
 libHecate.so_LDFLAGS = $(LDFLAGS) -shared
