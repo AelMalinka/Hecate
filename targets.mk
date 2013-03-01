@@ -1,11 +1,11 @@
 TARGETS = libHecate.so
 # 2012-12-28 AMR TODO: make double recursive variable
-TESTS = Percentage StatPrototype #Stat
+TESTS = Percentage 
 
 libHecate.so: build/libHecate.so
 	cp -f build/libHecate.so $@
 
-libHecate.so = StatPrototype
+libHecate.so = 
 libHecate.so_OBJS = $(foreach i,$(libHecate.so),build/src/$(i).o)
 libHecate.so_FLAGS = $(CXXFLAGS) -fPIC -I../Main/build
 libHecate.so_LDFLAGS = $(LDFLAGS) -shared
