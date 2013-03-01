@@ -5,7 +5,6 @@
 #include "Percentage.hh"
 #include "gtest/gtest.h"
 #include <tuple>
-#include <boost/concept_check.hpp>
 
 using namespace std;
 using namespace Entropy::Hecate;
