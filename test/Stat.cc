@@ -2,7 +2,7 @@
 	Distributed under the terms of the GNU Lesser General Public License v3
 */
 
-#include "Percentage.hh"
+#include "Stat.hh"
 #include "gtest/gtest.h"
 #include <tuple>
 
@@ -11,142 +11,168 @@ using namespace Entropy::Hecate;
 using namespace testing;
 
 namespace {
-	struct PercentageTest : public TestWithParam<tuple<unsigned short, unsigned short>> {};
-	struct UnsignedShortTest : public TestWithParam<tuple<unsigned short, unsigned short>> {};
-	struct ShortTest : public TestWithParam<tuple<short, short>> {};
+	struct default_tag {};
+	struct not_default_tag {};
 
-	TEST_P(PercentageTest, Equal) {
+	struct StatTest : public TestWithParam<unsigned short> {};
+	struct StatDefualtTest : public TestWithParam<tuple<unsigned short, unsigned short>> {};
+	struct StatUnsignedShortTest : public TestWithParam<tuple<unsigned short, unsigned short>> {};
+	struct StatShortTest : public TestWithParam<tuple<short, short>> {};
+
+	TEST_P(StatTest, Equal) {
+		Stat<default_tag> a;
+		Stat<default_tag> b(GetParam());
+		a = GetParam();
+		EXPECT_EQ(a, b);
+	}
+
+	TEST_P(StatTest, NotEqual) {
+		Stat<default_tag> a(GetParam());
+		Stat<not_default_tag> b(GetParam());
+		EXPECT_NE(a, b);
+	}
+
+	TEST_P(StatDefualtTest, Equal) {
 		EXPECT_EQ(
-			Percentage<>(get<0>(GetParam())),
+			Stat<default_tag>(get<0>(GetParam())),
 			get<0>(GetParam())
 		);
 	}
 
-	TEST_P(PercentageTest, NotEqual) {
+	TEST_P(StatDefualtTest, NotEqual) {
 		EXPECT_NE(
-			Percentage<>(get<0>(GetParam())),
+			Stat<default_tag>(get<0>(GetParam())),
 			get<1>(GetParam())
 		);
 	}
 
-	TEST_P(UnsignedShortTest, Equal) {
+	TEST_P(StatUnsignedShortTest, Equal) {
 		EXPECT_EQ(
-			Percentage<>(get<0>(GetParam())),
+			Stat<default_tag>(get<0>(GetParam())),
 			get<0>(GetParam())
 		);
 	}
 
-	TEST_P(UnsignedShortTest, NotEqual) {
+	TEST_P(StatUnsignedShortTest, NotEqual) {
 		EXPECT_NE(
-			Percentage<>(get<0>(GetParam())),
+			Stat<default_tag>(get<0>(GetParam())),
 			get<1>(GetParam())
 		);
 	}
 
-	TEST_P(PercentageTest, Add) {
+	TEST_P(StatDefualtTest, Add) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a), p2(b);
+		Stat<default_tag> p1(a), p2(b);
 		EXPECT_EQ((p1 + p2), (a + b));
 	}
 
-	TEST_P(PercentageTest, Subtract) {
+	TEST_P(StatDefualtTest, Subtract) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a), p2(b);
+		Stat<default_tag> p1(a), p2(b);
 		EXPECT_EQ((p1 - p2), (a - b));
 	}
 
-	TEST_P(PercentageTest, Multiply) {
+	TEST_P(StatDefualtTest, Multiply) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a), p2(b);
+		Stat<default_tag> p1(a), p2(b);
 		EXPECT_EQ((p1 * p2), (a * b));
 	}
 
-	TEST_P(PercentageTest, Divide) {
+	TEST_P(StatDefualtTest, Divide) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a), p2(b);
+		Stat<default_tag> p1(a), p2(b);
 		EXPECT_EQ((p1 / p2), (a / b));
 	}
 
-	TEST_P(PercentageTest, Modulus) {
+	TEST_P(StatDefualtTest, Modulus) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a), p2(b);
+		Stat<default_tag> p1(a), p2(b);
 		EXPECT_EQ((p1 % p2), (a % b));
 	}
 
-	TEST_P(UnsignedShortTest, Add) {
+	TEST_P(StatUnsignedShortTest, Add) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a);
+		Stat<default_tag, unsigned short> p1(a);
 		EXPECT_EQ((p1 + b), (a + b));
 	}
 
-	TEST_P(UnsignedShortTest, Subtract) {
+	TEST_P(StatUnsignedShortTest, Subtract) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a);
+		Stat<default_tag, unsigned short> p1(a);
 		EXPECT_EQ((p1 - b), (a - b));
 	}
 
-	TEST_P(UnsignedShortTest, Multiply) {
+	TEST_P(StatUnsignedShortTest, Multiply) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a);
+		Stat<default_tag, unsigned short> p1(a);
 		EXPECT_EQ((p1 * b), (a * b));
 	}
 
-	TEST_P(UnsignedShortTest, Divide) {
+	TEST_P(StatUnsignedShortTest, Divide) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a);
+		Stat<default_tag, unsigned short> p1(a);
 		EXPECT_EQ((p1 / b), (a / b));
 	}
 
-	TEST_P(UnsignedShortTest, Modulus) {
+	TEST_P(StatUnsignedShortTest, Modulus) {
 		unsigned short a = get<0>(GetParam());
 		unsigned short b = get<1>(GetParam());
-		Percentage<> p1(a);
+		Stat<default_tag, unsigned short> p1(a);
 		EXPECT_EQ((p1 % b), (a % b));
 	}
 
-	TEST_P(ShortTest, Add) {
+	TEST_P(StatShortTest, Add) {
 		short a = get<0>(GetParam());
 		short b = get<1>(GetParam());
-		Percentage<short> p1(a);
+		Stat<default_tag, short> p1(a);
 		EXPECT_EQ((p1 + b), (a + b));
 	}
 
-	TEST_P(ShortTest, Subtract) {
+	TEST_P(StatShortTest, Subtract) {
 		short a = get<0>(GetParam());
 		short b = get<1>(GetParam());
-		Percentage<short> p1(a);
+		Stat<default_tag, short> p1(a);
 		EXPECT_EQ((p1 - b), (a - b));
 	}
 
-	TEST_P(ShortTest, Multiply) {
+	TEST_P(StatShortTest, Multiply) {
 		short a = get<0>(GetParam());
 		short b = get<1>(GetParam());
-		Percentage<short> p1(a);
+		Stat<default_tag, short> p1(a);
 		EXPECT_EQ((p1 * b), (a * b));
 	}
 
-	TEST_P(ShortTest, Divide) {
+	TEST_P(StatShortTest, Divide) {
 		short a = get<0>(GetParam());
 		short b = get<1>(GetParam());
-		Percentage<short> p1(a);
+		Stat<default_tag, short> p1(a);
 		EXPECT_EQ((p1 / b), (a / b));
 	}
 
-	TEST_P(ShortTest, Modulus) {
+	TEST_P(StatShortTest, Modulus) {
 		short a = get<0>(GetParam());
 		short b = get<1>(GetParam());
-		Percentage<short> p1(a);
+		Stat<default_tag, short> p1(a);
 		EXPECT_EQ((p1 % b), (a % b));
 	}
+
+	unsigned short const values_default[] = {
+		0,
+		1,
+		100,
+		42,
+		50,
+		9999,
+	};
 
 	/* 2012-12-15 AMR NOTE: rules for tuples below for tests to work
 		second number can't be zero (Division & Modulus)
@@ -174,7 +200,8 @@ namespace {
 		make_tuple(-42, -6)
 	};
 
-	INSTANTIATE_TEST_CASE_P(Default, PercentageTest, ValuesIn(values));
-	INSTANTIATE_TEST_CASE_P(Default, UnsignedShortTest, ValuesIn(values));
-	INSTANTIATE_TEST_CASE_P(Default, ShortTest, ValuesIn(signed_values));
+	INSTANTIATE_TEST_CASE_P(Default, StatTest, ValuesIn(values_default));
+	INSTANTIATE_TEST_CASE_P(Default, StatDefualtTest, ValuesIn(values));
+	INSTANTIATE_TEST_CASE_P(Default, StatUnsignedShortTest, ValuesIn(values));
+	INSTANTIATE_TEST_CASE_P(Default, StatShortTest, ValuesIn(signed_values));
 }
