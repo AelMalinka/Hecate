@@ -57,7 +57,7 @@
 
 			template<typename tag1, typename tag2, typename perc1, typename perc2>
 			bool operator == (const Stat<tag1, perc1> &, const Stat<tag2, perc2> &);
-			
+
 			template<typename tag1, typename tag2, typename perc1, typename perc2>
 			bool operator != (const Stat<tag1, perc1> &, const Stat<tag2, perc2> &);
 		}
