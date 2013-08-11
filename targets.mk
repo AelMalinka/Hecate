@@ -7,7 +7,7 @@ libHecate.so: build/libHecate.so
 
 libHecate.so = main
 libHecate.so_OBJS = $(foreach i,$(libHecate.so),build/src/$(i).o)
-libHecate.so_FLAGS = $(CXXFLAGS) -fPIC -I../Main/build
+libHecate.so_FLAGS = $(CXXFLAGS) -I../Main/build
 libHecate.so_LDFLAGS = $(LDFLAGS) -shared
 
 $(libHecate.so_OBJS): build/src/%.o: src/%.cc
