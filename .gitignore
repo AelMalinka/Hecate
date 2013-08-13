@@ -1,3 +1,14 @@
-/.deps
 /build
-/libHecate.so
+
+#autotools stuff
+/autom4te.cache
+/configure
+/Makefile.in
+/aclocal.m4
+/build-aux
+/config.h.in
+/config.h.in~
+
+config.status
+config.log
+Makefile
