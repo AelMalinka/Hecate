@@ -1,0 +1,5 @@
+AT_BANNER([Stat Tests])
+AT_SETUP([Stat Arithmetic])
+AT_SKIP_IF([test -z "$GTEST"])
+AT_CHECK([stat-arith], [], [ignore])
+AT_CLEANUP
