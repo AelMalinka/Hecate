@@ -1,4 +1,4 @@
 AT_INIT
 AT_COLOR_TESTS
 
-m4_include([stat.at])
+m4_include([character.at])

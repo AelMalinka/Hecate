@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4
 AM_CXXFLAGS := -I $(srcdir)/src $(AM_CXXFLAGS)
 
 mainheadersdir = $(includedir)/Entropy/Hecate
-mainheaders_HEADERS = src/Stat.hh src/Stat.impl.hh
+mainheaders_HEADERS = src/Percentage.hh src/Percentage.impl.hh
 
 lib_LTLIBRARIES = libHecate.la
 
@@ -12,15 +12,15 @@ libHecate_la_LDFLAGS = -version-info 0
 check_PROGRAMS = 
 
 if GTEST
-check_PROGRAMS += stat-arith
+check_PROGRAMS += character-percentage-arith
 
-stat_arith_SOURCES = test/stat-arith.cc
-stat_arith_LDADD = -lgtest_main -lgtest
-stat_arith_LDFLAGS = -pthread
+character_percentage_arith_SOURCES = test/character/percentage-arith.cc
+character_percentage_arith_LDADD = -lgtest_main -lgtest
+character_percentage_arith_LDFLAGS = -pthread
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
-TESTSUITE_FILES = $(srcdir)/test/stat.at
+TESTSUITE_FILES = $(srcdir)/test/character.at $(srcdir)/test/character/percentage.at
 EXTRA_DIST = $(TESTSUITE_FILES) $(srcdir)/test/testsuite.at $(srcdir)/package.m4 $(TESTSUITE) $(srcdir)/test/atlocal.in
 
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac

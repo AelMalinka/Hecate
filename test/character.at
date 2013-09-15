@@ -1,0 +1,2 @@
+AT_BANNER([Character Tests])
+m4_include([character/percentage.at])
