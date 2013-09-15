@@ -3,6 +3,7 @@
 #autotools stuff
 /autom4te.cache
 /configure
+/config.cache
 /Makefile.in
 /aclocal.m4
 /build-aux
