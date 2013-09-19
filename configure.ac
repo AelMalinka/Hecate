@@ -5,7 +5,7 @@ AC_PREREQ([2.53])
 m4_pattern_forbid([^AX_])
 m4_pattern_forbid([^EX_])
 
-AC_INIT([Entropy Hecate], [0.0.1], [bugs@entropy-development.com])
+AC_INIT([Hecate], [0.0.1], [bugs@entropy-development.com])
 AC_CONFIG_SRCDIR([src/main.cc])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
