@@ -12,15 +12,26 @@ libHecate_la_LDFLAGS = -version-info 0
 check_PROGRAMS = 
 
 if GTEST
-check_PROGRAMS += character-percentage-arith
+check_PROGRAMS += character-percentage-arith character-stat-creation
+
+testLDADD = -lgtest_main -lgtest
+testLDFLAGS = -pthread
 
 character_percentage_arith_SOURCES = test/character/percentage-arith.cc
-character_percentage_arith_LDADD = -lgtest_main -lgtest
-character_percentage_arith_LDFLAGS = -pthread
+character_percentage_arith_LDADD = $(testLDADD)
+character_percentage_arith_LDFLAGS = $(testLDFLAGS)
+
+character_stat_creation_SOURCES = test/character/stat-creation.cc
+character_stat_creation_LDADD = $(testLDADD)
+character_stat_creation_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
-TESTSUITE_FILES = $(srcdir)/test/character.at $(srcdir)/test/character/percentage.at
+TESTSUITE_FILES = \
+	$(srcdir)/test/character.at \
+	$(srcdir)/test/character/percentage.at \
+	$(srcdir)/test/character/stat.at
+
 EXTRA_DIST = $(TESTSUITE_FILES) $(srcdir)/test/testsuite.at $(srcdir)/package.m4 $(TESTSUITE) $(srcdir)/test/atlocal.in
 
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac
