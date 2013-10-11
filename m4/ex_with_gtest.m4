@@ -8,13 +8,14 @@ AC_DEFUN([EX_WITH_GTEST], [
 	GTEST=
 	AS_IF([test "x$with_gtest" != xno],
 		[
-			LDFLAGS="${LDFLAGS} -L$with_gtest"
+			test "x$with_gtest" != xyes && LDFLAGS="${LDFLAGS} -L$with_gtest"
 			AC_CHECK_LIB([gtest], [main], [
 					AC_SUBST([GTEST], ["-lgtest -lgtest_main"])
 				],
 				[if test "x$with_gtest" != xcheck; then
 					AC_MSG_FAILURE(["--with-gtest: gtest not found"])
-				fi]
+				fi],
+				[-pthread]
 			)
 		]
 	)
