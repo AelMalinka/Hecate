@@ -1,5 +1,0 @@
-AT_BANNER([Percentage Tests])
-AT_SETUP([Percentage Arithmetic])
-AT_SKIP_IF([test -z "$GTEST"])
-AT_CHECK([character-percentage-arith], [], [ignore])
-AT_CLEANUP

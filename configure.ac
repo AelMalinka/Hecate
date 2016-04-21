@@ -6,23 +6,26 @@ m4_pattern_forbid([^AX_])
 m4_pattern_forbid([^EX_])
 
 AC_INIT([Hecate], [0.0.1], [bugs@entropy-development.com])
-AC_CONFIG_SRCDIR([src/main.cc])
+AC_CONFIG_SRCDIR([src/Character.hh])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_TESTDIR([test])
 AM_INIT_AUTOMAKE([-Wall foreign subdir-objects dist-xz no-dist-gzip])
 
-AM_PROG_AR
-LT_INIT
-
 AC_PROG_CXX
 AC_LANG_PUSH([C++])
 
-AC_CHECK_HEADERS(
-	[boost/operators.hpp],
-	[],
-	[AC_MSG_FAILURE([Boost is required])]
-)
+AX_PTHREAD
+[LIBS="$PTHREAD_LIBS $LIBS"]
+[CFLAGS="$PTHREAD_CFLAGS $CFLAGS"]
+[CXXFLAGS="$PTHREAD_CFLAGS $CXXFLAGS"]
+
+EX_BASE_FLAGS
+
+EX_WITH_ENTROPY
+[LIBS="$ENTROPY_LIBS $LIBS"]
+[LDFLAGS="$ENTROPY_LDFLAGS $LDFLAGS"]
+[CPPFLAGS="$ENTROPY_CPPFLAGS $CPPFLAGS"]
 
 EX_WITH_GTEST
 EX_FLAGS

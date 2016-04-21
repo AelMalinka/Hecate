@@ -1,3 +1,1 @@
 AT_BANNER([Character Tests])
-m4_include([character/percentage.at])
-m4_include([character/stat.at])

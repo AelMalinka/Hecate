@@ -1,38 +1,29 @@
 ACLOCAL_AMFLAGS = -I m4
+#2013-10-11 AMR XXX: non-portable assignment
 AM_CXXFLAGS := -I $(srcdir)/src $(AM_CXXFLAGS)
 
 mainheadersdir = $(includedir)/Entropy/Hecate
-mainheaders_HEADERS = src/Percentage.hh src/Percentage.impl.hh
-
-lib_LTLIBRARIES = libHecate.la
-
-libHecate_la_SOURCES = src/main.cc
-libHecate_la_LDFLAGS = -version-info 0
-
+mainheaders_HEADERS = 
 check_PROGRAMS = 
 
 if GTEST
-check_PROGRAMS += character-percentage-arith character-stat-creation
+check_PROGRAMS +=
 
-testLDADD = -lgtest_main -lgtest
-testLDFLAGS = -pthread
-
-character_percentage_arith_SOURCES = test/character/percentage-arith.cc
-character_percentage_arith_LDADD = $(testLDADD)
-character_percentage_arith_LDFLAGS = $(testLDFLAGS)
-
-character_stat_creation_SOURCES = test/character/stat-creation.cc
-character_stat_creation_LDADD = $(testLDADD)
-character_stat_creation_LDFLAGS = $(testLDFLAGS)
+# 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
+testLDADD = -lgtest_main -lgtest $(AM_LDADD)
+testLDFLAGS = -pthread $(AM_LDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
 TESTSUITE_FILES = \
-	$(srcdir)/test/character.at \
-	$(srcdir)/test/character/percentage.at \
-	$(srcdir)/test/character/stat.at
+	$(srcdir)/test/character.at
 
-EXTRA_DIST = $(TESTSUITE_FILES) $(srcdir)/test/testsuite.at $(srcdir)/package.m4 $(TESTSUITE) $(srcdir)/test/atlocal.in
+EXTRA_DIST = \
+	$(TESTSUITE_FILES) \
+	$(srcdir)/test/testsuite.at \
+	$(srcdir)/package.m4 \
+	$(TESTSUITE) \
+	$(srcdir)/test/atlocal.in
 
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac
 	:; {\
@@ -51,6 +42,7 @@ $(srcdir)/package.m4: $(top_srcdir)/configure.ac
 		echo '  [$(PACKAGE_URL)])'; \
 	} >'$(srcdir)/package.m4'
 
+#2013-10-11 AMR XXX: $(shell x) is a GNUMake extension
 check-local: test/atconfig atlocal $(TESTSUITE)
 	$(SHELL) '$(TESTSUITE)' AUTOTEST_PATH='$(shell pwd)' $(TESTSUITEFLAGS)
 
