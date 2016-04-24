@@ -6,7 +6,7 @@ m4_pattern_forbid([^AX_])
 m4_pattern_forbid([^EX_])
 
 AC_INIT([Hecate], [0.0.1], [bugs@entropy-development.com])
-AC_CONFIG_SRCDIR([src/Character.hh])
+AC_CONFIG_SRCDIR([src/Stat.hh])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_TESTDIR([test])
