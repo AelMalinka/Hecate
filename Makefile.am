@@ -3,15 +3,30 @@ ACLOCAL_AMFLAGS = -I m4
 AM_CXXFLAGS := -I $(srcdir)/src $(AM_CXXFLAGS)
 
 mainheadersdir = $(includedir)/Entropy/Hecate
-mainheaders_HEADERS = 
+mainheaders_HEADERS = \
+	src/Stat.hh \
+	src/Stat.impl.hh \
+	src/Skill.hh \
+	src/Skill.impl.hh
+
 check_PROGRAMS = 
 
 if GTEST
-check_PROGRAMS +=
+check_PROGRAMS += \
+	character-stat \
+	character-skill
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest $(AM_LDADD)
 testLDFLAGS = -pthread $(AM_LDFLAGS)
+
+character_stat_SOURCES = test/character/character-stat.cc
+character_stat_LDADD = $(testLDADD)
+character_stat_LDFLAGS = $(testLDFLAGS)
+
+character_skill_SOURCES = test/character/character-skill.cc
+character_skill_LDADD = $(testLDADD)
+character_skill_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite

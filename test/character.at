@@ -2,3 +2,13 @@
 # Distributed under the terms of the GNU Affero General Public License v3
 
 AT_BANNER([Character Tests])
+
+AT_SETUP([Stat Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([character-stat], [], [ignore], [ignore])
+AT_CLEANUP
+
+AT_SETUP([Skill Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([character-skill], [], [ignore], [ignore])
+AT_CLEANUP
