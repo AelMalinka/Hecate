@@ -1,0 +1,23 @@
+/build
+
+#autotools stuff
+/autom4te.cache
+/configure
+/config.cache
+/Makefile.in
+/aclocal.m4
+/build-aux
+/config.h.in
+/config.h.in~
+
+config.status
+config.log
+Makefile
+
+#autotest
+/package.m4
+/test/testsuite
+
+#libtool
+/m4/libtool.m4
+/m4/lt*.m4
