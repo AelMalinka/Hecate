@@ -12,3 +12,8 @@ AT_SETUP([Skill Tests])
 AT_SKIP_IF([test -z $GTEST])
 AT_CHECK([character-skill], [], [ignore], [ignore])
 AT_CLEANUP
+
+AT_SETUP([Character Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([character], [], [ignore], [ignore])
+AT_CLEANUP

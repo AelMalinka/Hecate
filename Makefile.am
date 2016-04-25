@@ -14,11 +14,16 @@ check_PROGRAMS =
 if GTEST
 check_PROGRAMS += \
 	character-stat \
-	character-skill
+	character-skill \
+	character
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest $(AM_LDADD)
 testLDFLAGS = -pthread $(AM_LDFLAGS)
+
+character_SOURCES = test/character/character.cc
+character_LDADD = $(testLDADD)
+character_LDFLAGS = $(testLDFLAGS)
 
 character_stat_SOURCES = test/character/character-stat.cc
 character_stat_LDADD = $(testLDADD)
