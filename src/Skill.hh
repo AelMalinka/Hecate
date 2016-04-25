@@ -8,7 +8,7 @@
 #	include "Stat.hh"
 
 #	ifndef ENTROPY_HECATE_DEFINE_SKILL
-#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef Skill<name ## _tag, tuple< __VA_ARGS__ & > > name;
+#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef Skill<name ## _tag, tuple< __VA_ARGS__ & > > name
 #	endif
 
 	namespace Entropy
