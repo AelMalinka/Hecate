@@ -26,8 +26,8 @@ namespace {
 		public BaseCharacter
 	{
 		public:
-			template<typename ...Stats>
-			Character(const Stats & ...);
+			template<typename ...sl>
+			Character(const sl & ...);
 	};
 
 	TEST(Character, Create) {
@@ -54,8 +54,34 @@ namespace {
 		EXPECT_EQ(ht.Value(), 20);
 	}
 
-	template<typename ...Stats>
-	Character::Character(const Stats & ...stats)
-		: BaseCharacter(stats...)
+	TEST(Character, getSkill) {
+		Character test(5, 10, 15, 20);
+
+		Attack at(test.Stats());
+		Defense df(test.Stats());
+		Research rs(test.Stats());
+
+		auto t = tuple_cat(test.Stats(), make_tuple(rs));
+		Experiment ex(t);
+
+		test.set(at);
+		test.set(df);
+		test.set(rs);
+		test.set(ex);
+
+		auto at2 = test.get(at);
+		auto df2 = test.get(df);
+		auto rs2 = test.get(rs);
+		auto ex2 = test.get(ex);
+
+		EXPECT_EQ(at.Value(), at2.Value());
+		EXPECT_EQ(df.Value(), df2.Value());
+		EXPECT_EQ(rs.Value(), rs2.Value());
+		EXPECT_EQ(ex.Value(), ex2.Value());
+	}
+
+	template<typename ...sl>
+	Character::Character(const sl & ...s)
+		: BaseCharacter(s...)
 	{}
 }
