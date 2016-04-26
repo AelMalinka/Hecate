@@ -36,12 +36,32 @@
 					f(get<i>(t));
 					for_each<i + 1, F, T...>(t, f);
 				}
+
+				template<typename S>
+				tuple<> get_values(S &)
+				{
+					return tuple<>();
+				}
+
+				template<typename F, typename ...T, typename S>
+				tuple<F, T...> get_values(S &s)
+				{
+					using namespace std;
+
+					return tuple_cat(tuple<F>(get<typename remove_reference<F>::type>(s)), get_values<T...>(s));
+				}
 			}
 
 			template<typename tag, typename ...skills>
 			template<typename ...Skills>
 			Skill<tag, skills...>::Skill(const unsigned short v, Skills &...s)
 				: _value(v), _base_skills(s...)
+			{}
+
+			template<typename tag, typename ...skills>
+			template<typename sl, typename>
+			Skill<tag, skills...>::Skill(sl &s)
+				: _value(0), _base_skills(detail::get_values<skills &...>(s))
 			{}
 
 			template<typename tag, typename ...skills> Skill<tag, skills...>::~Skill() = default;

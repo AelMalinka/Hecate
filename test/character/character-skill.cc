@@ -98,4 +98,19 @@ namespace {
 		EXPECT_EQ(rs.Value(), rs2.Value());
 		EXPECT_EQ(ex.Value(), ex2.Value());
 	}
+
+	TEST(Skill, StatList) {
+		tuple<St, Dx, Iq, Ht> stats(10, 15, 20, 5);
+
+		Attack at(stats);
+		Defense df(stats);
+		Research rs(stats);
+		auto t = tuple_cat(stats, make_tuple(at, df, rs));
+		Experiment ex(t);
+
+		EXPECT_EQ(at.Value(), 11);
+		EXPECT_EQ(df.Value(), 11);
+		EXPECT_EQ(rs.Value(), 20);
+		EXPECT_EQ(ex.Value(), 20);
+	}
 }
