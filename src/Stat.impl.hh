@@ -9,26 +9,26 @@
 	{
 		namespace Hecate
 		{
-			template<typename tag, typename type>
-			Stat<tag, type>::Stat()
+			template<typename tag>
+			Stat<tag>::Stat()
 				: _value(0)
 			{}
 
-			template<typename tag, typename type>
-			Stat<tag, type>::Stat(const type &v)
+			template<typename tag>
+			Stat<tag>::Stat(const unsigned short v)
 				: _value(v)
 			{}
 
-			template<typename tag, typename type> Stat<tag, type>::~Stat() = default;
+			template<typename tag> Stat<tag>::~Stat() = default;
 
-			template<typename tag, typename type>
-			type &Stat<tag, type>::Value()
+			template<typename tag>
+			unsigned short &Stat<tag>::Value()
 			{
 				return _value;
 			}
 
-			template<typename tag, typename type>
-			const type &Stat<tag, type>::Value() const
+			template<typename tag>
+			unsigned short Stat<tag>::Value() const
 			{
 				return _value;
 			}

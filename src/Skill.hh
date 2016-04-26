@@ -8,30 +8,30 @@
 #	include "Stat.hh"
 
 #	ifndef ENTROPY_HECATE_DEFINE_SKILL
-#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef Skill<name ## _tag, tuple< __VA_ARGS__ & > > name
+#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef Skill<name ## _tag,  __VA_ARGS__> name
 #	endif
 
 	namespace Entropy
 	{
 		namespace Hecate
 		{
+			using std::tuple;
+
 			template<
 				typename tag,
-				typename bases,
-				typename type = unsigned short
+				typename ...skills
 			>
 			class Skill
 			{
 				public:
-					Skill() = delete;
-					template<typename ...T>
-					Skill(const type &, T & ...);
+					template<typename ...Skills>
+					Skill(const unsigned short, Skills &...);
 					~Skill();
-					type Value() const;
-					void setValue(const type &);
+					unsigned short Value() const;
+					void setValue(const unsigned short);
 				private:
-					bases _base_skills;
-					type _value;
+					unsigned short _value;
+					tuple<skills &...> _base_skills;
 			};
 		}
 	}

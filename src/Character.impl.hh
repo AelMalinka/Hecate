@@ -20,8 +20,8 @@
 			template<typename Stats> Character<Stats>::~Character() = default;
 
 			template<typename Stats>
-			template<typename tag, typename type>
-			Stat<tag, type> &Character<Stats>::get(Stat<tag, type> &s)
+			template<typename tag>
+			Stat<tag> &Character<Stats>::get(Stat<tag> &s)
 			{
 				using std::get;
 				using std::remove_reference;

@@ -20,8 +20,8 @@
 					template<typename ...stats>
 					Character(const stats & ...);
 					virtual ~Character();
-					template<typename tag, typename type = unsigned short>
-					Stat<tag, type> &get(Stat<tag, type> &s);
+					template<typename tag>
+					Stat<tag> &get(Stat<tag> &s);
 				private:
 					Stats _stats;
 			};

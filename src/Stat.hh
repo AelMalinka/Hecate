@@ -14,19 +14,18 @@
 		namespace Hecate
 		{
 			template<
-				typename tag,
-				typename type = unsigned short
+				typename tag
 			>
 			class Stat
 			{
 				public:
 					Stat();
-					Stat(const type &);
+					Stat(const unsigned short);
 					~Stat();
-					type &Value();
-					const type &Value() const;
+					unsigned short &Value();
+					unsigned short Value() const;
 				private:
-					type _value;
+					unsigned short _value;
 			};
 		}
 	}
