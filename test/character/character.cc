@@ -31,7 +31,8 @@ namespace {
 	};
 
 	TEST(Character, Create) {
-		Character test(10, 10, 10, 10);
+		Character test1;
+		Character test2(10, 10, 10, 10);
 	}
 
 	TEST(Character, getStat) {
