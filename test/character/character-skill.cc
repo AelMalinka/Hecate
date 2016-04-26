@@ -74,6 +74,28 @@ namespace {
 		EXPECT_EQ(at.Value(), 22);
 		EXPECT_EQ(df.Value(), 17);
 		EXPECT_EQ(rs.Value(), 33);
-		EXPECT_EQ(ex.Value(), 40);
+		EXPECT_EQ(ex.Value(), 39);
+	}
+
+	TEST(Skill, Copy) {
+		St st = 10;
+		Dx dx = 15;
+		Iq iq = 20;
+		Ht ht = 5;
+
+		Attack at(10, st, st, dx);
+		Defense df(5, dx, dx, ht);
+		Research rs(10, iq);
+		Experiment ex(10, rs, iq);
+
+		Attack at2 = at;
+		Defense df2 = df;
+		Research rs2 = rs;
+		Experiment ex2 = ex;
+
+		EXPECT_EQ(at.Value(), at2.Value());
+		EXPECT_EQ(df.Value(), df2.Value());
+		EXPECT_EQ(rs.Value(), rs2.Value());
+		EXPECT_EQ(ex.Value(), ex2.Value());
 	}
 }
