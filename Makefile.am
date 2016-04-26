@@ -1,13 +1,19 @@
 ACLOCAL_AMFLAGS = -I m4
 #2013-10-11 AMR XXX: non-portable assignment
-AM_CXXFLAGS := -I $(srcdir)/src $(AM_CXXFLAGS)
+AM_CXXFLAGS := -I$(srcdir)/src -I$(srcdir)/external/pcg-cpp/include $(AM_CXXFLAGS)
 
 mainheadersdir = $(includedir)/Entropy/Hecate
 mainheaders_HEADERS = \
 	src/Stat.hh \
 	src/Stat.impl.hh \
 	src/Skill.hh \
-	src/Skill.impl.hh
+	src/Skill.impl.hh \
+	src/Random.hh
+
+lib_LTLIBRARIES = libhecate.la
+
+libhecate_la_SOURCES = \
+	src/Random.cc
 
 check_PROGRAMS = 
 
@@ -15,10 +21,12 @@ if GTEST
 check_PROGRAMS += \
 	character-stat \
 	character-skill \
-	character
+	character \
+	random-pcg \
+	random-base
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
-testLDADD = -lgtest_main -lgtest $(AM_LDADD)
+testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
 testLDFLAGS = -pthread $(AM_LDFLAGS)
 
 character_SOURCES = test/character/character.cc
@@ -32,11 +40,20 @@ character_stat_LDFLAGS = $(testLDFLAGS)
 character_skill_SOURCES = test/character/character-skill.cc
 character_skill_LDADD = $(testLDADD)
 character_skill_LDFLAGS = $(testLDFLAGS)
+
+random_pcg_SOURCES = test/random/pcg.cc
+random_pcg_LDADD = $(testLDADD)
+random_pcg_LDFLAGS = $(testLDFLAGS)
+
+random_base_SOURCES = test/random/base.cc
+random_base_LDADD = $(testLDADD)
+random_base_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
 TESTSUITE_FILES = \
-	$(srcdir)/test/character.at
+	$(srcdir)/test/character.at \
+	$(srcdir)/test/random.at
 
 EXTRA_DIST = \
 	$(TESTSUITE_FILES) \

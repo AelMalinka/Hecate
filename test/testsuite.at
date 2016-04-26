@@ -7,3 +7,4 @@ AT_COPYRIGHT([Copyright 2015 (c) Michael Thomas (malinka) <malinka@entropy-devel
 Distributed under the terms of the GNU Lesser General Public License v3])
 
 m4_include([character.at])
+m4_include([random.at])

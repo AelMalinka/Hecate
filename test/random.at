@@ -1,0 +1,14 @@
+# Copyright 2016 (c) Michael Thomas (malinka) <malinka@entropy-development.com>
+# Distributed under the terms of the GNU Affero General Public License v3
+
+AT_BANNER([Randome Number Generator Tests])
+
+AT_SETUP([PCG Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([random-pcg], [], [ignore], [ignore])
+AT_CLEANUP
+
+AT_SETUP([Random Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([random-base], [], [ignore], [ignore])
+AT_CLEANUP
