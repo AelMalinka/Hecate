@@ -20,7 +20,7 @@ namespace {
 	ENTROPY_HECATE_DEFINE_SKILL(Research, Iq);
 	ENTROPY_HECATE_DEFINE_SKILL(Experiment, Research, Iq);
 
-	typedef Entropy::Hecate::Character<tuple<St, Dx, Iq, Ht>> BaseCharacter;
+	ENTROPY_HECATE_DEFINE_CHARACTER(St, Dx, Iq, Ht);
 
 	class Character :
 		public BaseCharacter

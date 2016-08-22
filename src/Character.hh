@@ -11,6 +11,10 @@
 #	include <unordered_map>
 #	include <boost/any.hpp>
 
+#	ifndef ENTROPY_HECATE_DEFINE_CHARACTER
+#		define ENTROPY_HECATE_DEFINE_CHARACTER(...) typedef ::Entropy::Hecate::Character<::Entropy::Hecate::tuple<__VA_ARGS__>> BaseCharacter
+#	endif
+
 	namespace Entropy
 	{
 		namespace Hecate
