@@ -10,6 +10,9 @@ mainheaders_HEADERS = \
 	src/Skill.impl.hh \
 	src/Random.hh
 
+mainheaders_HEADERS += \
+	external/pcg-cpp/include/pcg_random.hpp
+
 lib_LTLIBRARIES = libhecate.la
 
 libhecate_la_SOURCES = \
