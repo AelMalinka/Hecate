@@ -61,7 +61,8 @@
 			{
 				using boost::any_cast;
 
-				s = any_cast<decltype(s)>(_skills[typeid(s)]);
+				if(_skills.find(typeid(s)) != _skills.end())
+					s = any_cast<decltype(s)>(_skills[typeid(s)]);
 
 				return s;
 			}

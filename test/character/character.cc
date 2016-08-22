@@ -80,6 +80,32 @@ namespace {
 		EXPECT_EQ(ex.Value(), ex2.Value());
 	}
 
+	TEST(Character, getDefaultSkill) {
+		Character test(5, 10, 15, 20);
+
+		Attack at(test.Stats());
+		Defense df(test.Stats());
+		Research rs(test.Stats());
+
+		at.setValue(5);
+		df.setValue(10);
+
+		test.set(at);
+		test.set(df);
+
+		auto a = test.get(at);
+		auto d = test.get(df);
+		auto r = test.get(rs);
+
+		EXPECT_EQ(a.Value(), 11);
+		EXPECT_EQ(d.Value(), 23);
+		EXPECT_EQ(r.Value(), 15);
+
+		EXPECT_EQ(a.Value(), at.Value());
+		EXPECT_EQ(d.Value(), df.Value());
+		EXPECT_EQ(r.Value(), rs.Value());
+	}
+
 	template<typename ...sl>
 	Character::Character(const sl & ...s)
 		: BaseCharacter(s...)
