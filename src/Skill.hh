@@ -5,10 +5,12 @@
 #if !defined ENTROPY_HECATE_SKILL_INC
 #	define ENTROPY_HECATE_SKILL_INC
 
+#	include <tuple>
+
 #	include "Stat.hh"
 
 #	ifndef ENTROPY_HECATE_DEFINE_SKILL
-#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef Skill<name ## _tag,  __VA_ARGS__> name
+#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef ::Entropy::Hecate::Skill<name ## _tag,  __VA_ARGS__> name
 #	endif
 
 	namespace Entropy

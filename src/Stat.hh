@@ -6,7 +6,7 @@
 #	define ENTROPY_HECATE_STAT_INC
 
 #	ifndef ENTROPY_HECATE_DEFINE_STAT
-#		define ENTROPY_HECATE_DEFINE_STAT(name) struct name ## _tag {}; typedef Stat<name ## _tag> name
+#		define ENTROPY_HECATE_DEFINE_STAT(name) struct name ## _tag {}; typedef ::Entropy::Hecate::Stat<name ## _tag> name
 #	endif
 
 	namespace Entropy
