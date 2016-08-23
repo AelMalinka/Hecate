@@ -45,6 +45,18 @@
 			}
 
 			template<typename stats>
+			template<typename tag>
+			const Stat<tag> &Character<stats>::get(Stat<tag> &s) const
+			{
+				using std::get;
+				using std::remove_reference;
+
+				s = get<typename remove_reference<decltype(s)>::type>(_stats);
+
+				return s;
+			}
+
+			template<typename stats>
 			template<typename tag, typename ...sl>
 			Skill<tag, sl...> &Character<stats>::set(Skill<tag, sl...> &s)
 			{
@@ -63,6 +75,18 @@
 
 				if(_skills.find(typeid(s)) != _skills.end())
 					s = any_cast<decltype(s)>(_skills[typeid(s)]);
+
+				return s;
+			}
+
+			template<typename stats>
+			template<typename tag, typename ...sl>
+			const Skill<tag, sl...> &Character<stats>::get(Skill<tag, sl...> &s) const
+			{
+				using boost::any_cast;
+
+				if(_skills.find(typeid(s)) != _skills.end())
+					s = any_cast<decltype(s)>(*_skills.find(typeid(s)));
 
 				return s;
 			}
