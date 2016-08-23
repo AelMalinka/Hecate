@@ -15,6 +15,12 @@
 #		define ENTROPY_HECATE_DEFINE_CHARACTER(...) typedef ::Entropy::Hecate::Character<::Entropy::Hecate::tuple<__VA_ARGS__>> BaseCharacter
 #	endif
 
+#	ifndef ENTROPY_HECATE_STAT_ACCESSOR
+#		define ENTROPY_HECATE_STAT_ACCESSOR(NAME, STAT) \
+			STAT &NAME() { return ::std::get<STAT>(Stats()); } \
+			const STAT &NAME() const { return ::std::get<STAT>(Stats()); }
+#	endif
+
 	namespace Entropy
 	{
 		namespace Hecate

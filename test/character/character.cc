@@ -28,6 +28,10 @@ namespace {
 		public:
 			template<typename ...sl>
 			Character(const sl & ...);
+			ENTROPY_HECATE_STAT_ACCESSOR(Strength, St);
+			ENTROPY_HECATE_STAT_ACCESSOR(Dexterity, Dx);
+			ENTROPY_HECATE_STAT_ACCESSOR(Intelligence, Iq);
+			ENTROPY_HECATE_STAT_ACCESSOR(Health, Ht);
 	};
 
 	TEST(Character, Create) {
@@ -104,6 +108,22 @@ namespace {
 		EXPECT_EQ(a.Value(), at.Value());
 		EXPECT_EQ(d.Value(), df.Value());
 		EXPECT_EQ(r.Value(), rs.Value());
+	}
+
+	TEST(Character, StatAccessors) {
+		Character test(5, 10, 15, 20);
+
+		EXPECT_EQ(test.Strength().Value(), 5);
+		EXPECT_EQ(test.Dexterity().Value(), 10);
+		EXPECT_EQ(test.Intelligence().Value(), 15);
+		EXPECT_EQ(test.Health().Value(), 20);
+
+		const Character t2(5, 10, 15, 20);
+
+		EXPECT_EQ(t2.Strength().Value(), 5);
+		EXPECT_EQ(t2.Dexterity().Value(), 10);
+		EXPECT_EQ(t2.Intelligence().Value(), 15);
+		EXPECT_EQ(t2.Health().Value(), 20);
 	}
 
 	template<typename ...sl>
