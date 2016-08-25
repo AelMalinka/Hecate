@@ -10,7 +10,10 @@ mainheaders_HEADERS = \
 	src/Stat.impl.hh \
 	src/Skill.hh \
 	src/Skill.impl.hh \
-	src/Random.hh
+	src/Random.hh \
+	src/Check.hh \
+	src/Modifier.hh \
+	src/Modifier.impl.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp
@@ -18,7 +21,8 @@ mainheaders_HEADERS += \
 lib_LTLIBRARIES = libhecate.la
 
 libhecate_la_SOURCES = \
-	src/Random.cc
+	src/Random.cc \
+	src/Modifier.cc
 
 check_PROGRAMS = 
 
@@ -28,7 +32,8 @@ check_PROGRAMS += \
 	character-skill \
 	character \
 	random-pcg \
-	random-base
+	random-base \
+	check-modifier
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -53,12 +58,17 @@ random_pcg_LDFLAGS = $(testLDFLAGS)
 random_base_SOURCES = test/random/base.cc
 random_base_LDADD = $(testLDADD)
 random_base_LDFLAGS = $(testLDFLAGS)
+
+check_modifier_SOURCES = test/check/modifier.cc
+check_modifier_LDADD = $(testLDADD)
+check_modifier_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
 TESTSUITE_FILES = \
 	$(srcdir)/test/character.at \
-	$(srcdir)/test/random.at
+	$(srcdir)/test/random.at \
+	$(srcdir)/test/check.at
 
 EXTRA_DIST = \
 	$(TESTSUITE_FILES) \

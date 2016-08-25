@@ -1,0 +1,9 @@
+# Copyright 2016 (c) Michael Thomas (malinka) <malinka@entropy-development.com>
+# Distributed under the terms of the GNU Affero General Public License v3
+
+AT_BANNER([Check Tests])
+
+AT_SETUP([Modifier Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([check-modifier], [], [ignore], [ignore])
+AT_CLEANUP

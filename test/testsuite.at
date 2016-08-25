@@ -8,3 +8,4 @@ Distributed under the terms of the GNU Lesser General Public License v3])
 
 m4_include([character.at])
 m4_include([random.at])
+m4_include([check.at])
