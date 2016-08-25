@@ -6,6 +6,7 @@
 #include "Random.hh"
 
 using namespace Entropy::Hecate;
+using namespace testing;
 using namespace std;
 
 namespace {
