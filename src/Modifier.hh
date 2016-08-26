@@ -20,6 +20,7 @@
 				public:
 					BaseModifier(const std::string &);
 					BaseModifier(const std::string &, const negative_t &);
+					BaseModifier(const BaseModifier &);
 					virtual ~BaseModifier();
 					const std::string &Reason() const;
 					const bool &Negative() const;

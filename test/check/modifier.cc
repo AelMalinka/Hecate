@@ -23,6 +23,28 @@ namespace {
 		auto negative_skill = make_modifier(v, "this is a reference negative modifier", negative);
 	}
 
+	TEST(Modifier, Copy) {
+		TestStat v = 10;
+		auto first = make_modifier(10, "modifier");
+		auto second = first;
+		auto skill_first = make_modifier(v, "stat modifier");
+		auto skill_second = skill_first;
+
+		EXPECT_EQ(first.Value(), second.Value());
+		EXPECT_EQ(first.Value(), 10);
+		EXPECT_EQ(second.Value(), 10);
+
+		EXPECT_EQ(skill_first.Value(), skill_second.Value());
+		EXPECT_EQ(skill_first.Value(), 10);
+		EXPECT_EQ(skill_second.Value(), 10);
+
+		v.Value() = 15;
+
+		EXPECT_EQ(skill_first.Value(), skill_second.Value());
+		EXPECT_EQ(skill_first.Value(), 15);
+		EXPECT_EQ(skill_second.Value(), 15);
+	}
+
 	TEST(Modifier, Negative) {
 		TestStat v = 10;
 		auto number = make_modifier(10, "number");

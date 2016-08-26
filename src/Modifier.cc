@@ -17,6 +17,7 @@ BaseModifier::BaseModifier(const string &r, const negative_t &)
 	: _reason(r), _negate(true)
 {}
 
+BaseModifier::BaseModifier(const BaseModifier &) = default;
 BaseModifier::~BaseModifier() = default;
 
 const string &BaseModifier::Reason() const

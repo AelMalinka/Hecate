@@ -24,6 +24,7 @@
 					Modifier(T &t, const std::string &s, const negative_t &n)
 						: BaseModifier(s, n), _value(t)
 					{}
+					Modifier(const Modifier<T, typename std::enable_if<std::is_class<T>::value>::type> &) = default;
 					unsigned short &Value()
 					{
 						return _value.Value();
@@ -34,7 +35,6 @@
 					}
 				private:
 					T &_value;
-					std::string _reason;
 			};
 
 			template<>
@@ -48,6 +48,7 @@
 					Modifier(unsigned short t, const std::string &s, const negative_t &n)
 						: BaseModifier(s, n), _value(t)
 					{}
+					Modifier(const Modifier<unsigned short, void> &) = default;
 					unsigned short &Value()
 					{
 						return _value;
