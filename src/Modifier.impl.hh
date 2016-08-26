@@ -14,17 +14,17 @@
 		namespace Hecate
 		{
 			template<typename T>
-			class Modifier<T, typename std::enable_if<std::is_class<T>::value>::type> :
-				public BaseModifier
+			class ModifierImpl<T, typename std::enable_if<std::is_class<T>::value>::type> :
+				public Modifier
 			{
 				public:
-					Modifier(T &t, const std::string &s)
-						: BaseModifier(s), _value(t)
+					ModifierImpl(T &t, const std::string &s)
+						: Modifier(s), _value(t)
 					{}
-					Modifier(T &t, const std::string &s, const negative_t &n)
-						: BaseModifier(s, n), _value(t)
+					ModifierImpl(T &t, const std::string &s, const negative_t &n)
+						: Modifier(s, n), _value(t)
 					{}
-					Modifier(const Modifier<T, typename std::enable_if<std::is_class<T>::value>::type> &) = default;
+					ModifierImpl(const ModifierImpl<T, typename std::enable_if<std::is_class<T>::value>::type> &) = default;
 					unsigned short &Value()
 					{
 						return _value.Value();
@@ -38,17 +38,17 @@
 			};
 
 			template<>
-			class Modifier<unsigned short, void> :
-				public BaseModifier
+			class ModifierImpl<unsigned short, void> :
+				public Modifier
 			{
 				public:
-					Modifier(unsigned short t, const std::string &s)
-						: BaseModifier(s), _value(t)
+					ModifierImpl(unsigned short t, const std::string &s)
+						: Modifier(s), _value(t)
 					{}
-					Modifier(unsigned short t, const std::string &s, const negative_t &n)
-						: BaseModifier(s, n), _value(t)
+					ModifierImpl(unsigned short t, const std::string &s, const negative_t &n)
+						: Modifier(s, n), _value(t)
 					{}
-					Modifier(const Modifier<unsigned short, void> &) = default;
+					ModifierImpl(const ModifierImpl<unsigned short, void> &) = default;
 					unsigned short &Value()
 					{
 						return _value;
@@ -62,23 +62,23 @@
 			};
 
 			template<typename charT>
-			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &os, const BaseModifier &m)
+			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &os, const Modifier &m)
 			{
 				os << m.Reason() << ": " << (m.Negative() ? "-" : "") << m.Value();
 				return os;
 			}
 
 			template<typename T>
-			Modifier<T> make_modifier(T &v, const std::string &r)
+			ModifierImpl<T> make_modifier(T &v, const std::string &r)
 			{
-				Modifier<T> ret(v, r);
+				ModifierImpl<T> ret(v, r);
 				return ret;
 			}
 
 			template<typename T>
-			Modifier<T> make_modifier(T &v, const std::string &r, const negative_t &n)
+			ModifierImpl<T> make_modifier(T &v, const std::string &r, const negative_t &n)
 			{
-				Modifier<T> ret(v, r, n);
+				ModifierImpl<T> ret(v, r, n);
 				return ret;
 			}
 		}

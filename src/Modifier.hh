@@ -15,13 +15,13 @@
 			struct negative_t {};
 			extern const negative_t negative;
 
-			class BaseModifier
+			class Modifier
 			{
 				public:
-					BaseModifier(const std::string &);
-					BaseModifier(const std::string &, const negative_t &);
-					BaseModifier(const BaseModifier &);
-					virtual ~BaseModifier();
+					Modifier(const std::string &);
+					Modifier(const std::string &, const negative_t &);
+					Modifier(const Modifier &);
+					virtual ~Modifier();
 					const std::string &Reason() const;
 					const bool &Negative() const;
 					virtual unsigned short &Value() = 0;
@@ -35,20 +35,20 @@
 				typename T,
 				typename = void
 			>
-			class Modifier :
-				public BaseModifier
+			class ModifierImpl :
+				public Modifier
 			{};
 
 			template<typename charT>
-			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &, const BaseModifier &);
+			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &, const Modifier &);
 
 			template<typename T>
-			Modifier<T> make_modifier(T &, const std::string &);
+			ModifierImpl<T> make_modifier(T &, const std::string &);
 			template<typename T>
-			Modifier<T> make_modifier(T &, const std::string &, const negative_t &);
+			ModifierImpl<T> make_modifier(T &, const std::string &, const negative_t &);
 
-			Modifier<unsigned short> make_modifier(unsigned short, const std::string &);
-			Modifier<unsigned short> make_modifier(unsigned short, const std::string &, const negative_t &);
+			ModifierImpl<unsigned short> make_modifier(unsigned short, const std::string &);
+			ModifierImpl<unsigned short> make_modifier(unsigned short, const std::string &, const negative_t &);
 		}
 	}
 

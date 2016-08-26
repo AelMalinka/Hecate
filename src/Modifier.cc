@@ -9,35 +9,35 @@ using namespace std;
 
 const negative_t Entropy::Hecate::negative;
 
-BaseModifier::BaseModifier(const string &r)
+Modifier::Modifier(const string &r)
 	: _reason(r), _negate(false)
 {}
 
-BaseModifier::BaseModifier(const string &r, const negative_t &)
+Modifier::Modifier(const string &r, const negative_t &)
 	: _reason(r), _negate(true)
 {}
 
-BaseModifier::BaseModifier(const BaseModifier &) = default;
-BaseModifier::~BaseModifier() = default;
+Modifier::Modifier(const Modifier &) = default;
+Modifier::~Modifier() = default;
 
-const string &BaseModifier::Reason() const
+const string &Modifier::Reason() const
 {
 	return _reason;
 }
 
-const bool &BaseModifier::Negative() const
+const bool &Modifier::Negative() const
 {
 	return _negate;
 }
 
-Modifier<unsigned short> Entropy::Hecate::make_modifier(unsigned short v, const string &r)
+ModifierImpl<unsigned short> Entropy::Hecate::make_modifier(unsigned short v, const string &r)
 {
-	Modifier<unsigned short> ret(v, r);
+	ModifierImpl<unsigned short> ret(v, r);
 	return ret;
 }
 
-Modifier<unsigned short> Entropy::Hecate::make_modifier(unsigned short v, const string &r, const negative_t &n)
+ModifierImpl<unsigned short> Entropy::Hecate::make_modifier(unsigned short v, const string &r, const negative_t &n)
 {
-	Modifier<unsigned short> ret(v, r, n);
+	ModifierImpl<unsigned short> ret(v, r, n);
 	return ret;
 }
