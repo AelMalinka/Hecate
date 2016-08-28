@@ -7,3 +7,13 @@ AT_SETUP([Modifier Tests])
 AT_SKIP_IF([test -z $GTEST])
 AT_CHECK([check-modifier], [], [ignore], [ignore])
 AT_CLEANUP
+
+AT_SETUP([Result Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([check-result], [], [ignore], [ignore])
+AT_CLEANUP
+
+AT_SETUP([Check Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([check-check], [], [ignore], [ignore])
+AT_CLEANUP

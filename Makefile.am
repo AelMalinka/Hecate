@@ -13,6 +13,7 @@ mainheaders_HEADERS = \
 	src/Skill.impl.hh \
 	src/Random.hh \
 	src/Check.hh \
+	src/Check.impl.hh \
 	src/Modifier.hh \
 	src/Modifier.impl.hh
 
@@ -23,7 +24,8 @@ lib_LTLIBRARIES = libhecate.la
 
 libhecate_la_SOURCES = \
 	src/Random.cc \
-	src/Modifier.cc
+	src/Modifier.cc \
+	src/Check.cc
 
 check_PROGRAMS = 
 
@@ -34,7 +36,9 @@ check_PROGRAMS += \
 	character \
 	random-pcg \
 	random-base \
-	check-modifier
+	check-modifier \
+	check-result \
+	check-check
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -63,6 +67,14 @@ random_base_LDFLAGS = $(testLDFLAGS)
 check_modifier_SOURCES = test/check/modifier.cc
 check_modifier_LDADD = $(testLDADD)
 check_modifier_LDFLAGS = $(testLDFLAGS)
+
+check_result_SOURCES = test/check/result.cc
+check_result_LDADD = $(testLDADD)
+check_result_LDFLAGS = $(testLDFLAGS)
+
+check_check_SOURCES = test/check/check.cc
+check_check_LDADD = $(testLDADD)
+check_check_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
