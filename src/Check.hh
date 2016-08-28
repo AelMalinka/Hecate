@@ -34,6 +34,7 @@
 							Result(const int, const unsigned short, const std::list<std::shared_ptr<Modifier>> &);
 							int Value() const;
 							unsigned short Luck() const;
+							std::size_t size() const;
 							std::list<result_modifier>::iterator begin();
 							std::list<result_modifier>::iterator end();
 						private:

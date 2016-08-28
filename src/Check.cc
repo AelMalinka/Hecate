@@ -46,6 +46,11 @@ unsigned short Check::Result::Luck() const
 	return _luck;
 }
 
+size_t Check::Result::size() const
+{
+	return _modifiers.size();
+}
+
 list<Check::Result::result_modifier>::iterator Check::Result::begin()
 {
 	return _modifiers.begin();

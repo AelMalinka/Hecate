@@ -28,12 +28,7 @@ namespace {
 		EXPECT_LT(res.Value(), 100 - res.Luck());
 		EXPECT_GT(res.Value(), res.Luck() - 101);
 
-		list<shared_ptr<Modifier>> l;
-		for(auto &i : res) {
-			l.push_back(i.modifier);
-		}
-
-		EXPECT_EQ(l.size(), 2);
+		EXPECT_EQ(res.size(), 2);
 	}
 
 	TEST(Check, Roll) {
