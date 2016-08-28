@@ -49,6 +49,10 @@
 					{
 						return _value;
 					}
+					void setValue(unsigned short v)
+					{
+						_value = v;
+					}
 				private:
 					unsigned short _value;
 			};

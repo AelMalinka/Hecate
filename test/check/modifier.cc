@@ -43,6 +43,10 @@ namespace {
 		EXPECT_EQ(skill_first->Value(), skill_second->Value());
 		EXPECT_EQ(skill_first->Value(), 15);
 		EXPECT_EQ(skill_second->Value(), 15);
+
+		// 2016-08-27 AMR NOTE: this changes all copies
+		second->setValue(15);
+		EXPECT_EQ(first->Value(), second->Value());
 	}
 
 	TEST(Modifier, Negative) {

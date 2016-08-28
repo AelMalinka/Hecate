@@ -5,8 +5,9 @@
 #if !defined ENTROPY_HECATE_MODIFIER_INC
 #	define ENTROPY_HECATE_MODIFIER_INC
 
-#	include <string>
-#	include <iostream>
+#	include <memory>
+
+#	include "Exception.hh"
 
 	namespace Entropy
 	{
@@ -25,6 +26,7 @@
 					const std::string &Reason() const;
 					const bool &Negative() const;
 					virtual unsigned short Value() const = 0;
+					virtual void setValue(unsigned short) { ENTROPY_THROW(Exception("setValue not implemented")); }
 				private:
 					std::string _reason;
 					bool _negate;
