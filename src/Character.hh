@@ -6,6 +6,7 @@
 #	define ENTROPY_HECATE_CHARACTER_INC
 
 #	include "Skill.hh"
+#	include "Check.hh"
 
 #	include <typeindex>
 #	include <unordered_map>
@@ -46,6 +47,10 @@
 					Skill<tag, sl...> &get(Skill<tag, sl...> &);
 					template<typename tag, typename ...sl>
 					const Skill<tag, sl...> &get(Skill<tag, sl...> &) const;
+				protected:
+					template<typename ...Mods>
+					Check _check(Mods ...mods);
+					unsigned short _luck;
 				private:
 					stats _stats;
 					std::unordered_map<std::type_index, boost::any> _skills;

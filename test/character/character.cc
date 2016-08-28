@@ -32,6 +32,7 @@ namespace {
 			ENTROPY_HECATE_STAT_ACCESSOR(Dexterity, Dx);
 			ENTROPY_HECATE_STAT_ACCESSOR(Intelligence, Iq);
 			ENTROPY_HECATE_STAT_ACCESSOR(Health, Ht);
+			Check attack();
 	};
 
 	TEST(Character, Create) {
@@ -126,8 +127,28 @@ namespace {
 		EXPECT_EQ(t2.Health().Value(), 20);
 	}
 
+	TEST(Character, Check) {
+		Character test(5, 10, 15, 20);
+		Check att = test.attack();
+
+		auto res = att();
+		EXPECT_EQ(res.size(), 1);
+
+		auto night = att(make_modifier(10, "night", negative));
+		EXPECT_EQ(night.size(), 2);
+	}
+
 	template<typename ...sl>
 	Character::Character(const sl & ...s)
 		: BaseCharacter(s...)
 	{}
+
+	Check Character::attack()
+	{
+		Attack at(Stats());
+
+		get(at);
+
+		return _check(make_modifier(at, "attack"));
+	}
 }

@@ -15,7 +15,7 @@
 			template<typename stats>
 			template<typename ...sl>
 			Character<stats>::Character(const sl &... s)
-				: _stats(s...)
+				: _luck(ENTROPY_HECATE_DEFAULT_LUCK), _stats(s...)
 			{}
 
 			template<typename stats> Character<stats>::~Character() = default;
@@ -89,6 +89,13 @@
 					s = any_cast<decltype(s)>(*_skills.find(typeid(s)));
 
 				return s;
+			}
+
+			template<typename stats>
+			template<typename ...Mods>
+			Check Character<stats>::_check(Mods ...mods)
+			{
+				return Check(_luck, {mods...});
 			}
 		}
 	}
