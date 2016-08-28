@@ -11,17 +11,17 @@ using namespace std;
 
 namespace {
 	TEST(Check, Instantiation) {
-		Check c = {
+		Check c({
 			make_modifier(10, "first"),
 			make_modifier(5, "second", negative)
-		};
+		});
 	}
 
 	TEST(Check, RollResult) {
-		Check c = {
+		Check c({
 			make_modifier(10, "first"),
 			make_modifier(5, "second", negative)
-		};
+		});
 
 		auto res = c();
 
@@ -32,7 +32,7 @@ namespace {
 	}
 
 	TEST(Check, Roll) {
-		Check c{};
+		Check c({});
 
 		for(int x = 0; x < 1000; x++) {
 			auto res = c();
@@ -43,10 +43,10 @@ namespace {
 	}
 
 	TEST(Check, TempModifiers) {
-		Check c = {
+		Check c({
 			make_modifier(10, "first"),
 			make_modifier(5, "second", negative)
-		};
+		});
 
 		auto result = c();
 		auto extra = c(make_modifier(20, "first extra"), make_modifier(15, "second extra", negative));

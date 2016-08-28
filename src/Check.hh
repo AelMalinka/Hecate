@@ -7,7 +7,6 @@
 
 #	include <memory>
 #	include <list>
-#	include <initializer_list>
 
 #	include "Modifier.hh"
 
@@ -43,8 +42,8 @@
 							std::list<result_modifier> _modifiers;
 					};
 				public:
-					Check(std::initializer_list<std::shared_ptr<Modifier>>);
-					Check(unsigned short &, std::initializer_list<std::shared_ptr<Modifier>>);
+					Check(std::list<std::shared_ptr<Modifier>>);
+					Check(unsigned short &, std::list<std::shared_ptr<Modifier>>);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
 				private:

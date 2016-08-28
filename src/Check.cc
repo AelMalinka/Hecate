@@ -9,18 +9,13 @@ using namespace std;
 
 unsigned short Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
 
-Check::Check(initializer_list<shared_ptr<Modifier>> l)
+Check::Check(list<shared_ptr<Modifier>> l)
 	: Check(default_luck, l)
 {}
 
-Check::Check(unsigned short &luck, initializer_list<shared_ptr<Modifier>> list)
-	: _luck(luck)
-{
-	for(auto &m : list)
-	{
-		_modifiers.push_back(m);
-	}
-}
+Check::Check(unsigned short &luck, list<shared_ptr<Modifier>> list)
+	: _luck(luck), _modifiers(list)
+{}
 
 Check::Result::Result(const int value, const unsigned short luck, const list<shared_ptr<Modifier>> &list)
 	: _value(value), _luck(luck)
