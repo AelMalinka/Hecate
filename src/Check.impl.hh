@@ -5,6 +5,8 @@
 #if !defined ENTROPY_HECATE_CHECK_IMPL
 #	define ENTROPY_HECATE_CHECK_IMPL
 
+#	include "Check.hh"
+
 #	include "Random.hh"
 
 	namespace Entropy
