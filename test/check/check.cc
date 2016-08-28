@@ -54,4 +54,17 @@ namespace {
 		EXPECT_EQ(result.size(), 2);
 		EXPECT_EQ(extra.size(), 4);
 	}
+
+	TEST(Check, Luck) {
+		unsigned short luck = 5;
+		Check c(luck, {});
+
+		auto result = c();
+
+		luck = 10;
+		auto diffluck = c();
+
+		EXPECT_EQ(result.Luck(), 5);
+		EXPECT_EQ(diffluck.Luck(), 10);
+	}
 }
