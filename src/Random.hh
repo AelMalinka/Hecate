@@ -25,7 +25,7 @@
 				};
 			}
 
-			auto Roll = std::bind(detail::Random::Distribution, detail::Random::Generator);
+			extern std::function<unsigned short()> Roll;
 		}
 	}
 

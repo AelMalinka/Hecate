@@ -10,3 +10,4 @@ using namespace std;
 pcg_extras::seed_seq_from<random_device> Random::_seed;
 pcg32 Random::Generator(_seed);
 uniform_int_distribution<unsigned short> Random::Distribution(0, 99);
+function<unsigned short()> Entropy::Hecate::Roll(bind(Random::Distribution, Random::Generator));
