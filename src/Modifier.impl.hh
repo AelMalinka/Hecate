@@ -25,11 +25,7 @@
 						: Modifier(s, n), _value(t)
 					{}
 					ModifierImpl(const ModifierImpl<T, typename std::enable_if<std::is_class<T>::value>::type> &) = default;
-					unsigned short &Value()
-					{
-						return _value.Value();
-					}
-					const unsigned short &Value() const
+					unsigned short Value() const
 					{
 						return _value.Value();
 					}
@@ -49,11 +45,7 @@
 						: Modifier(s, n), _value(t)
 					{}
 					ModifierImpl(const ModifierImpl<unsigned short, void> &) = default;
-					unsigned short &Value()
-					{
-						return _value;
-					}
-					const unsigned short &Value() const
+					unsigned short Value() const
 					{
 						return _value;
 					}

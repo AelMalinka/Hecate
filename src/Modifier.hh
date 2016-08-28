@@ -24,8 +24,7 @@
 					virtual ~Modifier();
 					const std::string &Reason() const;
 					const bool &Negative() const;
-					virtual unsigned short &Value() = 0;
-					virtual const unsigned short &Value() const = 0;
+					virtual unsigned short Value() const = 0;
 				private:
 					std::string _reason;
 					bool _negate;
