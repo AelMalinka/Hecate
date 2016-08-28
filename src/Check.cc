@@ -7,18 +7,25 @@
 using namespace Entropy::Hecate;
 using namespace std;
 
+unsigned short Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
+
 Check::Check(initializer_list<shared_ptr<Modifier>> l)
+	: Check(default_luck, l)
+{}
+
+Check::Check(unsigned short &luck, initializer_list<shared_ptr<Modifier>> list)
+	: _luck(luck)
 {
-	for(auto &m : l)
+	for(auto &m : list)
 	{
 		_modifiers.push_back(m);
 	}
 }
 
-Check::Result::Result(const int v, const list<shared_ptr<Modifier>> &l)
-	: _value(v)
+Check::Result::Result(const int value, const unsigned short luck, const list<shared_ptr<Modifier>> &list)
+	: _value(value), _luck(luck)
 {
-	for(auto &m : l)
+	for(auto &m : list)
 	{
 		result_modifier t;
 
@@ -32,6 +39,11 @@ Check::Result::Result(const int v, const list<shared_ptr<Modifier>> &l)
 const int &Check::Result::Value() const
 {
 	return _value;
+}
+
+unsigned short Check::Result::Luck() const
+{
+	return _luck;
 }
 
 list<Check::Result::result_modifier>::iterator Check::Result::begin()

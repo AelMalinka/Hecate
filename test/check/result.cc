@@ -16,7 +16,7 @@ namespace {
 	ENTROPY_HECATE_DEFINE_SKILL(skill, stat);
 
 	TEST(Result, Values) {
-		Check::Result empty(10, {});
+		Check::Result empty(10, 5, {});
 
 		EXPECT_EQ(empty.Value(), 10);
 
@@ -27,13 +27,21 @@ namespace {
 		l.push_back(make_modifier(v, "stat"));
 		l.push_back(make_modifier(v, "stat negative", negative));
 
-		Check::Result result(5, l);
+		Check::Result result(5, 5, l);
 
 		EXPECT_EQ(result.Value(), 5);
 	}
 
+	TEST(Result, Luck) {
+		Check::Result res1(10, 5, {});
+		Check::Result res2(10, 10, {});
+
+		EXPECT_EQ(res1.Luck(), 5);
+		EXPECT_EQ(res2.Luck(), 10);
+	}
+
 	TEST(Result, Iterate) {
-		Check::Result empty(10, {});
+		Check::Result empty(10, 5, {});
 		list<shared_ptr<Modifier>> empty_list;
 
 		for(auto &i : empty) {
@@ -44,7 +52,7 @@ namespace {
 
 		stat s = 10;
 		skill k(5, s);
-		Check::Result result(5, {
+		Check::Result result(5, 5, {
 			make_modifier(10, "value"),
 			make_modifier(s, "stat"),
 			make_modifier(k, "skill"),
@@ -61,7 +69,7 @@ namespace {
 
 	TEST(Result, Reference) {
 		auto t = make_modifier(5, "value");
-		Check::Result res(10, {t});
+		Check::Result res(10, 5, {t});
 
 		EXPECT_EQ(res.begin()->modifier->Value(), 5);
 		EXPECT_EQ(res.begin()->current, 5);

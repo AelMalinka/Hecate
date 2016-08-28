@@ -25,8 +25,8 @@ namespace {
 
 		auto res = c();
 
-		EXPECT_LT(res.Value(), 95);
-		EXPECT_GT(res.Value(), -95);
+		EXPECT_LT(res.Value(), 100 - res.Luck());
+		EXPECT_GT(res.Value(), res.Luck() - 101);
 
 		list<shared_ptr<Modifier>> l;
 		for(auto &i : res) {
@@ -42,8 +42,8 @@ namespace {
 		for(int x = 0; x < 1000; x++) {
 			auto res = c();
 
-			EXPECT_LT(res.Value(), 95);
-			EXPECT_GT(res.Value(), -95);
+			EXPECT_LT(res.Value(), 100 - res.Luck());
+			EXPECT_GT(res.Value(), res.Luck() - 101);
 		}
 	}
 }

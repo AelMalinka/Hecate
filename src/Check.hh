@@ -7,6 +7,7 @@
 
 #	include <memory>
 #	include <list>
+#	include <initializer_list>
 
 #	include "Modifier.hh"
 
@@ -30,22 +31,25 @@
 								std::shared_ptr<Modifier> modifier;
 							};
 						public:
-							Result(const int, const std::list<std::shared_ptr<Modifier>> &);
+							Result(const int, const unsigned short, const std::list<std::shared_ptr<Modifier>> &);
 							const int &Value() const;
+							unsigned short Luck() const;
 							std::list<result_modifier>::iterator begin();
 							std::list<result_modifier>::iterator end();
 						private:
 							int _value;
+							unsigned short _luck;
 							std::list<result_modifier> _modifiers;
 					};
 				public:
 					Check(std::initializer_list<std::shared_ptr<Modifier>>);
+					Check(unsigned short &, std::initializer_list<std::shared_ptr<Modifier>>);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
 				private:
-					// 2016-08-27 AMR TODO: luck stat
-					static constexpr unsigned short default_luck = ENTROPY_HECATE_DEFAULT_LUCK;
+					static unsigned short default_luck;
 					std::list<std::shared_ptr<Modifier>> _modifiers;
+					unsigned short &_luck;
 			};
 		}
 	}

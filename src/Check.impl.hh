@@ -32,14 +32,13 @@
 						chance += modifier->Value();
 				}
 
-				// 2016-08-27 AMR TODO: luck stat
-				if(chance > 100 - default_luck)
-					chance = 100 - default_luck;
+				if(chance > 100 - _luck)
+					chance = 100 - _luck;
 				if(chance < default_luck)
 					chance = default_luck;
 
 				int value = chance - Roll();
-				Result ret(value, _modifiers);
+				Result ret(value, _luck, _modifiers);
 
 				return ret;
 			}
