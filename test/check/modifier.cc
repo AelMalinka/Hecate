@@ -1,4 +1,4 @@
-/*	Copyright 2016 (c) Michael Thomas (malinka) <malinka@entropy-development.com>'
+/*	Copyright 2016 (c) Michael Thomas (malinka) <malinka@entropy-development->com>'
 	Distributed under the terms of the GNU Affero General Public License v3
 */
 
@@ -30,19 +30,19 @@ namespace {
 		auto skill_first = make_modifier(v, "stat modifier");
 		auto skill_second = skill_first;
 
-		EXPECT_EQ(first.Value(), second.Value());
-		EXPECT_EQ(first.Value(), 10);
-		EXPECT_EQ(second.Value(), 10);
+		EXPECT_EQ(first->Value(), second->Value());
+		EXPECT_EQ(first->Value(), 10);
+		EXPECT_EQ(second->Value(), 10);
 
-		EXPECT_EQ(skill_first.Value(), skill_second.Value());
-		EXPECT_EQ(skill_first.Value(), 10);
-		EXPECT_EQ(skill_second.Value(), 10);
+		EXPECT_EQ(skill_first->Value(), skill_second->Value());
+		EXPECT_EQ(skill_first->Value(), 10);
+		EXPECT_EQ(skill_second->Value(), 10);
 
 		v.Value() = 15;
 
-		EXPECT_EQ(skill_first.Value(), skill_second.Value());
-		EXPECT_EQ(skill_first.Value(), 15);
-		EXPECT_EQ(skill_second.Value(), 15);
+		EXPECT_EQ(skill_first->Value(), skill_second->Value());
+		EXPECT_EQ(skill_first->Value(), 15);
+		EXPECT_EQ(skill_second->Value(), 15);
 	}
 
 	TEST(Modifier, Negative) {
@@ -52,33 +52,33 @@ namespace {
 		auto negative_number = make_modifier(10, "negative number", negative);
 		auto negative_skill = make_modifier(v, "negative skill", negative);
 
-		EXPECT_FALSE(number.Negative());
-		EXPECT_FALSE(skill.Negative());
-		EXPECT_TRUE(negative_number.Negative());
-		EXPECT_TRUE(negative_skill.Negative());
+		EXPECT_FALSE(number->Negative());
+		EXPECT_FALSE(skill->Negative());
+		EXPECT_TRUE(negative_number->Negative());
+		EXPECT_TRUE(negative_skill->Negative());
 
-		EXPECT_EQ(number.Value(), negative_number.Value());
-		EXPECT_EQ(skill.Value(), negative_skill.Value());
+		EXPECT_EQ(number->Value(), negative_number->Value());
+		EXPECT_EQ(skill->Value(), negative_skill->Value());
 	}
 
 	TEST(Modifier, Static) {
 		auto modifier = make_modifier(10, "This is a static modifier");
 
-		EXPECT_EQ(modifier.Value(), 10);
-		EXPECT_EQ(modifier.Reason(), "This is a static modifier"s);
+		EXPECT_EQ(modifier->Value(), 10);
+		EXPECT_EQ(modifier->Reason(), "This is a static modifier"s);
 	}
 
 	TEST(Modifier, Reference) {
 		TestStat v = 10;
 		auto modifier = make_modifier(v, "This is a reference modifier");
 
-		EXPECT_EQ(modifier.Value(), 10);
-		EXPECT_EQ(modifier.Value(), v.Value());
+		EXPECT_EQ(modifier->Value(), 10);
+		EXPECT_EQ(modifier->Value(), v.Value());
 
 		v.Value() = 15;
 
-		EXPECT_EQ(modifier.Value(), 15);
-		EXPECT_EQ(modifier.Value(), v.Value());
+		EXPECT_EQ(modifier->Value(), 15);
+		EXPECT_EQ(modifier->Value(), v.Value());
 	}
 
 	TEST(Modifier, Output) {

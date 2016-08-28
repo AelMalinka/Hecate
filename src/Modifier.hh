@@ -40,14 +40,16 @@
 
 			template<typename charT>
 			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &, const Modifier &);
+			template<typename charT>
+			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &, const std::shared_ptr<Modifier> &);
 
 			template<typename T>
-			ModifierImpl<T> make_modifier(T &, const std::string &);
+			std::shared_ptr<Modifier> make_modifier(T &, const std::string &);
 			template<typename T>
-			ModifierImpl<T> make_modifier(T &, const std::string &, const negative_t &);
+			std::shared_ptr<Modifier> make_modifier(T &, const std::string &, const negative_t &);
 
-			ModifierImpl<unsigned short> make_modifier(unsigned short, const std::string &);
-			ModifierImpl<unsigned short> make_modifier(unsigned short, const std::string &, const negative_t &);
+			std::shared_ptr<Modifier> make_modifier(unsigned short, const std::string &);
+			std::shared_ptr<Modifier> make_modifier(unsigned short, const std::string &, const negative_t &);
 		}
 	}
 

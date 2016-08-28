@@ -30,14 +30,12 @@ const bool &Modifier::Negative() const
 	return _negate;
 }
 
-ModifierImpl<unsigned short> Entropy::Hecate::make_modifier(unsigned short v, const string &r)
+shared_ptr<Modifier> Entropy::Hecate::make_modifier(unsigned short v, const string &r)
 {
-	ModifierImpl<unsigned short> ret(v, r);
-	return ret;
+	return make_shared<ModifierImpl<unsigned short>>(v, r);
 }
 
-ModifierImpl<unsigned short> Entropy::Hecate::make_modifier(unsigned short v, const string &r, const negative_t &n)
+shared_ptr<Modifier> Entropy::Hecate::make_modifier(unsigned short v, const string &r, const negative_t &n)
 {
-	ModifierImpl<unsigned short> ret(v, r, n);
-	return ret;
+	return make_shared<ModifierImpl<unsigned short>>(v, r, n);
 }

@@ -60,18 +60,23 @@
 				return os;
 			}
 
-			template<typename T>
-			ModifierImpl<T> make_modifier(T &v, const std::string &r)
+			template<typename charT>
+			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &os, const std::shared_ptr<Modifier> &m)
 			{
-				ModifierImpl<T> ret(v, r);
-				return ret;
+				os << *m;
+				return os;
 			}
 
 			template<typename T>
-			ModifierImpl<T> make_modifier(T &v, const std::string &r, const negative_t &n)
+			std::shared_ptr<Modifier> make_modifier(T &v, const std::string &r)
 			{
-				ModifierImpl<T> ret(v, r, n);
-				return ret;
+				return std::make_shared<ModifierImpl<T>>(v, r);
+			}
+
+			template<typename T>
+			std::shared_ptr<Modifier> make_modifier(T &v, const std::string &r, const negative_t &n)
+			{
+				return std::make_shared<ModifierImpl<T>>(v, r, n);
 			}
 		}
 	}
