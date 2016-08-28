@@ -29,6 +29,10 @@
 					{
 						return _value.Value();
 					}
+					std::shared_ptr<Modifier> Copy() const
+					{
+						return std::shared_ptr<Modifier>(new ModifierImpl<T, typename std::enable_if<std::is_class<T>::value>::type>(*this));
+					}
 				private:
 					T &_value;
 			};
@@ -52,6 +56,10 @@
 					void setValue(unsigned short v)
 					{
 						_value = v;
+					}
+					std::shared_ptr<Modifier> Copy() const
+					{
+						return std::shared_ptr<Modifier>(new ModifierImpl<unsigned short, void>(*this));
 					}
 				private:
 					unsigned short _value;

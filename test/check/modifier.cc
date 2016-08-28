@@ -47,6 +47,13 @@ namespace {
 		// 2016-08-27 AMR NOTE: this changes all copies
 		second->setValue(15);
 		EXPECT_EQ(first->Value(), second->Value());
+
+		auto third = first->Copy();
+		EXPECT_EQ(first->Value(), third->Value());
+
+		third->setValue(10);
+		EXPECT_EQ(third->Value(), 10);
+		EXPECT_NE(third->Value(), first->Value());
 	}
 
 	TEST(Modifier, Negative) {

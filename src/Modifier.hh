@@ -27,6 +27,7 @@
 					const bool &Negative() const;
 					virtual unsigned short Value() const = 0;
 					virtual void setValue(unsigned short) { ENTROPY_THROW(Exception("setValue not implemented")); }
+					virtual std::shared_ptr<Modifier> Copy() const = 0;
 				private:
 					std::string _reason;
 					bool _negate;
