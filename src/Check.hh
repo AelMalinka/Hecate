@@ -32,7 +32,7 @@
 							};
 						public:
 							Result(const int, const unsigned short, const std::list<std::shared_ptr<Modifier>> &);
-							const int &Value() const;
+							int Value() const;
 							unsigned short Luck() const;
 							std::list<result_modifier>::iterator begin();
 							std::list<result_modifier>::iterator end();

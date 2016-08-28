@@ -36,7 +36,7 @@ Check::Result::Result(const int value, const unsigned short luck, const list<sha
 	}
 }
 
-const int &Check::Result::Value() const
+int Check::Result::Value() const
 {
 	return _value;
 }
