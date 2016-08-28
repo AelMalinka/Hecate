@@ -41,4 +41,17 @@ namespace {
 			EXPECT_GT(res.Value(), res.Luck() - 101);
 		}
 	}
+
+	TEST(Check, TempModifiers) {
+		Check c = {
+			make_modifier(10, "first"),
+			make_modifier(5, "second", negative)
+		};
+
+		auto result = c();
+		auto extra = c(make_modifier(20, "first extra"), make_modifier(15, "second extra", negative));
+
+		EXPECT_EQ(result.size(), 2);
+		EXPECT_EQ(extra.size(), 4);
+	}
 }

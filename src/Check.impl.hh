@@ -15,21 +15,18 @@
 			Check::Result Check::operator () (const Mods &... mods) const
 			{
 				int chance = 0; 
-				for(auto &modifier : _modifiers)
-				{
-					if(modifier->Negative())
-						chance -= modifier->Value();
-					else
-						chance += modifier->Value();
+				std::list<std::shared_ptr<Modifier>> t{mods...};
+				std::list<std::shared_ptr<Modifier>> modifiers(_modifiers);
+
+				for(auto &i : t) {
+					modifiers.push_back(i);
 				}
 
-				std::list<std::shared_ptr<Modifier>> t{mods...};
-				for(auto &modifier : t)
-				{
-					if(modifier->Negative())
-						chance -= modifier->Value();
+				for(auto &i : modifiers) {
+					if(i->Negative())
+						chance -= i->Value();
 					else
-						chance += modifier->Value();
+						chance += i->Value();
 				}
 
 				if(chance > 100 - _luck)
@@ -38,7 +35,7 @@
 					chance = default_luck;
 
 				int value = chance - Roll();
-				Result ret(value, _luck, _modifiers);
+				Result ret(value, _luck, modifiers);
 
 				return ret;
 			}
