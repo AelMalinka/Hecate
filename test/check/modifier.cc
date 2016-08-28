@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include "Modifier.hh"
 #include "Stat.hh"
+#include "Skill.hh"
 
 #include <iostream>
 
@@ -14,6 +15,7 @@ using namespace std;
 
 namespace {
 	ENTROPY_HECATE_DEFINE_STAT(TestStat);
+	ENTROPY_HECATE_DEFINE_SKILL(TestSkill, TestStat);
 
 	TEST(Modifier, Instantiation) {
 		TestStat v = 10;
@@ -90,6 +92,21 @@ namespace {
 
 		EXPECT_EQ(modifier->Value(), 15);
 		EXPECT_EQ(modifier->Value(), v.Value());
+	}
+
+	TEST(Modifier, Skill) {
+		TestStat v = 10;
+		TestSkill k(15, v);
+
+		auto modifier = make_modifier(k, "skill");
+
+		EXPECT_EQ(modifier->Value(), 25);
+
+		k.setValue(5);
+		EXPECT_EQ(modifier->Value(), 15);
+
+		v.Value() = 5;
+		EXPECT_EQ(modifier->Value(), 10);
 	}
 
 	TEST(Modifier, Output) {
