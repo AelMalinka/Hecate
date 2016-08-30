@@ -5,6 +5,8 @@
 #if !defined ENTROPY_HECATE_STAT_INC
 #	define ENTROPY_HECATE_STAT_INC
 
+#	include "Exception.hh"
+
 #	ifndef ENTROPY_HECATE_DEFINE_STAT
 #		define ENTROPY_HECATE_DEFINE_STAT(name) struct name ## _tag {}; typedef ::Entropy::Hecate::Stat<name ## _tag> name
 #	endif
@@ -20,12 +22,12 @@
 			{
 				public:
 					Stat();
-					Stat(const unsigned short);
+					Stat(const Percent);
 					~Stat();
-					unsigned short Value() const;
-					unsigned short &Raw();
+					Percent Value() const;
+					Percent &Raw();
 				private:
-					unsigned short _value;
+					Percent _value;
 			};
 		}
 	}

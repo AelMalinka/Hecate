@@ -41,14 +41,14 @@
 			{
 				public:
 					template<typename ...Skills>
-					Skill(const unsigned short, Skills &...);
+					Skill(const Percent, Skills &...);
 					template<typename sl, typename = typename std::enable_if<detail::is_specialization_of<sl, tuple>::value>::type>
 					Skill(sl &);
 					~Skill();
-					unsigned short Value() const;
-					unsigned short &Raw();
+					Percent Value() const;
+					Percent &Raw();
 				private:
-					unsigned short _value;
+					Percent _value;
 					tuple<skills &...> _base_skills;
 			};
 		}

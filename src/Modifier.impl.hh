@@ -25,7 +25,7 @@
 						: Modifier(s, n), _value(t)
 					{}
 					ModifierImpl(const ModifierImpl<T, typename std::enable_if<std::is_class<T>::value>::type> &) = default;
-					unsigned short Value() const
+					Percent Value() const
 					{
 						return _value.Value();
 					}
@@ -38,31 +38,31 @@
 			};
 
 			template<>
-			class ModifierImpl<unsigned short, void> :
+			class ModifierImpl<Percent, void> :
 				public Modifier
 			{
 				public:
-					ModifierImpl(unsigned short t, const std::string &s)
+					ModifierImpl(Percent t, const std::string &s)
 						: Modifier(s), _value(t)
 					{}
-					ModifierImpl(unsigned short t, const std::string &s, const negative_t &n)
+					ModifierImpl(Percent t, const std::string &s, const negative_t &n)
 						: Modifier(s, n), _value(t)
 					{}
-					ModifierImpl(const ModifierImpl<unsigned short, void> &) = default;
-					unsigned short Value() const
+					ModifierImpl(const ModifierImpl<Percent, void> &) = default;
+					Percent Value() const
 					{
 						return _value;
 					}
-					void setValue(unsigned short v)
+					void setValue(Percent v)
 					{
 						_value = v;
 					}
 					std::shared_ptr<Modifier> Copy() const
 					{
-						return std::shared_ptr<Modifier>(new ModifierImpl<unsigned short, void>(*this));
+						return std::shared_ptr<Modifier>(new ModifierImpl<Percent, void>(*this));
 					}
 				private:
-					unsigned short _value;
+					Percent _value;
 			};
 
 			template<typename charT>

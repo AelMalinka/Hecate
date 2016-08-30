@@ -26,30 +26,30 @@
 						private:
 							struct result_modifier
 							{
-								unsigned short current;
+								Percent current;
 								std::shared_ptr<Modifier> modifier;
 							};
 						public:
-							Result(const int, const unsigned short, const std::list<std::shared_ptr<Modifier>> &);
+							Result(const int, const Percent, const std::list<std::shared_ptr<Modifier>> &);
 							int Value() const;
-							unsigned short Luck() const;
+							Percent Luck() const;
 							std::size_t size() const;
 							std::list<result_modifier>::iterator begin();
 							std::list<result_modifier>::iterator end();
 						private:
 							int _value;
-							unsigned short _luck;
+							Percent _luck;
 							std::list<result_modifier> _modifiers;
 					};
 				public:
 					Check(std::list<std::shared_ptr<Modifier>>);
-					Check(unsigned short &, std::list<std::shared_ptr<Modifier>>);
+					Check(Percent &, std::list<std::shared_ptr<Modifier>>);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
 				private:
-					static unsigned short default_luck;
+					static Percent default_luck;
 					std::list<std::shared_ptr<Modifier>> _modifiers;
-					unsigned short &_luck;
+					Percent &_luck;
 			};
 		}
 	}

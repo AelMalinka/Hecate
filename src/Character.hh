@@ -50,7 +50,7 @@
 				protected:
 					template<typename ...Mods>
 					Check _check(Mods ...mods);
-					unsigned short _luck;
+					Percent _luck;
 				private:
 					stats _stats;
 					std::unordered_map<std::type_index, boost::any> _skills;

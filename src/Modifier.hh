@@ -8,6 +8,7 @@
 #	include <memory>
 
 #	include "Exception.hh"
+#	include "Skill.hh"
 
 	namespace Entropy
 	{
@@ -25,8 +26,8 @@
 					virtual ~Modifier();
 					const std::string &Reason() const;
 					const bool &Negative() const;
-					virtual unsigned short Value() const = 0;
-					virtual void setValue(unsigned short) { ENTROPY_THROW(Exception("setValue not implemented")); }
+					virtual Percent Value() const = 0;
+					virtual void setValue(Percent) { ENTROPY_THROW(Exception("setValue not implemented")); }
 					virtual std::shared_ptr<Modifier> Copy() const = 0;
 				private:
 					std::string _reason;
@@ -51,8 +52,8 @@
 			template<typename T>
 			std::shared_ptr<Modifier> make_modifier(T &, const std::string &, const negative_t &);
 
-			std::shared_ptr<Modifier> make_modifier(unsigned short, const std::string &);
-			std::shared_ptr<Modifier> make_modifier(unsigned short, const std::string &, const negative_t &);
+			std::shared_ptr<Modifier> make_modifier(Percent, const std::string &);
+			std::shared_ptr<Modifier> make_modifier(Percent, const std::string &, const negative_t &);
 		}
 	}
 

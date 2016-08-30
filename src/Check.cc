@@ -7,17 +7,17 @@
 using namespace Entropy::Hecate;
 using namespace std;
 
-unsigned short Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
+Percent Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
 
 Check::Check(list<shared_ptr<Modifier>> l)
 	: Check(default_luck, l)
 {}
 
-Check::Check(unsigned short &luck, list<shared_ptr<Modifier>> list)
+Check::Check(Percent &luck, list<shared_ptr<Modifier>> list)
 	: _luck(luck), _modifiers(list)
 {}
 
-Check::Result::Result(const int value, const unsigned short luck, const list<shared_ptr<Modifier>> &list)
+Check::Result::Result(const int value, const Percent luck, const list<shared_ptr<Modifier>> &list)
 	: _value(value), _luck(luck)
 {
 	for(auto &m : list)
@@ -36,7 +36,7 @@ int Check::Result::Value() const
 	return _value;
 }
 
-unsigned short Check::Result::Luck() const
+Percent Check::Result::Luck() const
 {
 	return _luck;
 }
