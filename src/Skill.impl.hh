@@ -75,9 +75,9 @@
 			}
 
 			template<typename tag, typename ...skills>
-			void Skill<tag, skills...>::setValue(const unsigned short v)
+			unsigned short &Skill<tag, skills...>::Raw()
 			{
-				_value = v;
+				return _value;
 			}
 		}
 	}

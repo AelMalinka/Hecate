@@ -22,8 +22,8 @@
 					Stat();
 					Stat(const unsigned short);
 					~Stat();
-					unsigned short &Value();
 					unsigned short Value() const;
+					unsigned short &Raw();
 				private:
 					unsigned short _value;
 			};

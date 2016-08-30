@@ -40,7 +40,7 @@ namespace {
 		EXPECT_EQ(skill_first->Value(), 10);
 		EXPECT_EQ(skill_second->Value(), 10);
 
-		v.Value() = 15;
+		v.Raw() = 15;
 
 		EXPECT_EQ(skill_first->Value(), skill_second->Value());
 		EXPECT_EQ(skill_first->Value(), 15);
@@ -88,7 +88,7 @@ namespace {
 		EXPECT_EQ(modifier->Value(), 10);
 		EXPECT_EQ(modifier->Value(), v.Value());
 
-		v.Value() = 15;
+		v.Raw() = 15;
 
 		EXPECT_EQ(modifier->Value(), 15);
 		EXPECT_EQ(modifier->Value(), v.Value());
@@ -102,10 +102,10 @@ namespace {
 
 		EXPECT_EQ(modifier->Value(), 25);
 
-		k.setValue(5);
+		k.Raw() = 5;
 		EXPECT_EQ(modifier->Value(), 15);
 
-		v.Value() = 5;
+		v.Raw() = 5;
 		EXPECT_EQ(modifier->Value(), 10);
 	}
 

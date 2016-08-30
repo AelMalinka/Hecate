@@ -46,7 +46,7 @@
 					Skill(sl &);
 					~Skill();
 					unsigned short Value() const;
-					void setValue(const unsigned short);
+					unsigned short &Raw();
 				private:
 					unsigned short _value;
 					tuple<skills &...> _base_skills;
