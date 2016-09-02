@@ -4,67 +4,108 @@
 
 #include <gtest/gtest.h>
 #include "Check.hh"
+#include "Stat.hh"
+#include "Skill.hh"
 
 using namespace Entropy::Hecate;
 using namespace testing;
 using namespace std;
 
 namespace {
-	TEST(Check, Instantiation) {
-		Check c({
-			make_modifier(10, "first"),
-			make_modifier(5, "second", negative)
+	ENTROPY_HECATE_DEFINE_STAT(stat);
+	ENTROPY_HECATE_DEFINE_SKILL(skill, stat);
+
+	TEST(Check, Instantiate) {
+		Percent luck = 10;
+		stat s = 20;
+		stat o = 10;
+		
+		Check empty;
+		Check with_luck(luck);
+		Check modifiers({
+			Modifier(-10, "night"),
+			Modifier(s, "stat"),
+			Modifier(o, "other stat", negative)
 		});
-	}
-
-	TEST(Check, RollResult) {
-		Check c({
-			make_modifier(10, "first"),
-			make_modifier(5, "second", negative)
+		Check modifiers_luck(luck, {
+			Modifier(-10, "night"),
+			Modifier(s, "stat"),
+			Modifier(o, "other stat", negative)
 		});
-
-		auto res = c();
-
-		EXPECT_LT(res.Value(), 100 - res.Luck());
-		EXPECT_GT(res.Value(), res.Luck() - 101);
-
-		EXPECT_EQ(res.size(), 2);
 	}
 
 	TEST(Check, Roll) {
-		Check c({});
+		Check empty;
 
-		for(int x = 0; x < 1000; x++) {
-			auto res = c();
+		for(auto x = 0; x < 10000; x++) {
+			auto res = empty();
 
-			EXPECT_LT(res.Value(), 100 - res.Luck());
-			EXPECT_GT(res.Value(), res.Luck() - 101);
+			EXPECT_LT(res.Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
+			EXPECT_GE(res.Value(), -100 + ENTROPY_HECATE_DEFAULT_LUCK);
 		}
 	}
 
-	TEST(Check, TempModifiers) {
-		Check c({
-			make_modifier(10, "first"),
-			make_modifier(5, "second", negative)
-		});
+	TEST(Result, Values) {
+		Check::Result empty(10, 5, {});
 
-		auto result = c();
-		auto extra = c(make_modifier(20, "first extra"), make_modifier(15, "second extra", negative));
+		EXPECT_EQ(empty.Value(), 10);
 
-		EXPECT_EQ(result.size(), 2);
-		EXPECT_EQ(extra.size(), 4);
+		stat v = 10;
+		list<shared_ptr<Modifier>> l;
+
+		l.push_back(make_shared<Modifier>(10, "value"));
+		l.push_back(make_shared<Modifier>(v, "stat"));
+		l.push_back(make_shared<Modifier>(v, "stat negative", negative));
+
+		Check::Result result(5, 5, l);
+
+		EXPECT_EQ(result.Value(), 5);
 	}
 
-	TEST(Check, Luck) {
-		Percent luck = 5;
-		Check c(luck, {});
+	TEST(Result, Luck) {
+		Check::Result res1(10, 5, {});
+		Check::Result res2(10, 10, {});
 
-		auto result = c();
+		EXPECT_EQ(res1.Luck(), 5);
+		EXPECT_EQ(res2.Luck(), 10);
+	}
 
-		luck = 10;
-		auto diffluck = c();
+	TEST(Result, Iterate) {
+		Check::Result empty(10, 5, {});
+		list<shared_ptr<Modifier>> empty_list;
 
-		EXPECT_EQ(result.Luck(), 5);
-		EXPECT_EQ(diffluck.Luck(), 10);
+		for(auto &i : empty) {
+			empty_list.push_back(i.modifier);
+		}
+
+		EXPECT_EQ(empty_list.size(), 0);
+
+		stat s = 10;
+		skill k(5, s);
+		Check::Result result(5, 5, {
+			make_shared<Modifier>(10, "value"),
+			make_shared<Modifier>(s, "stat"),
+			make_shared<Modifier>(k, "skill"),
+			make_shared<Modifier>(k, "negative skill", negative)
+		});
+		list<shared_ptr<Modifier>> result_list;
+
+		for(auto &i : result) {
+			result_list.push_back(i.modifier);
+		}
+
+		EXPECT_EQ(result_list.size(), 4);
+	}
+
+	TEST(Result, Reference) {
+		auto t = make_shared<Modifier>(5, "value");
+		Check::Result res(10, 5, {t});
+
+		EXPECT_EQ(res.begin()->modifier->Value(), 5);
+		EXPECT_EQ(res.begin()->current, 5);
+
+		t->Raw() = 10;
+		EXPECT_EQ(res.begin()->modifier->Value(), 10);
+		EXPECT_EQ(res.begin()->current, 5);
 	}
 }

@@ -7,6 +7,7 @@
 
 #	include <memory>
 #	include <list>
+#	include <vector>
 
 #	include "Modifier.hh"
 
@@ -26,24 +27,34 @@
 						private:
 							struct result_modifier
 							{
-								Percent current;
+								ModifierType current;
 								std::shared_ptr<Modifier> modifier;
 							};
 						public:
-							Result(const int, const Percent, const std::list<std::shared_ptr<Modifier>> &);
-							int Value() const;
+							Result(const ModifierType, const Percent, const std::list<std::shared_ptr<Modifier>> &);
+							ModifierType Value() const;
 							Percent Luck() const;
 							std::size_t size() const;
 							std::list<result_modifier>::iterator begin();
 							std::list<result_modifier>::iterator end();
 						private:
-							int _value;
+							ModifierType _value;
 							Percent _luck;
 							std::list<result_modifier> _modifiers;
 					};
 				public:
-					Check(std::list<std::shared_ptr<Modifier>>);
-					Check(Percent &, std::list<std::shared_ptr<Modifier>>);
+					Check();
+					Check(Percent &);
+					Check(const std::vector<Modifier> &);
+					Check(Percent &, const std::vector<Modifier> &);
+					Check(const Check &) = default;
+					Check(Check &&) = default;
+					template<typename T>
+					Check &Add(T &, const std::string &, const detail::negative_t & = detail::positive);
+					template<typename T>
+					Check &Add(T &&, const std::string &, const detail::negative_t & = detail::positive);
+					Check &Add(const std::shared_ptr<Modifier> &);
+					Check &Add(const Modifier &);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
 				private:
