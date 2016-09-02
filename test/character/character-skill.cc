@@ -65,11 +65,11 @@ namespace {
 		EXPECT_EQ(rs.Value(), 30);
 		EXPECT_EQ(ex.Value(), 35);
 
-		st.Value() = 11;
-		dx.Value() = 16;
-		ht.Value() = 6;
-		iq.Value() = 25;
-		rs.setValue(8);
+		st.Raw() = 11;
+		dx.Raw() = 16;
+		ht.Raw() = 6;
+		iq.Raw() = 25;
+		rs.Raw() = 8;
 
 		EXPECT_EQ(at.Value(), 22);
 		EXPECT_EQ(df.Value(), 17);

@@ -22,13 +22,13 @@
 			template<typename tag> Stat<tag>::~Stat() = default;
 
 			template<typename tag>
-			unsigned short &Stat<tag>::Value()
+			unsigned short Stat<tag>::Value() const
 			{
 				return _value;
 			}
 
 			template<typename tag>
-			unsigned short Stat<tag>::Value() const
+			unsigned short &Stat<tag>::Raw()
 			{
 				return _value;
 			}

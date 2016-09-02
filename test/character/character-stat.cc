@@ -30,10 +30,10 @@ namespace {
 		Strength st = 0;
 		EXPECT_EQ(st.Value(), 0);
 
-		st.Value() = 10;
+		st.Raw() = 10;
 		EXPECT_EQ(st.Value(), 10);
 
-		st.Value() = -10;
+		st.Raw() = -10;
 		EXPECT_NE(st.Value(), -10);
 		EXPECT_EQ(st.Value(), 65526);
 	}

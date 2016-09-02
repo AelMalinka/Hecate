@@ -92,8 +92,8 @@ namespace {
 		Defense df(test.Stats());
 		Research rs(test.Stats());
 
-		at.setValue(5);
-		df.setValue(10);
+		at.Raw() = 5;
+		df.Raw() = 10;
 
 		test.set(at);
 		test.set(df);
