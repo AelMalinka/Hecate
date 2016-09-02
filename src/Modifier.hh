@@ -7,53 +7,61 @@
 
 #	include <memory>
 
-#	include "Exception.hh"
 #	include "Skill.hh"
 
 	namespace Entropy
 	{
 		namespace Hecate
 		{
-			struct negative_t {};
-			extern const negative_t negative;
+			namespace detail
+			{
+				struct negative_t {
+					negative_t(const char);
+					const char multiplier;
+				};
+
+				extern const negative_t positive;
+
+				class ModifierHolderBase
+				{
+					public:
+						virtual ModifierType Value() const = 0;
+						virtual ModifierType &Raw() = 0;
+				};
+
+				template<typename T>
+				class ModifierHolder :
+					public ModifierHolderBase
+				{
+					public:
+						ModifierHolder(T &);
+						ModifierHolder(T &&);
+						~ModifierHolder();
+						ModifierType Value() const;
+						ModifierType &Raw();
+					private:
+						T *_value;
+						bool _clean;
+				};
+			}
+
+			extern const detail::negative_t negative;
 
 			class Modifier
 			{
 				public:
-					Modifier(const std::string &);
-					Modifier(const std::string &, const negative_t &);
-					Modifier(const Modifier &);
-					virtual ~Modifier();
+					template<typename T>
+					Modifier(T &, const std::string &, const detail::negative_t & = detail::positive);
+					template<typename T>
+					Modifier(T &&, const std::string &, const detail::negative_t & = detail::positive);
 					const std::string &Reason() const;
-					const bool &Negative() const;
-					virtual Percent Value() const = 0;
-					virtual void setValue(Percent) { ENTROPY_THROW(Exception("setValue not implemented")); }
-					virtual std::shared_ptr<Modifier> Copy() const = 0;
+					ModifierType Value() const;
+					ModifierType &Raw();
 				private:
+					std::shared_ptr<detail::ModifierHolderBase> _value;
 					std::string _reason;
-					bool _negate;
+					detail::negative_t _negate;
 			};
-
-			template<
-				typename T,
-				typename = void
-			>
-			class ModifierImpl :
-				public Modifier
-			{};
-
-			template<typename charT>
-			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &, const Modifier &);
-			template<typename charT>
-			std::basic_ostream<charT> &operator << (std::basic_ostream<charT> &, const std::shared_ptr<Modifier> &);
-
-			template<typename T>
-			std::shared_ptr<Modifier> make_modifier(T &, const std::string &);
-			template<typename T>
-			std::shared_ptr<Modifier> make_modifier(T &, const std::string &, const negative_t &);
-
-			std::shared_ptr<Modifier> make_modifier(Percent, const std::string &);
-			std::shared_ptr<Modifier> make_modifier(Percent, const std::string &, const negative_t &);
 		}
 	}
 

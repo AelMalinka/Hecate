@@ -7,35 +7,74 @@
 using namespace Entropy::Hecate;
 using namespace std;
 
-const negative_t Entropy::Hecate::negative;
-
-Modifier::Modifier(const string &r)
-	: _reason(r), _negate(false)
-{}
-
-Modifier::Modifier(const string &r, const negative_t &)
-	: _reason(r), _negate(true)
-{}
-
-Modifier::Modifier(const Modifier &) = default;
-Modifier::~Modifier() = default;
+const detail::negative_t Entropy::Hecate::negative(-1);
+const detail::negative_t Entropy::Hecate::detail::positive(1);
 
 const string &Modifier::Reason() const
 {
 	return _reason;
 }
 
-const bool &Modifier::Negative() const
+ModifierType Modifier::Value() const
 {
-	return _negate;
+	return _value->Value() * _negate.multiplier;
 }
 
-shared_ptr<Modifier> Entropy::Hecate::make_modifier(Percent v, const string &r)
+ModifierType &Modifier::Raw()
 {
-	return make_shared<ModifierImpl<Percent>>(v, r);
+	return _value->Raw();
 }
 
-shared_ptr<Modifier> Entropy::Hecate::make_modifier(Percent v, const string &r, const negative_t &n)
+using namespace detail;
+
+negative_t::negative_t(const char v)
+	: multiplier(v)
+{}
+
+ModifierHolder<ModifierType>::ModifierHolder(ModifierType &t)
+	: _value(&t), _clean(false)
+{}
+
+ModifierHolder<ModifierType>::ModifierHolder(ModifierType &&t)
+	: _value(new ModifierType(t)), _clean(true)
+{}
+
+ModifierHolder<ModifierType>::~ModifierHolder()
 {
-	return make_shared<ModifierImpl<Percent>>(v, r, n);
+	if(_clean)
+		delete _value;
+}
+
+ModifierType ModifierHolder<ModifierType>::Value() const
+{
+	return *_value;
+}
+
+ModifierType &ModifierHolder<ModifierType>::Raw()
+{
+	return *_value;
+}
+
+ModifierHolder<Percent>::ModifierHolder(Percent &t)
+	: _value(&t), _clean(false)
+{}
+
+ModifierHolder<Percent>::ModifierHolder(Percent &&t)
+	: _value(new Percent(t)), _clean(true)
+{}
+
+ModifierHolder<Percent>::~ModifierHolder()
+{
+	if(_clean)
+		delete _value;
+}
+
+ModifierType ModifierHolder<Percent>::Value() const
+{
+	return *_value;
+}
+
+ModifierType &ModifierHolder<Percent>::Raw()
+{
+	return reinterpret_cast<ModifierType &>(*_value);
 }
