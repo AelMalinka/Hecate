@@ -9,19 +9,48 @@ using namespace std;
 
 Percent Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
 
-Check::Check(list<shared_ptr<Modifier>> l)
-	: Check(default_luck, l)
+Check::Check()
+	: _modifiers(), _luck(default_luck)
 {}
 
-Check::Check(Percent &luck, list<shared_ptr<Modifier>> list)
-	: _luck(luck), _modifiers(list)
+Check::Check(Percent &luck)
+	: _modifiers(), _luck(luck)
 {}
 
-Check::Result::Result(const int value, const Percent luck, const list<shared_ptr<Modifier>> &list)
+Check::Check(const vector<Modifier> &modifiers)
+	: Check()
+{
+	for(auto &mod : modifiers) {
+		Add(mod);
+	}
+}
+
+Check::Check(Percent &luck, const vector<Modifier> &modifiers)
+	: Check(luck)
+{
+	for(auto &mod : modifiers) {
+		Add(mod);
+	}
+}
+
+Check &Check::Add(const shared_ptr<Modifier> &mod)
+{
+	_modifiers.push_back(mod);
+
+	return *this;
+}
+
+Check &Check::Add(const Modifier &mod)
+{
+	_modifiers.push_back(make_shared<Modifier>(mod));
+
+	return *this;
+}
+
+Check::Result::Result(const ModifierType value, const Percent luck, const list<shared_ptr<Modifier>> &list)
 	: _value(value), _luck(luck)
 {
-	for(auto &m : list)
-	{
+	for(auto &m : list) {
 		result_modifier t;
 
 		t.current = m->Value();

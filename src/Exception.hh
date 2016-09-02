@@ -11,6 +11,10 @@
 #		define ENTROPY_HECATE_PERCENT_TYPE unsigned short
 #	endif
 
+#	ifndef ENTROPY_HECATE_MODIFIER_TYPE
+#		define ENTROPY_HECATE_MODIFIER_TYPE int
+#	endif
+
 	namespace Entropy
 	{
 		namespace Hecate
@@ -18,6 +22,7 @@
 			ENTROPY_EXCEPTION_BASE(Exception, "Hecate Exception");
 
 			typedef ENTROPY_HECATE_PERCENT_TYPE Percent;
+			typedef ENTROPY_HECATE_MODIFIER_TYPE ModifierType;
 		}
 	}
 

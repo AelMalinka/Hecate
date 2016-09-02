@@ -134,7 +134,7 @@ namespace {
 		auto res = att();
 		EXPECT_EQ(res.size(), 1);
 
-		auto night = att(make_modifier(10, "night", negative));
+		auto night = att(Modifier(10, "night", negative));
 		EXPECT_EQ(night.size(), 2);
 	}
 
@@ -149,6 +149,6 @@ namespace {
 
 		get(at);
 
-		return _check(make_modifier(at, "attack"));
+		return _check(Modifier(at, "attack"));
 	}
 }

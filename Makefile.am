@@ -37,7 +37,6 @@ check_PROGRAMS += \
 	random-pcg \
 	random-base \
 	check-modifier \
-	check-result \
 	check-check
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
@@ -67,10 +66,6 @@ random_base_LDFLAGS = $(testLDFLAGS)
 check_modifier_SOURCES = test/check/modifier.cc
 check_modifier_LDADD = $(testLDADD)
 check_modifier_LDFLAGS = $(testLDFLAGS)
-
-check_result_SOURCES = test/check/result.cc
-check_result_LDADD = $(testLDADD)
-check_result_LDFLAGS = $(testLDFLAGS)
 
 check_check_SOURCES = test/check/check.cc
 check_check_LDADD = $(testLDADD)

@@ -17,113 +17,63 @@ namespace {
 	ENTROPY_HECATE_DEFINE_STAT(TestStat);
 	ENTROPY_HECATE_DEFINE_SKILL(TestSkill, TestStat);
 
-	TEST(Modifier, Instantiation) {
-		TestStat v = 10;
-		auto number = make_modifier(10, "This is a static modifier");
-		auto skill = make_modifier(v, "This is a reference modifier");
-		auto negative_number = make_modifier(10, "this is a static negative modifier", negative);
-		auto negative_skill = make_modifier(v, "this is a reference negative modifier", negative);
-	}
+	TEST(Modifier, Instantiate) {
+		TestStat stat = 10;
+		TestSkill skill(10, stat);
 
-	TEST(Modifier, Copy) {
-		TestStat v = 10;
-		auto first = make_modifier(10, "modifier");
-		auto second = first;
-		auto skill_first = make_modifier(v, "stat modifier");
-		auto skill_second = skill_first;
+		Modifier number(10, "number");
+		Modifier negative_number(-10, "negative number");
+		Modifier negative_number_positive(-10, "negative number again", negative);
+		Modifier negative_number_multiplier(10, "negative number multiplier", negative);
+		Modifier stat_modifier(stat, "stat");
+		Modifier negative_stat(stat, "negative stat", negative);
+		Modifier skill_modifier(skill, "skill");
+		Modifier negative_skill(skill, "negative skill", negative);
 
-		EXPECT_EQ(first->Value(), second->Value());
-		EXPECT_EQ(first->Value(), 10);
-		EXPECT_EQ(second->Value(), 10);
-
-		EXPECT_EQ(skill_first->Value(), skill_second->Value());
-		EXPECT_EQ(skill_first->Value(), 10);
-		EXPECT_EQ(skill_second->Value(), 10);
-
-		v.Raw() = 15;
-
-		EXPECT_EQ(skill_first->Value(), skill_second->Value());
-		EXPECT_EQ(skill_first->Value(), 15);
-		EXPECT_EQ(skill_second->Value(), 15);
-
-		// 2016-08-27 AMR NOTE: this changes all copies
-		second->setValue(15);
-		EXPECT_EQ(first->Value(), second->Value());
-
-		auto third = first->Copy();
-		EXPECT_EQ(first->Value(), third->Value());
-
-		third->setValue(10);
-		EXPECT_EQ(third->Value(), 10);
-		EXPECT_NE(third->Value(), first->Value());
-	}
-
-	TEST(Modifier, Negative) {
-		TestStat v = 10;
-		auto number = make_modifier(10, "number");
-		auto skill = make_modifier(v, "skill");
-		auto negative_number = make_modifier(10, "negative number", negative);
-		auto negative_skill = make_modifier(v, "negative skill", negative);
-
-		EXPECT_FALSE(number->Negative());
-		EXPECT_FALSE(skill->Negative());
-		EXPECT_TRUE(negative_number->Negative());
-		EXPECT_TRUE(negative_skill->Negative());
-
-		EXPECT_EQ(number->Value(), negative_number->Value());
-		EXPECT_EQ(skill->Value(), negative_skill->Value());
-	}
-
-	TEST(Modifier, Static) {
-		auto modifier = make_modifier(10, "This is a static modifier");
-
-		EXPECT_EQ(modifier->Value(), 10);
-		EXPECT_EQ(modifier->Reason(), "This is a static modifier"s);
+		EXPECT_EQ(number.Value(), 10);
+		EXPECT_EQ(negative_number.Value(), -10);
+		EXPECT_EQ(negative_number.Raw(), -10);
+		EXPECT_EQ(negative_number_positive.Value(), 10);
+		EXPECT_EQ(negative_number_positive.Raw(), -10);
+		EXPECT_EQ(negative_number_multiplier.Value(), -10);
+		EXPECT_EQ(negative_number_multiplier.Raw(), 10);
+		EXPECT_EQ(stat_modifier.Value(), 10);
+		EXPECT_EQ(negative_stat.Value(), -10);
+		EXPECT_EQ(skill_modifier.Value(), 20);
+		EXPECT_EQ(negative_skill.Value(), -20);
 	}
 
 	TEST(Modifier, Reference) {
-		TestStat v = 10;
-		auto modifier = make_modifier(v, "This is a reference modifier");
+		Percent perc = 10;
+		ModifierType mod = -5;
+		TestStat stat = 15;
+		TestSkill skill(5, stat);
 
-		EXPECT_EQ(modifier->Value(), 10);
-		EXPECT_EQ(modifier->Value(), v.Value());
+		Modifier reference(perc, "reference");
+		Modifier negative_reference(mod, "negative reference");
+		Modifier stat_mod(stat, "stat");
+		Modifier skill_mod(skill, "skill");
+		Modifier number(10, "number");
+		Modifier stat_rvalue(TestStat(20), "temporary stat");
+		Modifier skill_rvalue(TestSkill(10, stat), "temprorary skill");
 
-		v.Raw() = 15;
+		EXPECT_EQ(reference.Value(), perc);
+		EXPECT_EQ(negative_reference.Value(), mod);
+		EXPECT_EQ(stat_mod.Value(), stat.Value());
+		EXPECT_EQ(skill_mod.Value(), skill.Value());
 
-		EXPECT_EQ(modifier->Value(), 15);
-		EXPECT_EQ(modifier->Value(), v.Value());
-	}
+		EXPECT_EQ(number.Value(), 10);
+		EXPECT_EQ(stat_rvalue.Value(), 20);
+		EXPECT_EQ(skill_rvalue.Value(), 25);
 
-	TEST(Modifier, Skill) {
-		TestStat v = 10;
-		TestSkill k(15, v);
+		perc++;
+		mod++;
+		stat.Raw()++;
+		skill.Raw()++;
 
-		auto modifier = make_modifier(k, "skill");
-
-		EXPECT_EQ(modifier->Value(), 25);
-
-		k.Raw() = 5;
-		EXPECT_EQ(modifier->Value(), 15);
-
-		v.Raw() = 5;
-		EXPECT_EQ(modifier->Value(), 10);
-	}
-
-	TEST(Modifier, Output) {
-		TestStat stat = 10;
-
-		auto test = make_modifier(stat, "TestStat");
-		auto night = make_modifier(10, "Night", negative);
-		auto negtest = make_modifier(stat, "Opposing TestStat", negative);
-
-		stringstream out;
-
-		out << test << endl << night << endl << negtest << endl;
-
-		stat = 15;
-
-		out << test << endl << night << endl << negtest << endl;
-
-		EXPECT_EQ(out.str(), "TestStat: 10\nNight: -10\nOpposing TestStat: -10\nTestStat: 15\nNight: -10\nOpposing TestStat: -15\n");
+		EXPECT_EQ(reference.Value(), perc);
+		EXPECT_EQ(negative_reference.Value(), mod);
+		EXPECT_EQ(stat_mod.Value(), stat.Value());
+		EXPECT_EQ(skill_mod.Value(), skill.Value());
 	}
 }
