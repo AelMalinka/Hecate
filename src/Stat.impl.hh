@@ -15,20 +15,20 @@
 			{}
 
 			template<typename tag>
-			Stat<tag>::Stat(const unsigned short v)
+			Stat<tag>::Stat(const Percent v)
 				: _value(v)
 			{}
 
 			template<typename tag> Stat<tag>::~Stat() = default;
 
 			template<typename tag>
-			unsigned short Stat<tag>::Value() const
+			Percent Stat<tag>::Value() const
 			{
 				return _value;
 			}
 
 			template<typename tag>
-			unsigned short &Stat<tag>::Raw()
+			Percent &Stat<tag>::Raw()
 			{
 				return _value;
 			}

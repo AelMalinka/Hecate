@@ -56,7 +56,7 @@ namespace {
 	}
 
 	TEST(Check, Luck) {
-		unsigned short luck = 5;
+		Percent luck = 5;
 		Check c(luck, {});
 
 		auto result = c();

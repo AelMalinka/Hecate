@@ -30,12 +30,12 @@ const bool &Modifier::Negative() const
 	return _negate;
 }
 
-shared_ptr<Modifier> Entropy::Hecate::make_modifier(unsigned short v, const string &r)
+shared_ptr<Modifier> Entropy::Hecate::make_modifier(Percent v, const string &r)
 {
-	return make_shared<ModifierImpl<unsigned short>>(v, r);
+	return make_shared<ModifierImpl<Percent>>(v, r);
 }
 
-shared_ptr<Modifier> Entropy::Hecate::make_modifier(unsigned short v, const string &r, const negative_t &n)
+shared_ptr<Modifier> Entropy::Hecate::make_modifier(Percent v, const string &r, const negative_t &n)
 {
-	return make_shared<ModifierImpl<unsigned short>>(v, r, n);
+	return make_shared<ModifierImpl<Percent>>(v, r, n);
 }

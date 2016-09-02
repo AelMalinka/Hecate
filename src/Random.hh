@@ -5,6 +5,8 @@
 #if !defined ENTROPY_HECATE_RANDOM_INC
 #	define ENTROPY_HECATE_RANDOM_INC
 
+#	include "Exception.hh"
+
 #	include <random>
 #	include <functional>
 #	include "pcg_random.hpp"
@@ -21,11 +23,11 @@
 						static pcg_extras::seed_seq_from<std::random_device> _seed;
 					public:
 						static pcg32 Generator;
-						static std::uniform_int_distribution<unsigned short> Distribution;
+						static std::uniform_int_distribution<Percent> Distribution;
 				};
 			}
 
-			extern std::function<unsigned short()> Roll;
+			extern std::function<Percent()> Roll;
 		}
 	}
 

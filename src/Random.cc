@@ -4,10 +4,10 @@
 
 #include "Random.hh"
 
-using namespace Entropy::Hecate::detail;
+using namespace Entropy::Hecate;
 using namespace std;
 
-pcg_extras::seed_seq_from<random_device> Random::_seed;
-pcg32 Random::Generator(_seed);
-uniform_int_distribution<unsigned short> Random::Distribution(0, 99);
-function<unsigned short()> Entropy::Hecate::Roll(bind(Random::Distribution, Random::Generator));
+pcg_extras::seed_seq_from<random_device> detail::Random::_seed;
+pcg32 detail::Random::Generator(_seed);
+uniform_int_distribution<Percent> detail::Random::Distribution(0, 99);
+function<Percent()> Entropy::Hecate::Roll(bind(detail::Random::Distribution, detail::Random::Generator));
