@@ -11,6 +11,8 @@
 	{
 		namespace Hecate
 		{
+			class Check;
+
 			namespace detail
 			{
 				template<typename T>
@@ -71,6 +73,21 @@
 						Percent *_value;
 						bool _clean;
 				};
+
+				template<>
+				class ModifierHolder<Check> :
+					public ModifierHolderBase
+				{
+					public:
+						ModifierHolder(Check &);
+						ModifierHolder(Check &&);
+						~ModifierHolder();
+						ModifierType Value() const;
+						ModifierType &Raw();
+					private:
+						Check *_value;
+						bool _clean;
+				};
 			}
 
 			template<typename T>
@@ -84,5 +101,7 @@
 			{}
 		}
 	}
+
+#	include "Check.hh"
 
 #endif

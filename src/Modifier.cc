@@ -78,3 +78,27 @@ ModifierType &ModifierHolder<Percent>::Raw()
 {
 	return reinterpret_cast<ModifierType &>(*_value);
 }
+
+ModifierHolder<Check>::ModifierHolder(Check &v)
+	: _value(&v), _clean(false)
+{}
+
+ModifierHolder<Check>::ModifierHolder(Check &&v)
+	: _value(new Check(v)), _clean(true)
+{}
+
+ModifierHolder<Check>::~ModifierHolder()
+{
+	if(_clean)
+		delete _value;
+}
+
+ModifierType ModifierHolder<Check>::Value() const
+{
+	return (*_value)().Value();
+}
+
+ModifierType &ModifierHolder<Check>::Raw()
+{
+	return (*_value->begin())->Raw();
+}

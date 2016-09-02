@@ -47,6 +47,21 @@ Check &Check::Add(const Modifier &mod)
 	return *this;
 }
 
+size_t Check::size() const
+{
+	return _modifiers.size();
+}
+
+list<shared_ptr<Modifier>>::iterator Check::begin()
+{
+	return _modifiers.begin();
+}
+
+list<shared_ptr<Modifier>>::iterator Check::end()
+{
+	return _modifiers.end();
+}
+
 Check::Result::Result(const ModifierType value, const Percent luck, const list<shared_ptr<Modifier>> &list)
 	: _value(value), _luck(luck)
 {

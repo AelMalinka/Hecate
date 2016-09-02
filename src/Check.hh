@@ -57,6 +57,9 @@
 					Check &Add(const Modifier &);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
+					std::size_t size() const;
+					std::list<std::shared_ptr<Modifier>>::iterator begin();
+					std::list<std::shared_ptr<Modifier>>::iterator end();
 				private:
 					static Percent default_luck;
 					std::list<std::shared_ptr<Modifier>> _modifiers;

@@ -41,8 +41,33 @@ namespace {
 			auto res = empty();
 
 			EXPECT_LT(res.Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
-			EXPECT_GE(res.Value(), -100 + ENTROPY_HECATE_DEFAULT_LUCK);
+			EXPECT_GE(res.Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
 		}
+	}
+
+	TEST(Check, CheckModifier) {
+		stat s1 = 10;
+		stat s2 = 15;
+		skill first_skill(10, s1);
+		skill second_skill(0, s2);
+
+		Check first({
+			Modifier(first_skill, "stat")
+		});
+
+		Check second({
+			Modifier(second_skill, "stat"),
+			Modifier(first, "opponent check", negative)
+		});
+
+		auto res = second();
+
+		EXPECT_EQ(res.size(), 2);
+
+		auto iter = res.begin();
+		iter++;
+		EXPECT_LT(iter->modifier->Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
+		EXPECT_GE(iter->modifier->Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
 	}
 
 	TEST(Result, Values) {
