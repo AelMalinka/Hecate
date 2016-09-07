@@ -52,20 +52,20 @@ size_t Check::size() const
 	return _modifiers.size();
 }
 
-list<shared_ptr<Modifier>>::iterator Check::begin()
+vector<shared_ptr<Modifier>>::iterator Check::begin()
 {
 	return _modifiers.begin();
 }
 
-list<shared_ptr<Modifier>>::iterator Check::end()
+vector<shared_ptr<Modifier>>::iterator Check::end()
 {
 	return _modifiers.end();
 }
 
-Check::Result::Result(const ModifierType value, const Percent luck, const list<shared_ptr<Modifier>> &list)
+Check::Result::Result(const ModifierType value, const Percent luck, const vector<shared_ptr<Modifier>> &vector)
 	: _value(value), _luck(luck)
 {
-	for(auto &m : list) {
+	for(auto &m : vector) {
 		result_modifier t;
 
 		t.current = m->Value();
@@ -90,12 +90,12 @@ size_t Check::Result::size() const
 	return _modifiers.size();
 }
 
-list<Check::Result::result_modifier>::iterator Check::Result::begin()
+vector<Check::Result::result_modifier>::iterator Check::Result::begin()
 {
 	return _modifiers.begin();
 }
 
-list<Check::Result::result_modifier>::iterator Check::Result::end()
+vector<Check::Result::result_modifier>::iterator Check::Result::end()
 {
 	return _modifiers.end();
 }

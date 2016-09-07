@@ -32,7 +32,7 @@
 			{
 				ModifierType chance = 0; 
 				std::vector<Modifier> t{mods...};
-				std::list<std::shared_ptr<Modifier>> modifiers(_modifiers);
+				std::vector<std::shared_ptr<Modifier>> modifiers(_modifiers);
 
 				for(auto &i : t) {
 					modifiers.push_back(std::make_shared<Modifier>(i));

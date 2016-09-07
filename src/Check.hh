@@ -6,7 +6,6 @@
 #	define ENTROPY_HECATE_CHECK_INC
 
 #	include <memory>
-#	include <list>
 #	include <vector>
 
 #	include "Modifier.hh"
@@ -31,16 +30,16 @@
 								std::shared_ptr<Modifier> modifier;
 							};
 						public:
-							Result(const ModifierType, const Percent, const std::list<std::shared_ptr<Modifier>> &);
+							Result(const ModifierType, const Percent, const std::vector<std::shared_ptr<Modifier>> &);
 							ModifierType Value() const;
 							Percent Luck() const;
 							std::size_t size() const;
-							std::list<result_modifier>::iterator begin();
-							std::list<result_modifier>::iterator end();
+							std::vector<result_modifier>::iterator begin();
+							std::vector<result_modifier>::iterator end();
 						private:
 							ModifierType _value;
 							Percent _luck;
-							std::list<result_modifier> _modifiers;
+							std::vector<result_modifier> _modifiers;
 					};
 				public:
 					Check();
@@ -58,11 +57,11 @@
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
 					std::size_t size() const;
-					std::list<std::shared_ptr<Modifier>>::iterator begin();
-					std::list<std::shared_ptr<Modifier>>::iterator end();
+					std::vector<std::shared_ptr<Modifier>>::iterator begin();
+					std::vector<std::shared_ptr<Modifier>>::iterator end();
 				private:
 					static Percent default_luck;
-					std::list<std::shared_ptr<Modifier>> _modifiers;
+					std::vector<std::shared_ptr<Modifier>> _modifiers;
 					Percent &_luck;
 			};
 		}
