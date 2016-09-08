@@ -5,7 +5,7 @@
 #if !defined ENTROPY_HECATE_STAT_INC
 #	define ENTROPY_HECATE_STAT_INC
 
-#	include "Exception.hh"
+#	include "Percent.hh"
 
 #	ifndef ENTROPY_HECATE_DEFINE_STAT
 #		define ENTROPY_HECATE_DEFINE_STAT(name) struct name ## _tag {}; typedef ::Entropy::Hecate::Stat<name ## _tag> name
@@ -18,7 +18,8 @@
 			template<
 				typename tag
 			>
-			class Stat
+			class Stat :
+				public Percent
 			{
 				public:
 					Stat();

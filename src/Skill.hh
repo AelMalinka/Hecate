@@ -37,7 +37,8 @@
 				typename tag,
 				typename ...skills
 			>
-			class Skill
+			class Skill :
+				public Percent
 			{
 				public:
 					template<typename ...Skills>
