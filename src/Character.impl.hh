@@ -35,8 +35,21 @@
 			}
 
 			template<typename stats>
-			template<typename tag>
-			Stat<tag> &Character<stats>::get(Stat<tag> &s)
+			CostType Character<stats>::Cost() const
+			{
+				CostType ret = 0;
+
+				detail::for_each(_stats, [&ret](auto &x) { ret += x.Cost(); });
+				for(auto &i : _skills) {
+					ret += boost::any_cast<Percent &>(i.second).Cost();
+				}
+
+				return ret;
+			}
+
+			template<typename stats>
+			template<typename tag, CostType CostPer>
+			Stat<tag, CostPer> &Character<stats>::get(Stat<tag, CostPer> &s)
 			{
 				using std::get;
 				using std::remove_reference;
@@ -47,8 +60,8 @@
 			}
 
 			template<typename stats>
-			template<typename tag>
-			const Stat<tag> &Character<stats>::get(Stat<tag> &s) const
+			template<typename tag, CostType CostPer>
+			const Stat<tag, CostPer> &Character<stats>::get(Stat<tag, CostPer> &s) const
 			{
 				using std::get;
 				using std::remove_reference;
@@ -59,8 +72,8 @@
 			}
 
 			template<typename stats>
-			template<typename tag, typename ...sl>
-			Skill<tag, sl...> &Character<stats>::set(Skill<tag, sl...> &s)
+			template<typename tag, CostType CostPer, typename ...sl>
+			Skill<tag, CostPer, sl...> &Character<stats>::set(Skill<tag, CostPer, sl...> &s)
 			{
 				using boost::any_cast;
 
@@ -70,8 +83,8 @@
 			}
 
 			template<typename stats>
-			template<typename tag, typename ...sl>
-			Skill<tag, sl...> &Character<stats>::get(Skill<tag, sl...> &s)
+			template<typename tag, CostType CostPer, typename ...sl>
+			Skill<tag, CostPer, sl...> &Character<stats>::get(Skill<tag, CostPer, sl...> &s)
 			{
 				using boost::any_cast;
 
@@ -84,8 +97,8 @@
 			}
 
 			template<typename stats>
-			template<typename tag, typename ...sl>
-			Skill<tag, sl...> Character<stats>::get(Skill<tag, sl...> &s) const
+			template<typename tag, CostType CostPer, typename ...sl>
+			Skill<tag, CostPer, sl...> Character<stats>::get(Skill<tag, CostPer, sl...> &s) const
 			{
 				using boost::any_cast;
 

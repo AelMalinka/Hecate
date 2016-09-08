@@ -40,16 +40,17 @@
 				public:
 					stats &Stats();
 					const stats &Stats() const;
-					template<typename tag>
-					Stat<tag> &get(Stat<tag> &);
-					template<typename tag>
-					const Stat<tag> &get(Stat<tag> &) const;
-					template<typename tag, typename ...sl>
-					Skill<tag, sl...> &set(Skill<tag, sl...> &);
-					template<typename tag, typename ...sl>
-					Skill<tag, sl...> &get(Skill<tag, sl...> &);
-					template<typename tag, typename ...sl>
-					Skill<tag, sl...> get(Skill<tag, sl...> &) const;
+					CostType Cost() const;
+					template<typename tag, CostType CostPer>
+					Stat<tag, CostPer> &get(Stat<tag, CostPer> &);
+					template<typename tag, CostType CostPer>
+					const Stat<tag, CostPer> &get(Stat<tag, CostPer> &) const;
+					template<typename tag, CostType CostPer, typename ...sl>
+					Skill<tag, CostPer, sl...> &set(Skill<tag, CostPer, sl...> &);
+					template<typename tag, CostType CostPer, typename ...sl>
+					Skill<tag, CostPer, sl...> &get(Skill<tag, CostPer, sl...> &);
+					template<typename tag, CostType CostPer, typename ...sl>
+					Skill<tag, CostPer, sl...> get(Skill<tag, CostPer, sl...> &) const;
 				protected:
 					template<typename ...Mods>
 					Check _check(Mods ...mods);

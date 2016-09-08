@@ -10,7 +10,7 @@
 #	include "Stat.hh"
 
 #	ifndef ENTROPY_HECATE_DEFINE_SKILL
-#		define ENTROPY_HECATE_DEFINE_SKILL(name, ...) struct name ## _tag {}; typedef ::Entropy::Hecate::Skill<name ## _tag,  __VA_ARGS__> name
+#		define ENTROPY_HECATE_DEFINE_SKILL(name, cost, ...) struct name ## _tag {}; typedef ::Entropy::Hecate::Skill<name ## _tag, cost,  __VA_ARGS__> name
 #	endif
 
 	namespace Entropy
@@ -35,6 +35,7 @@
 
 			template<
 				typename tag,
+				CostType CostPer,
 				typename ...skills
 			>
 			class Skill :
@@ -48,6 +49,7 @@
 					virtual ~Skill();
 					PercentType Value() const;
 					PercentType &Raw();
+					CostType Cost() const;
 				private:
 					PercentType _value;
 					tuple<skills &...> _base_skills;

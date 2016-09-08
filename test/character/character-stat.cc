@@ -10,12 +10,12 @@ using namespace testing;
 using namespace Entropy::Hecate;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(Strength);
-	ENTROPY_HECATE_DEFINE_STAT(Dexterity);
-	ENTROPY_HECATE_DEFINE_STAT(Constitution);
-	ENTROPY_HECATE_DEFINE_STAT(Intelligence);
-	ENTROPY_HECATE_DEFINE_STAT(Wisdom);
-	ENTROPY_HECATE_DEFINE_STAT(Charisma);
+	ENTROPY_HECATE_DEFINE_STAT(Strength, 1);
+	ENTROPY_HECATE_DEFINE_STAT(Dexterity, 1);
+	ENTROPY_HECATE_DEFINE_STAT(Constitution, 1);
+	ENTROPY_HECATE_DEFINE_STAT(Intelligence, 1);
+	ENTROPY_HECATE_DEFINE_STAT(Wisdom, 1);
+	ENTROPY_HECATE_DEFINE_STAT(Charisma, 1);
 
 	TEST(Stat, Create) {
 		Strength st = 0;
@@ -36,5 +36,21 @@ namespace {
 		st.Raw() = -10;
 		EXPECT_EQ(st.Value(), -10);
 		EXPECT_NE(st.Value(), 65526);
+	}
+
+	TEST(Stat, Cost) {
+		Strength st = 5;
+		EXPECT_EQ(st.Cost(), 5);
+
+		st.Raw() = 10;
+		EXPECT_EQ(st.Cost(), 10);
+
+		struct temp_tag {};
+		Stat<temp_tag, 5> stat = 5;
+
+		EXPECT_EQ(stat.Cost(), 25);
+
+		stat.Raw() = 10;
+		EXPECT_EQ(stat.Cost(), 50);
 	}
 }

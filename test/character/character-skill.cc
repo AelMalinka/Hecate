@@ -10,15 +10,15 @@ using namespace testing;
 using namespace Entropy::Hecate;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(St);
-	ENTROPY_HECATE_DEFINE_STAT(Dx);
-	ENTROPY_HECATE_DEFINE_STAT(Iq);
-	ENTROPY_HECATE_DEFINE_STAT(Ht);
+	ENTROPY_HECATE_DEFINE_STAT(St, 2);
+	ENTROPY_HECATE_DEFINE_STAT(Dx, 2);
+	ENTROPY_HECATE_DEFINE_STAT(Iq, 2);
+	ENTROPY_HECATE_DEFINE_STAT(Ht, 2);
 
-	ENTROPY_HECATE_DEFINE_SKILL(Attack, St, St, Dx);
-	ENTROPY_HECATE_DEFINE_SKILL(Defense, Dx, Dx, Ht);
-	ENTROPY_HECATE_DEFINE_SKILL(Research, Iq);
-	ENTROPY_HECATE_DEFINE_SKILL(Experiment, Research, Iq);
+	ENTROPY_HECATE_DEFINE_SKILL(Attack, 1, St, St, Dx);
+	ENTROPY_HECATE_DEFINE_SKILL(Defense, 1, Dx, Dx, Ht);
+	ENTROPY_HECATE_DEFINE_SKILL(Research, 1, Iq);
+	ENTROPY_HECATE_DEFINE_SKILL(Experiment, 1, Research, Iq);
 
 	TEST(Skill, Create) {
 		St st = 0;
@@ -47,6 +47,24 @@ namespace {
 		EXPECT_EQ(df.Value(), 16);
 		EXPECT_EQ(rs.Value(), 30);
 		EXPECT_EQ(ex.Value(), 35);
+	}
+
+	TEST(Skill, Cost) {
+		St st = 10;
+		Dx dx = 15;
+
+		Attack at(5, st, st, dx);
+
+		EXPECT_EQ(at.Cost(), 5);
+		EXPECT_EQ(st.Cost(), 20);
+		EXPECT_EQ(dx.Cost(), 30);
+
+		struct temp_tag {};
+		Skill<temp_tag, 10, St, Dx> temp(5, st, dx);
+		EXPECT_EQ(temp.Cost(), 50);
+
+		temp.Raw() = 10;
+		EXPECT_EQ(temp.Cost(), 100);
 	}
 
 	TEST(Skill, Reference) {

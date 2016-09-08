@@ -11,6 +11,10 @@
 #		define ENTROPY_HECATE_PERCENT_TYPE int
 #	endif
 
+#	ifndef ENTROPY_HECATE_COST_TYPE
+#		define ENTROPY_HECATE_COST_TYPE unsigned int
+#	endif
+
 	namespace Entropy
 	{
 		namespace Hecate
@@ -18,6 +22,7 @@
 			ENTROPY_EXCEPTION_BASE(Exception, "Hecate Exception");
 
 			typedef ENTROPY_HECATE_PERCENT_TYPE PercentType;
+			typedef ENTROPY_HECATE_COST_TYPE CostType;
 		}
 	}
 
