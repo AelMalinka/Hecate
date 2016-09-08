@@ -21,7 +21,7 @@
 		{
 			ENTROPY_EXCEPTION_BASE(Exception, "Hecate Exception");
 
-			typedef ENTROPY_HECATE_PERCENT_TYPE Percent;
+			typedef ENTROPY_HECATE_PERCENT_TYPE PercentType;
 			typedef ENTROPY_HECATE_MODIFIER_TYPE ModifierType;
 		}
 	}

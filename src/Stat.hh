@@ -22,12 +22,12 @@
 			{
 				public:
 					Stat();
-					Stat(const Percent);
+					Stat(const PercentType);
 					~Stat();
-					Percent Value() const;
-					Percent &Raw();
+					PercentType Value() const;
+					PercentType &Raw();
 				private:
-					Percent _value;
+					PercentType _value;
 			};
 		}
 	}

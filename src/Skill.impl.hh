@@ -54,7 +54,7 @@
 
 			template<typename tag, typename ...skills>
 			template<typename ...Skills>
-			Skill<tag, skills...>::Skill(const Percent v, Skills &...s)
+			Skill<tag, skills...>::Skill(const PercentType v, Skills &...s)
 				: _value(v), _base_skills(s...)
 			{}
 
@@ -67,7 +67,7 @@
 			template<typename tag, typename ...skills> Skill<tag, skills...>::~Skill() = default;
 
 			template<typename tag, typename ...skills>
-			Percent Skill<tag, skills...>::Value() const
+			PercentType Skill<tag, skills...>::Value() const
 			{
 				int x = 0;
 				detail::for_each(_base_skills, [&x](auto &v){ x += v.Value(); });
@@ -75,7 +75,7 @@
 			}
 
 			template<typename tag, typename ...skills>
-			Percent &Skill<tag, skills...>::Raw()
+			PercentType &Skill<tag, skills...>::Raw()
 			{
 				return _value;
 			}

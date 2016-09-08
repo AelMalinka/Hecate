@@ -55,26 +55,26 @@ ModifierType &ModifierHolder<ModifierType>::Raw()
 	return *_value;
 }
 
-ModifierHolder<Percent>::ModifierHolder(Percent &t)
+ModifierHolder<PercentType>::ModifierHolder(PercentType &t)
 	: _value(&t), _clean(false)
 {}
 
-ModifierHolder<Percent>::ModifierHolder(Percent &&t)
-	: _value(new Percent(t)), _clean(true)
+ModifierHolder<PercentType>::ModifierHolder(PercentType &&t)
+	: _value(new PercentType(t)), _clean(true)
 {}
 
-ModifierHolder<Percent>::~ModifierHolder()
+ModifierHolder<PercentType>::~ModifierHolder()
 {
 	if(_clean)
 		delete _value;
 }
 
-ModifierType ModifierHolder<Percent>::Value() const
+ModifierType ModifierHolder<PercentType>::Value() const
 {
 	return *_value;
 }
 
-ModifierType &ModifierHolder<Percent>::Raw()
+ModifierType &ModifierHolder<PercentType>::Raw()
 {
 	return reinterpret_cast<ModifierType &>(*_value);
 }

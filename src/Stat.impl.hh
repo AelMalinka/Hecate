@@ -15,20 +15,20 @@
 			{}
 
 			template<typename tag>
-			Stat<tag>::Stat(const Percent v)
+			Stat<tag>::Stat(const PercentType v)
 				: _value(v)
 			{}
 
 			template<typename tag> Stat<tag>::~Stat() = default;
 
 			template<typename tag>
-			Percent Stat<tag>::Value() const
+			PercentType Stat<tag>::Value() const
 			{
 				return _value;
 			}
 
 			template<typename tag>
-			Percent &Stat<tag>::Raw()
+			PercentType &Stat<tag>::Raw()
 			{
 				return _value;
 			}

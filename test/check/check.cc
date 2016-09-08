@@ -16,7 +16,7 @@ namespace {
 	ENTROPY_HECATE_DEFINE_SKILL(skill, stat);
 
 	TEST(Check, Instantiate) {
-		Percent luck = 10;
+		PercentType luck = 10;
 		stat s = 20;
 		stat o = 10;
 		
