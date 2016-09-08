@@ -46,11 +46,11 @@
 					template<typename tag, typename ...sl>
 					Skill<tag, sl...> &get(Skill<tag, sl...> &);
 					template<typename tag, typename ...sl>
-					const Skill<tag, sl...> &get(Skill<tag, sl...> &) const;
+					Skill<tag, sl...> get(Skill<tag, sl...> &) const;
 				protected:
 					template<typename ...Mods>
 					Check _check(Mods ...mods);
-					Percent _luck;
+					PercentType _luck;
 				private:
 					stats _stats;
 					std::unordered_map<std::type_index, boost::any> _skills;

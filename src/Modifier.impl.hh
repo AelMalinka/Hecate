@@ -60,17 +60,17 @@
 				};
 
 				template<>
-				class ModifierHolder<Percent> :
+				class ModifierHolder<PercentType> :
 					public ModifierHolderBase
 				{
 					public:
-						ModifierHolder(Percent &);
-						ModifierHolder(Percent &&);
+						ModifierHolder(PercentType &);
+						ModifierHolder(PercentType &&);
 						~ModifierHolder();
 						ModifierType Value() const;
 						ModifierType &Raw();
 					private:
-						Percent *_value;
+						PercentType *_value;
 						bool _clean;
 				};
 

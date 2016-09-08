@@ -7,13 +7,13 @@
 using namespace Entropy::Hecate;
 using namespace std;
 
-Percent Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
+PercentType Check::default_luck(ENTROPY_HECATE_DEFAULT_LUCK);
 
 Check::Check()
 	: _modifiers(), _luck(default_luck)
 {}
 
-Check::Check(Percent &luck)
+Check::Check(PercentType &luck)
 	: _modifiers(), _luck(luck)
 {}
 
@@ -25,7 +25,7 @@ Check::Check(const vector<Modifier> &modifiers)
 	}
 }
 
-Check::Check(Percent &luck, const vector<Modifier> &modifiers)
+Check::Check(PercentType &luck, const vector<Modifier> &modifiers)
 	: Check(luck)
 {
 	for(auto &mod : modifiers) {
@@ -52,20 +52,20 @@ size_t Check::size() const
 	return _modifiers.size();
 }
 
-list<shared_ptr<Modifier>>::iterator Check::begin()
+vector<shared_ptr<Modifier>>::iterator Check::begin()
 {
 	return _modifiers.begin();
 }
 
-list<shared_ptr<Modifier>>::iterator Check::end()
+vector<shared_ptr<Modifier>>::iterator Check::end()
 {
 	return _modifiers.end();
 }
 
-Check::Result::Result(const ModifierType value, const Percent luck, const list<shared_ptr<Modifier>> &list)
+Check::Result::Result(const ModifierType value, const PercentType luck, const vector<shared_ptr<Modifier>> &vector)
 	: _value(value), _luck(luck)
 {
-	for(auto &m : list) {
+	for(auto &m : vector) {
 		result_modifier t;
 
 		t.current = m->Value();
@@ -80,7 +80,7 @@ int Check::Result::Value() const
 	return _value;
 }
 
-Percent Check::Result::Luck() const
+PercentType Check::Result::Luck() const
 {
 	return _luck;
 }
@@ -90,12 +90,12 @@ size_t Check::Result::size() const
 	return _modifiers.size();
 }
 
-list<Check::Result::result_modifier>::iterator Check::Result::begin()
+vector<Check::Result::result_modifier>::iterator Check::Result::begin()
 {
 	return _modifiers.begin();
 }
 
-list<Check::Result::result_modifier>::iterator Check::Result::end()
+vector<Check::Result::result_modifier>::iterator Check::Result::end()
 {
 	return _modifiers.end();
 }

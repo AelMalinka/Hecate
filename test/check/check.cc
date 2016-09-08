@@ -16,7 +16,7 @@ namespace {
 	ENTROPY_HECATE_DEFINE_SKILL(skill, stat);
 
 	TEST(Check, Instantiate) {
-		Percent luck = 10;
+		PercentType luck = 10;
 		stat s = 20;
 		stat o = 10;
 		
@@ -76,7 +76,7 @@ namespace {
 		EXPECT_EQ(empty.Value(), 10);
 
 		stat v = 10;
-		list<shared_ptr<Modifier>> l;
+		vector<shared_ptr<Modifier>> l;
 
 		l.push_back(make_shared<Modifier>(10, "value"));
 		l.push_back(make_shared<Modifier>(v, "stat"));
@@ -97,7 +97,7 @@ namespace {
 
 	TEST(Result, Iterate) {
 		Check::Result empty(10, 5, {});
-		list<shared_ptr<Modifier>> empty_list;
+		vector<shared_ptr<Modifier>> empty_list;
 
 		for(auto &i : empty) {
 			empty_list.push_back(i.modifier);
@@ -113,7 +113,7 @@ namespace {
 			make_shared<Modifier>(k, "skill"),
 			make_shared<Modifier>(k, "negative skill", negative)
 		});
-		list<shared_ptr<Modifier>> result_list;
+		vector<shared_ptr<Modifier>> result_list;
 
 		for(auto &i : result) {
 			result_list.push_back(i.modifier);
