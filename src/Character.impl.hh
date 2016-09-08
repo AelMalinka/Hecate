@@ -75,13 +75,15 @@
 
 				if(_skills.find(typeid(s)) != _skills.end())
 					s = any_cast<decltype(s)>(_skills[typeid(s)]);
+				else
+					_skills[typeid(s)] = s;
 
-				return s;
+				return any_cast<decltype(s)>(_skills[typeid(s)]);
 			}
 
 			template<typename stats>
 			template<typename tag, typename ...sl>
-			const Skill<tag, sl...> &Character<stats>::get(Skill<tag, sl...> &s) const
+			Skill<tag, sl...> Character<stats>::get(Skill<tag, sl...> &s) const
 			{
 				using boost::any_cast;
 

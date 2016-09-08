@@ -147,8 +147,6 @@ namespace {
 	{
 		Attack at(Stats());
 
-		get(at);
-
-		return _check(Modifier(at, "attack"));
+		return _check(Modifier(get(at), "attack"));
 	}
 }

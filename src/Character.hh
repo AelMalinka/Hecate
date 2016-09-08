@@ -46,7 +46,7 @@
 					template<typename tag, typename ...sl>
 					Skill<tag, sl...> &get(Skill<tag, sl...> &);
 					template<typename tag, typename ...sl>
-					const Skill<tag, sl...> &get(Skill<tag, sl...> &) const;
+					Skill<tag, sl...> get(Skill<tag, sl...> &) const;
 				protected:
 					template<typename ...Mods>
 					Check _check(Mods ...mods);
