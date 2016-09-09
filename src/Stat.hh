@@ -24,7 +24,7 @@
 				public:
 					Stat();
 					Stat(const PercentType);
-					~Stat();
+					virtual ~Stat();
 					PercentType Value() const;
 					PercentType &Raw();
 				private:
