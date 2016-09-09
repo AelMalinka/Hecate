@@ -33,7 +33,7 @@ if GTEST
 check_PROGRAMS += \
 	character-stat \
 	character-skill \
-	character \
+	character-character \
 	random-pcg \
 	random-base \
 	check-modifier \
@@ -43,9 +43,9 @@ check_PROGRAMS += \
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
 testLDFLAGS = -pthread $(AM_LDFLAGS)
 
-character_SOURCES = test/character/character.cc
-character_LDADD = $(testLDADD)
-character_LDFLAGS = $(testLDFLAGS)
+character_character_SOURCES = test/character/character.cc
+character_character_LDADD = $(testLDADD)
+character_character_LDFLAGS = $(testLDFLAGS)
 
 character_stat_SOURCES = test/character/character-stat.cc
 character_stat_LDADD = $(testLDADD)
