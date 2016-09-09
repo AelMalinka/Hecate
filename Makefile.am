@@ -16,7 +16,8 @@ mainheaders_HEADERS = \
 	src/Check.hh \
 	src/Check.impl.hh \
 	src/Modifier.hh \
-	src/Modifier.impl.hh
+	src/Modifier.impl.hh \
+	src/Event.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
@@ -27,7 +28,8 @@ lib_LTLIBRARIES = libhecate.la
 libhecate_la_SOURCES = \
 	src/Random.cc \
 	src/Modifier.cc \
-	src/Check.cc
+	src/Check.cc \
+	src/Event.cc
 
 check_PROGRAMS = 
 
@@ -39,7 +41,8 @@ check_PROGRAMS += \
 	random-pcg \
 	random-base \
 	check-modifier \
-	check-check
+	check-check \
+	trait-event
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -72,13 +75,18 @@ check_modifier_LDFLAGS = $(testLDFLAGS)
 check_check_SOURCES = test/check/check.cc
 check_check_LDADD = $(testLDADD)
 check_check_LDFLAGS = $(testLDFLAGS)
+
+trait_event_SOURCES = test/trait/event.cc
+trait_event_LDADD = $(testLDADD)
+trait_event_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
 TESTSUITE_FILES = \
 	$(srcdir)/test/character.at \
 	$(srcdir)/test/random.at \
-	$(srcdir)/test/check.at
+	$(srcdir)/test/check.at \
+	$(srcdir)/test/trait.at
 
 EXTRA_DIST = \
 	$(TESTSUITE_FILES) \
