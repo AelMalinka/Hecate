@@ -5,6 +5,8 @@
 #if !defined ENTROPY_HECATE_CHARACTER_IMPL
 #	define ENTROPY_HECATE_CHARACTER_IMPL
 
+#	include "Character.hh"
+
 #	include <typeindex>
 #	include <type_traits>
 
