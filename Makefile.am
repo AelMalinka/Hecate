@@ -19,7 +19,8 @@ mainheaders_HEADERS = \
 	src/Modifier.impl.hh
 
 mainheaders_HEADERS += \
-	external/pcg-cpp/include/pcg_random.hpp
+	external/pcg-cpp/include/pcg_random.hpp \
+	external/pcg-cpp/include/pcg_extras.hpp
 
 lib_LTLIBRARIES = libhecate.la
 
