@@ -5,6 +5,8 @@
 #if !defined ENTROPY_HECATE_SKILL_IMPL
 #	define ENTROPY_HECATE_SKILL_IMPL
 
+#	include "Skill.hh"
+
 #	include <tuple>
 #	include <utility>
 #	include <cstddef>

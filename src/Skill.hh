@@ -45,7 +45,7 @@
 					Skill(const PercentType, Skills &...);
 					template<typename sl, typename = typename std::enable_if<detail::is_specialization_of<sl, tuple>::value>::type>
 					Skill(sl &);
-					~Skill();
+					virtual ~Skill();
 					PercentType Value() const;
 					PercentType &Raw();
 				private:

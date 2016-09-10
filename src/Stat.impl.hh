@@ -5,6 +5,8 @@
 #if !defined ENTROPY_HECATE_STAT_IMPL
 #	define ENTROPY_HECATE_STAT_IMPL
 
+#	include "Stat.hh"
+
 	namespace Entropy
 	{
 		namespace Hecate

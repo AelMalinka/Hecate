@@ -5,6 +5,7 @@ AM_CXXFLAGS := -I$(srcdir)/src -I$(srcdir)/external/pcg-cpp/include $(AM_CXXFLAG
 mainheadersdir = $(includedir)/Entropy/Hecate
 mainheaders_HEADERS = \
 	src/Exception.hh \
+	src/Percent.hh \
 	src/Character.hh \
 	src/Character.impl.hh \
 	src/Stat.hh \
@@ -18,7 +19,8 @@ mainheaders_HEADERS = \
 	src/Modifier.impl.hh
 
 mainheaders_HEADERS += \
-	external/pcg-cpp/include/pcg_random.hpp
+	external/pcg-cpp/include/pcg_random.hpp \
+	external/pcg-cpp/include/pcg_extras.hpp
 
 lib_LTLIBRARIES = libhecate.la
 
@@ -33,7 +35,7 @@ if GTEST
 check_PROGRAMS += \
 	character-stat \
 	character-skill \
-	character \
+	character-character \
 	random-pcg \
 	random-base \
 	check-modifier \
@@ -43,9 +45,9 @@ check_PROGRAMS += \
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
 testLDFLAGS = -pthread $(AM_LDFLAGS)
 
-character_SOURCES = test/character/character.cc
-character_LDADD = $(testLDADD)
-character_LDFLAGS = $(testLDFLAGS)
+character_character_SOURCES = test/character/character.cc
+character_character_LDADD = $(testLDADD)
+character_character_LDFLAGS = $(testLDFLAGS)
 
 character_stat_SOURCES = test/character/character-stat.cc
 character_stat_LDADD = $(testLDADD)

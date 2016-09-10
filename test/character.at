@@ -15,5 +15,5 @@ AT_CLEANUP
 
 AT_SETUP([Character Tests])
 AT_SKIP_IF([test -z $GTEST])
-AT_CHECK([character], [], [ignore], [ignore])
+AT_CHECK([character-character], [], [ignore], [ignore])
 AT_CLEANUP

@@ -35,6 +35,7 @@
 					template<typename ...sl>
 					Character(const sl & ...);
 					virtual ~Character();
+				public:
 					stats &Stats();
 					const stats &Stats() const;
 					template<typename tag>
