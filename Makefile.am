@@ -5,6 +5,7 @@ AM_CXXFLAGS := -I$(srcdir)/src -I$(srcdir)/external/pcg-cpp/include $(AM_CXXFLAG
 mainheadersdir = $(includedir)/Entropy/Hecate
 mainheaders_HEADERS = \
 	src/Exception.hh \
+	src/Percent.hh \
 	src/Character.hh \
 	src/Character.impl.hh \
 	src/Stat.hh \
