@@ -7,12 +7,14 @@
 
 #	include "Skill.hh"
 #	include "Check.hh"
+#	include "Trait.hh"
 
 #	include <typeindex>
 #	include <unordered_map>
 
 // 2016-09-13 AMR TODO: use c++17 std::any when available
 #	include <boost/any.hpp>
+#	include <map>
 
 #	ifndef ENTROPY_HECATE_DEFINE_CHARACTER
 #		define ENTROPY_HECATE_DEFINE_CHARACTER(...) typedef ::Entropy::Hecate::Character<::Entropy::Hecate::tuple<__VA_ARGS__>> BaseCharacter
@@ -37,10 +39,12 @@
 					template<typename ...sl>
 					Character(const sl & ...);
 					virtual ~Character();
+					CostType Cost() const;
+					void Add(const Trait<Character<stats>> &);
+					void operator () (Event &);
 				public:
 					stats &Stats();
 					const stats &Stats() const;
-					CostType Cost() const;
 					template<typename tag, CostType CostPer>
 					Stat<tag, CostPer> &get(Stat<tag, CostPer> &);
 					template<typename tag, CostType CostPer>
@@ -58,6 +62,7 @@
 				private:
 					stats _stats;
 					std::unordered_map<std::type_index, boost::any> _skills;
+					std::map<std::string, Trait<Character<stats>>> _traits;
 			};
 		}
 	}

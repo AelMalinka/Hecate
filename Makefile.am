@@ -17,7 +17,9 @@ mainheaders_HEADERS = \
 	src/Check.impl.hh \
 	src/Modifier.hh \
 	src/Modifier.impl.hh \
-	src/Event.hh
+	src/Event.hh \
+	src/Trait.hh \
+	src/Trait.impl.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
@@ -42,7 +44,8 @@ check_PROGRAMS += \
 	random-base \
 	check-modifier \
 	check-check \
-	trait-event
+	trait-event \
+	trait-trait
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -79,6 +82,10 @@ check_check_LDFLAGS = $(testLDFLAGS)
 trait_event_SOURCES = test/trait/event.cc
 trait_event_LDADD = $(testLDADD)
 trait_event_LDFLAGS = $(testLDFLAGS)
+
+trait_trait_SOURCES = test/trait/trait.cc
+trait_trait_LDADD = $(testLDADD)
+trait_trait_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite

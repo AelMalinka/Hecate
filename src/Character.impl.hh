@@ -6,6 +6,7 @@
 #	define ENTROPY_HECATE_CHARACTER_IMPL
 
 #	include "Character.hh"
+#	include "Trait.hh"
 
 #	include <typeindex>
 #	include <type_traits>
@@ -17,10 +18,40 @@
 			template<typename stats>
 			template<typename ...sl>
 			Character<stats>::Character(const sl &... s)
-				: _luck(ENTROPY_HECATE_DEFAULT_LUCK), _stats(s...)
+				: _luck(ENTROPY_HECATE_DEFAULT_LUCK), _stats(s...), _traits()
 			{}
 
 			template<typename stats> Character<stats>::~Character() = default;
+
+			template<typename stats>
+			void Character<stats>::operator () (Event &ev)
+			{
+				for(auto &trait : _traits) {
+					trait.second(ev, *this);
+				}
+			}
+
+			template<typename stats>
+			void Character<stats>::Add(const Trait<Character<stats>> &trait)
+			{
+				_traits[trait.Name()] = trait;
+			}
+
+			template<typename stats>
+			CostType Character<stats>::Cost() const
+			{
+				CostType ret = 0;
+
+				detail::for_each(_stats, [&ret](auto &x) { ret += x.Cost(); });
+				for(auto &i : _skills) {
+					ret += boost::any_cast<Percent *>(i.second)->Cost();
+				}
+				for(auto &t : _traits) {
+					ret += t.second.Cost();
+				}
+
+				return ret;
+			}
 
 			template<typename stats>
 			stats &Character<stats>::Stats()
@@ -32,19 +63,6 @@
 			const stats &Character<stats>::Stats() const
 			{
 				return _stats;
-			}
-
-			template<typename stats>
-			CostType Character<stats>::Cost() const
-			{
-				CostType ret = 0;
-
-				detail::for_each(_stats, [&ret](auto &x) { ret += x.Cost(); });
-				for(auto &i : _skills) {
-					ret += boost::any_cast<Percent &>(i.second).Cost();
-				}
-
-				return ret;
 			}
 
 			template<typename stats>
