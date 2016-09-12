@@ -45,7 +45,7 @@ namespace {
 
 	TEST(Modifier, Reference) {
 		PercentType perc = 10;
-		ModifierType mod = -5;
+		PercentType mod = -5;
 		TestStat stat = 15;
 		TestSkill skill(5, stat);
 

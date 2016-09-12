@@ -25,8 +25,8 @@
 				class ModifierHolderBase
 				{
 					public:
-						virtual ModifierType Value() const = 0;
-						virtual ModifierType &Raw() = 0;
+						virtual PercentType Value() const = 0;
+						virtual PercentType &Raw() = 0;
 				};
 
 				template<typename T>
@@ -37,8 +37,8 @@
 						ModifierHolder(T &);
 						ModifierHolder(T &&);
 						~ModifierHolder();
-						ModifierType Value() const;
-						ModifierType &Raw();
+						PercentType Value() const;
+						PercentType &Raw();
 					private:
 						T *_value;
 						bool _clean;
@@ -55,8 +55,8 @@
 					template<typename T>
 					Modifier(T &&, const std::string &, const detail::negative_t & = detail::positive);
 					const std::string &Reason() const;
-					ModifierType Value() const;
-					ModifierType &Raw();
+					PercentType Value() const;
+					PercentType &Raw();
 				private:
 					std::shared_ptr<detail::ModifierHolderBase> _value;
 					std::string _reason;

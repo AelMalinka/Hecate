@@ -26,18 +26,18 @@
 						private:
 							struct result_modifier
 							{
-								ModifierType current;
+								PercentType current;
 								std::shared_ptr<Modifier> modifier;
 							};
 						public:
-							Result(const ModifierType, const PercentType, const std::vector<std::shared_ptr<Modifier>> &);
-							ModifierType Value() const;
+							Result(const PercentType, const PercentType, const std::vector<std::shared_ptr<Modifier>> &);
+							PercentType Value() const;
 							PercentType Luck() const;
 							std::size_t size() const;
 							std::vector<result_modifier>::iterator begin();
 							std::vector<result_modifier>::iterator end();
 						private:
-							ModifierType _value;
+							PercentType _value;
 							PercentType _luck;
 							std::vector<result_modifier> _modifiers;
 					};

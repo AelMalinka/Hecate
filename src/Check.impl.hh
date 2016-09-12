@@ -30,7 +30,7 @@
 			template<typename ...Mods>
 			Check::Result Check::operator () (const Mods &... mods) const
 			{
-				ModifierType chance = 0; 
+				PercentType chance = 0; 
 				std::vector<Modifier> t{mods...};
 				std::vector<std::shared_ptr<Modifier>> modifiers(_modifiers);
 

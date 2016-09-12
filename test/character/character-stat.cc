@@ -34,7 +34,7 @@ namespace {
 		EXPECT_EQ(st.Value(), 10);
 
 		st.Raw() = -10;
-		EXPECT_NE(st.Value(), -10);
-		EXPECT_EQ(st.Value(), 65526);
+		EXPECT_EQ(st.Value(), -10);
+		EXPECT_NE(st.Value(), 65526);
 	}
 }

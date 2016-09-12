@@ -33,31 +33,16 @@
 				}
 
 				template<typename T>
-				ModifierType ModifierHolder<T>::Value() const
+				PercentType ModifierHolder<T>::Value() const
 				{
 					return _value->Value();
 				}
 
 				template<typename T>
-				ModifierType &ModifierHolder<T>::Raw()
+				PercentType &ModifierHolder<T>::Raw()
 				{
-					return reinterpret_cast<ModifierType &>(_value->Raw());
+					return reinterpret_cast<PercentType &>(_value->Raw());
 				}
-
-				template<>
-				class ModifierHolder<ModifierType> :
-					public ModifierHolderBase
-				{
-					public:
-						ModifierHolder(ModifierType &);
-						ModifierHolder(ModifierType &&);
-						~ModifierHolder();
-						ModifierType Value() const;
-						ModifierType &Raw();
-					private:
-						ModifierType *_value;
-						bool _clean;
-				};
 
 				template<>
 				class ModifierHolder<PercentType> :
@@ -67,8 +52,8 @@
 						ModifierHolder(PercentType &);
 						ModifierHolder(PercentType &&);
 						~ModifierHolder();
-						ModifierType Value() const;
-						ModifierType &Raw();
+						PercentType Value() const;
+						PercentType &Raw();
 					private:
 						PercentType *_value;
 						bool _clean;
@@ -82,8 +67,8 @@
 						ModifierHolder(Check &);
 						ModifierHolder(Check &&);
 						~ModifierHolder();
-						ModifierType Value() const;
-						ModifierType &Raw();
+						PercentType Value() const;
+						PercentType &Raw();
 					private:
 						Check *_value;
 						bool _clean;
