@@ -10,6 +10,8 @@
 
 #	include <typeindex>
 #	include <unordered_map>
+
+// 2016-09-13 AMR TODO: use c++17 std::any when available
 #	include <boost/any.hpp>
 
 #	ifndef ENTROPY_HECATE_DEFINE_CHARACTER
