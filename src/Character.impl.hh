@@ -38,9 +38,23 @@
 			}
 
 			template<typename stats>
+			void Character<stats>::Add(const Template<Character<stats>> &templ)
+			{
+				_templates.insert(make_pair(templ.Name(), templ));
+				templ.Add(*this);
+			}
+
+			template<typename stats>
 			void Character<stats>::Remove(const Trait<Character<stats>> &trait)
 			{
 				_traits.erase(trait.Name());
+			}
+
+			template<typename stats>
+			void Character<stats>::Remove(const Template<Character<stats>> &templ)
+			{
+				_templates.erase(templ.Name());
+				templ.Remove(*this);
 			}
 
 			template<typename stats>

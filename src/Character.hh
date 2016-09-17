@@ -8,6 +8,7 @@
 #	include "Skill.hh"
 #	include "Check.hh"
 #	include "Trait.hh"
+#	include "Template.hh"
 
 #	include <typeindex>
 #	include <unordered_map>
@@ -38,7 +39,9 @@
 					virtual ~Character();
 					CostType Cost() const;
 					void Add(const Trait<Character<stats>> &);
+					void Add(const Template<Character<stats>> &);
 					void Remove(const Trait<Character<stats>> &);
+					void Remove(const Template<Character<stats>> &);
 					void operator () (Event &);
 				public:
 					stats &Stats();
@@ -61,6 +64,7 @@
 					stats _stats;
 					std::unordered_map<std::type_index, std::shared_ptr<Percent>> _skills;
 					std::map<std::string, Trait<Character<stats>>> _traits;
+					std::map<std::string, Template<Character<stats>>> _templates;
 			};
 		}
 	}
