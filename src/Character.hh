@@ -11,9 +11,6 @@
 
 #	include <typeindex>
 #	include <unordered_map>
-
-// 2016-09-13 AMR TODO: use c++17 std::any when available
-#	include <boost/any.hpp>
 #	include <map>
 
 #	ifndef ENTROPY_HECATE_DEFINE_CHARACTER
@@ -61,7 +58,7 @@
 					PercentType _luck;
 				private:
 					stats _stats;
-					std::unordered_map<std::type_index, boost::any> _skills;
+					std::unordered_map<std::type_index, std::shared_ptr<Percent>> _skills;
 					std::map<std::string, Trait<Character<stats>>> _traits;
 			};
 		}

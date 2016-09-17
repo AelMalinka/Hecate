@@ -83,6 +83,12 @@
 			}
 
 			template<typename tag, CostType CostPer, typename ...skills>
+			const PercentType &Skill<tag, CostPer, skills...>::Raw() const
+			{
+				return _value;
+			}
+
+			template<typename tag, CostType CostPer, typename ...skills>
 			CostType Skill<tag, CostPer, skills...>::Cost() const
 			{
 				return _value * CostPer;

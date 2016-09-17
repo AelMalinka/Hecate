@@ -36,6 +36,12 @@
 			}
 
 			template<typename tag, CostType CostPer>
+			const PercentType &Stat<tag, CostPer>::Raw() const
+			{
+				return _value;
+			}
+
+			template<typename tag, CostType CostPer>
 			CostType Stat<tag, CostPer>::Cost() const
 			{
 				return _value * CostPer;
