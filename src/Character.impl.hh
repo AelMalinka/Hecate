@@ -34,7 +34,13 @@
 			template<typename stats>
 			void Character<stats>::Add(const Trait<Character<stats>> &trait)
 			{
-				_traits[trait.Name()] = trait;
+				_traits.insert(make_pair(trait.Name(), trait));
+			}
+
+			template<typename stats>
+			void Character<stats>::Remove(const Trait<Character<stats>> &trait)
+			{
+				_traits.erase(trait.Name());
 			}
 
 			template<typename stats>

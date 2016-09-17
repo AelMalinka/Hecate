@@ -38,6 +38,7 @@
 					virtual ~Character();
 					CostType Cost() const;
 					void Add(const Trait<Character<stats>> &);
+					void Remove(const Trait<Character<stats>> &);
 					void operator () (Event &);
 				public:
 					stats &Stats();
