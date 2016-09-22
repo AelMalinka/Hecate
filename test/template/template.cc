@@ -11,17 +11,17 @@ using namespace testing;
 using namespace std;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(St, 2);
-	ENTROPY_HECATE_DEFINE_STAT(Dx, 2);
-	ENTROPY_HECATE_DEFINE_STAT(Iq, 2);
-	ENTROPY_HECATE_DEFINE_STAT(Ht, 2);
+	struct St_tag{}; using St = Stat<St_tag, 2>;
+	struct Dx_tag{}; using Dx = Stat<Dx_tag, 2>;
+	struct Iq_tag{}; using Iq = Stat<Iq_tag, 2>;
+	struct Ht_tag{}; using Ht = Stat<Ht_tag, 2>;
 
-	ENTROPY_HECATE_DEFINE_SKILL(Attack, 1, St, St, Dx);
-	ENTROPY_HECATE_DEFINE_SKILL(Defense, 1, Dx, Dx, Ht);
-	ENTROPY_HECATE_DEFINE_SKILL(Research, 1, Iq);
-	ENTROPY_HECATE_DEFINE_SKILL(Experiment, 1, Research, Iq);
+	struct Attack_tag{}; using Attack = Skill<Attack_tag, 1, St, St, Dx>;
+	struct Defense_tag{}; using Defense = Skill<Defense_tag, 1, Dx, Dx, Ht>;
+	struct Research_tag{}; using Research = Skill<Research_tag, 1, Iq>;
+	struct Experiment_tag{}; using Experiment = Skill<Experiment_tag, 1, Research, Iq>;
 
-	ENTROPY_HECATE_DEFINE_CHARACTER(St, Dx, Iq, Ht);
+	using BaseCharacter = Character<tuple<St, Dx, Iq, Ht>>;
 
 	class Character :
 		public BaseCharacter
@@ -29,7 +29,7 @@ namespace {
 		public:
 			template<typename ...sl>
 			Character(const sl & ...);
-			ENTROPY_HECATE_STAT_ACCESSOR(Strength, St);
+			St &Strength();
 	};
 
 	using Trait = Trait<BaseCharacter>;
@@ -114,4 +114,10 @@ namespace {
 	Character::Character(const sl & ...s)
 		: BaseCharacter(s...)
 	{}
+
+	St &Character::Strength()
+	{
+		St st;
+		return get(st);
+	}
 }

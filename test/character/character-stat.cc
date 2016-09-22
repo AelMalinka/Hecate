@@ -10,12 +10,12 @@ using namespace testing;
 using namespace Entropy::Hecate;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(Strength, 1);
-	ENTROPY_HECATE_DEFINE_STAT(Dexterity, 1);
-	ENTROPY_HECATE_DEFINE_STAT(Constitution, 1);
-	ENTROPY_HECATE_DEFINE_STAT(Intelligence, 1);
-	ENTROPY_HECATE_DEFINE_STAT(Wisdom, 1);
-	ENTROPY_HECATE_DEFINE_STAT(Charisma, 1);
+	struct Strength_tag{}; using Strength = Stat<Strength_tag, 1>;
+	struct Dexterity_tag{}; using Dexterity = Stat<Dexterity_tag, 1>;
+	struct Constitution_tag{}; using Constitution = Stat<Constitution_tag, 1>;
+	struct Intelligence_tag{}; using Intelligence = Stat<Intelligence_tag, 1>;
+	struct Wisdom_tag{}; using Wisdom = Stat<Wisdom_tag, 1>;
+	struct Charisma_tag{}; using Charisma = Stat<Charisma_tag, 1>;
 
 	TEST(Stat, Create) {
 		Strength st = 0;
