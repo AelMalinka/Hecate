@@ -31,7 +31,10 @@
 								std::shared_ptr<Modifier> modifier;
 							};
 						public:
-							Result(const PercentType, const PercentType, const std::vector<std::shared_ptr<Modifier>> &);
+							Result(const PercentType, const PercentType, const PercentType, const std::vector<std::shared_ptr<Modifier>> &);
+							operator bool () const;
+							bool isSuccess() const;
+							bool isCritical() const;
 							PercentType Value() const;
 							PercentType Luck() const;
 							std::size_t size() const;
@@ -39,6 +42,7 @@
 							std::vector<result_modifier>::iterator end();
 						private:
 							PercentType _value;
+							PercentType _roll;
 							PercentType _luck;
 							std::vector<result_modifier> _modifiers;
 					};

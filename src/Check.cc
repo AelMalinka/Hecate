@@ -69,8 +69,8 @@ vector<shared_ptr<Modifier>>::iterator Check::end()
 	return _modifiers.end();
 }
 
-Check::Result::Result(const PercentType value, const PercentType luck, const vector<shared_ptr<Modifier>> &vector)
-	: _value(value), _luck(luck)
+Check::Result::Result(const PercentType value, const PercentType roll, const PercentType luck, const vector<shared_ptr<Modifier>> &vector)
+	: _value(value), _roll(roll), _luck(luck)
 {
 	for(auto &m : vector) {
 		result_modifier t;
@@ -80,6 +80,21 @@ Check::Result::Result(const PercentType value, const PercentType luck, const vec
 
 		_modifiers.push_back(t);
 	}
+}
+
+Check::Result::operator bool() const
+{
+	return isSuccess();
+}
+
+bool Check::Result::isSuccess() const
+{
+	return _value > 0;
+}
+
+bool Check::Result::isCritical() const
+{
+	return _roll > 100 - _luck || _roll < _luck;
 }
 
 int Check::Result::Value() const
