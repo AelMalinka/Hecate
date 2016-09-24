@@ -51,6 +51,10 @@
 				int value = chance - Roll() - 1;
 				Result ret(value, _luck, modifiers);
 
+				for(auto &&f : _callbacks) {
+					f(ret);
+				}
+
 				return ret;
 			}
 		}

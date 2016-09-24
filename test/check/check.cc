@@ -86,6 +86,21 @@ namespace {
 		EXPECT_GE(iter->modifier->Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
 	}
 
+	TEST(Check, Callback) {
+		Check first({
+			Modifier(10, "value")
+		});
+
+		bool ran = false;
+		first.Add([&](auto) {
+			ran = true;
+		});
+
+		EXPECT_FALSE(ran);
+		first();
+		EXPECT_TRUE(ran);
+	}
+
 	TEST(Result, Values) {
 		Check::Result empty(10, 5, {});
 

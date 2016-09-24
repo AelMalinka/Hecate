@@ -47,6 +47,13 @@ Check &Check::Add(const Modifier &mod)
 	return *this;
 }
 
+Check &Check::Add(const function<void(const Check::Result &)> &cb)
+{
+	_callbacks.push_back(cb);
+
+	return *this;
+}
+
 size_t Check::size() const
 {
 	return _modifiers.size();

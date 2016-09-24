@@ -7,6 +7,7 @@
 
 #	include <memory>
 #	include <vector>
+#	include <functional>
 
 #	include "Modifier.hh"
 
@@ -54,6 +55,7 @@
 					Check &Add(T &&, const std::string &, const detail::negative_t & = detail::positive);
 					Check &Add(const std::shared_ptr<Modifier> &);
 					Check &Add(const Modifier &);
+					Check &Add(const std::function<void(const Result &)> &);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
 					std::size_t size() const;
@@ -62,6 +64,7 @@
 				private:
 					static PercentType default_luck;
 					std::vector<std::shared_ptr<Modifier>> _modifiers;
+					std::vector<std::function<void(Result &)>> _callbacks;
 					PercentType &_luck;
 			};
 		}
