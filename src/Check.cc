@@ -121,3 +121,45 @@ vector<Check::Result::result_modifier>::iterator Check::Result::end()
 {
 	return _modifiers.end();
 }
+
+void onSuccess::operator () (const Check::Result &result) const
+{
+	if(result)
+		_cb(result);
+}
+
+void onFailure::operator () (const Check::Result &result) const
+{
+	if(!result)
+		_cb(result);
+}
+
+void onCritical::operator () (const Check::Result &result) const
+{
+	if(result.isCritical())
+		_cb(result);
+}
+
+onSuccess::onSuccess(const function <void(const Check::Result &)> &cb)
+	: _cb(cb)
+{}
+
+onSuccess::onSuccess(const onSuccess &) = default;
+onSuccess::onSuccess(onSuccess &&) = default;
+onSuccess::~onSuccess() = default;
+
+onFailure::onFailure(const function <void(const Check::Result &)> &cb)
+	: _cb(cb)
+{}
+
+onFailure::onFailure(const onFailure &) = default;
+onFailure::onFailure(onFailure &&) = default;
+onFailure::~onFailure() = default;
+
+onCritical::onCritical(const function <void(const Check::Result &)> &cb)
+	: _cb(cb)
+{}
+
+onCritical::onCritical(const onCritical &) = default;
+onCritical::onCritical(onCritical &&) = default;
+onCritical::~onCritical() = default;

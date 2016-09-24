@@ -101,6 +101,35 @@ namespace {
 		EXPECT_TRUE(ran);
 	}
 
+	TEST(Check, onWrappers) {
+		Check first;
+		auto successes = 0;
+		auto failures = 0;
+		auto criticals = 0;
+
+		first.Add(onSuccess([&successes](auto) {
+			++successes;
+		}));
+		first.Add(onFailure([&failures](auto) {
+			++failures;
+		}));
+		first.Add(onCritical([&criticals](auto) {
+			++criticals;
+		}));
+
+		EXPECT_EQ(successes, 0);
+		EXPECT_EQ(failures, 0);
+		EXPECT_EQ(criticals, 0);
+
+		for(auto x = 0; x < 10000; x++) {
+			first();
+		}
+
+		EXPECT_GT(successes, 0);
+		EXPECT_GT(failures, 0);
+		EXPECT_GT(criticals, 0);
+	}
+
 	TEST(Result, isSuccess) {
 		Check::Result first(-5, 50, 5, {});
 		Check::Result second(10, 10, 5, {});

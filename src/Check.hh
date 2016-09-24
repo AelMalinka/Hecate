@@ -71,6 +71,42 @@
 					std::vector<std::function<void(Result &)>> _callbacks;
 					PercentType &_luck;
 			};
+
+			class onSuccess
+			{
+				public:
+					onSuccess(const std::function<void(const Check::Result &)> &);
+					onSuccess(const onSuccess &);
+					onSuccess(onSuccess &&);
+					~onSuccess();
+					void operator () (const Check::Result &) const;
+				private:
+					std::function<void(const Check::Result &)> _cb;
+			};
+
+			class onFailure
+			{
+				public:
+					onFailure(const std::function<void(const Check::Result &)> &);
+					onFailure(const onFailure &);
+					onFailure(onFailure &&);
+					~onFailure();
+					void operator () (const Check::Result &) const;
+				private:
+					std::function<void(const Check::Result &)> _cb;
+			};
+
+			class onCritical
+			{
+				public:
+					onCritical(const std::function<void(const Check::Result &)> &);
+					onCritical(const onCritical &);
+					onCritical(onCritical &&);
+					~onCritical();
+					void operator () (const Check::Result &) const;
+				private:
+					std::function<void(const Check::Result &)> _cb;
+			};
 		}
 	}
 
