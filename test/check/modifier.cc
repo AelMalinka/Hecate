@@ -14,8 +14,8 @@ using namespace testing;
 using namespace std;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(TestStat, 2);
-	ENTROPY_HECATE_DEFINE_SKILL(TestSkill, 1, TestStat);
+	struct TestStat_tag{}; using TestStat = Stat<TestStat_tag, 2>;
+	struct TestSkill_tag{}; using TestSkill = Skill<TestSkill_tag, 1, TestStat>;
 
 	TEST(Modifier, Instantiate) {
 		TestStat stat = 10;
