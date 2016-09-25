@@ -8,12 +8,10 @@
 #	include "Skill.hh"
 #	include "Check.hh"
 #	include "Trait.hh"
+#	include "Template.hh"
 
 #	include <typeindex>
 #	include <unordered_map>
-
-// 2016-09-13 AMR TODO: use c++17 std::any when available
-#	include <boost/any.hpp>
 #	include <map>
 
 #	ifndef ENTROPY_HECATE_DEFINE_CHARACTER
@@ -41,6 +39,9 @@
 					virtual ~Character();
 					CostType Cost() const;
 					void Add(const Trait<Character<stats>> &);
+					void Add(const Template<Character<stats>> &);
+					void Remove(const Trait<Character<stats>> &);
+					void Remove(const Template<Character<stats>> &);
 					void operator () (Event &);
 				public:
 					stats &Stats();
@@ -61,8 +62,9 @@
 					PercentType _luck;
 				private:
 					stats _stats;
-					std::unordered_map<std::type_index, boost::any> _skills;
+					std::unordered_map<std::type_index, std::shared_ptr<Percent>> _skills;
 					std::map<std::string, Trait<Character<stats>>> _traits;
+					std::map<std::string, Template<Character<stats>>> _templates;
 			};
 		}
 	}

@@ -19,7 +19,9 @@ mainheaders_HEADERS = \
 	src/Modifier.impl.hh \
 	src/Event.hh \
 	src/Trait.hh \
-	src/Trait.impl.hh
+	src/Trait.impl.hh \
+	src/Template.hh \
+	src/Template.impl.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
@@ -45,7 +47,8 @@ check_PROGRAMS += \
 	check-modifier \
 	check-check \
 	trait-event \
-	trait-trait
+	trait-trait \
+	template-template
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -86,6 +89,10 @@ trait_event_LDFLAGS = $(testLDFLAGS)
 trait_trait_SOURCES = test/trait/trait.cc
 trait_trait_LDADD = $(testLDADD)
 trait_trait_LDFLAGS = $(testLDFLAGS)
+
+template_template_SOURCES = test/template/template.cc
+template_template_LDADD = $(testLDADD)
+template_template_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
@@ -93,7 +100,8 @@ TESTSUITE_FILES = \
 	$(srcdir)/test/character.at \
 	$(srcdir)/test/random.at \
 	$(srcdir)/test/check.at \
-	$(srcdir)/test/trait.at
+	$(srcdir)/test/trait.at \
+	$(srcdir)/test/template.at
 
 EXTRA_DIST = \
 	$(TESTSUITE_FILES) \

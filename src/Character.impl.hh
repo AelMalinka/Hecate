@@ -34,7 +34,27 @@
 			template<typename stats>
 			void Character<stats>::Add(const Trait<Character<stats>> &trait)
 			{
-				_traits[trait.Name()] = trait;
+				_traits.insert(make_pair(trait.Name(), trait));
+			}
+
+			template<typename stats>
+			void Character<stats>::Add(const Template<Character<stats>> &templ)
+			{
+				_templates.insert(make_pair(templ.Name(), templ));
+				templ.Add(*this);
+			}
+
+			template<typename stats>
+			void Character<stats>::Remove(const Trait<Character<stats>> &trait)
+			{
+				_traits.erase(trait.Name());
+			}
+
+			template<typename stats>
+			void Character<stats>::Remove(const Template<Character<stats>> &templ)
+			{
+				_templates.erase(templ.Name());
+				templ.Remove(*this);
 			}
 
 			template<typename stats>
@@ -44,7 +64,7 @@
 
 				detail::for_each(_stats, [&ret](auto &x) { ret += x.Cost(); });
 				for(auto &i : _skills) {
-					ret += boost::any_cast<Percent *>(i.second)->Cost();
+					ret += i.second->Cost();
 				}
 				for(auto &t : _traits) {
 					ret += t.second.Cost();
@@ -74,7 +94,7 @@
 
 				s = get<typename remove_reference<decltype(s)>::type>(_stats);
 
-				return s;
+				return get<typename remove_reference<decltype(s)>::type>(_stats);
 			}
 
 			template<typename stats>
@@ -86,42 +106,44 @@
 
 				s = get<typename remove_reference<decltype(s)>::type>(_stats);
 
-				return s;
+				return get<typename remove_reference<decltype(s)>::type>(_stats);
 			}
 
 			template<typename stats>
 			template<typename tag, CostType CostPer, typename ...sl>
 			Skill<tag, CostPer, sl...> &Character<stats>::set(Skill<tag, CostPer, sl...> &s)
 			{
-				using boost::any_cast;
+				using std::dynamic_pointer_cast;
+				using std::make_shared;
 
-				_skills[typeid(s)] = s;
+				_skills[typeid(s)] = make_shared<Skill<tag, CostPer, sl...>>(s);
 
-				return any_cast<decltype(s)>(_skills[typeid(s)]);
+				return *dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(_skills[typeid(s)]);
 			}
 
 			template<typename stats>
 			template<typename tag, CostType CostPer, typename ...sl>
 			Skill<tag, CostPer, sl...> &Character<stats>::get(Skill<tag, CostPer, sl...> &s)
 			{
-				using boost::any_cast;
+				using std::dynamic_pointer_cast;
+				using std::make_shared;
 
 				if(_skills.find(typeid(s)) != _skills.end())
-					s = any_cast<decltype(s)>(_skills[typeid(s)]);
+					s = *dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(_skills[typeid(s)]);
 				else
-					_skills[typeid(s)] = s;
+					_skills[typeid(s)] = make_shared<Skill<tag, CostPer, sl...>>(s);
 
-				return any_cast<decltype(s)>(_skills[typeid(s)]);
+				return *dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(_skills[typeid(s)]);
 			}
 
 			template<typename stats>
 			template<typename tag, CostType CostPer, typename ...sl>
 			Skill<tag, CostPer, sl...> Character<stats>::get(Skill<tag, CostPer, sl...> &s) const
 			{
-				using boost::any_cast;
+				using std::dynamic_pointer_cast;
 
 				if(_skills.find(typeid(s)) != _skills.end())
-					s = any_cast<decltype(s)>(*_skills.find(typeid(s)));
+					s = dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(*_skills.find(typeid(s)));
 
 				return s;
 			}

@@ -28,6 +28,7 @@
 					virtual ~Stat();
 					PercentType Value() const;
 					PercentType &Raw();
+					const PercentType &Raw() const;
 					CostType Cost() const;
 				private:
 					PercentType _value;
