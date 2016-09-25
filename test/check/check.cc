@@ -86,8 +86,74 @@ namespace {
 		EXPECT_GE(iter->modifier->Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
 	}
 
+	TEST(Check, Callback) {
+		Check first({
+			Modifier(10, "value")
+		});
+
+		bool ran = false;
+		first.Add([&](auto) {
+			ran = true;
+		});
+
+		EXPECT_FALSE(ran);
+		first();
+		EXPECT_TRUE(ran);
+	}
+
+	TEST(Check, onWrappers) {
+		Check first;
+		auto successes = 0;
+		auto failures = 0;
+		auto criticals = 0;
+
+		first.Add(onSuccess([&successes](auto) {
+			++successes;
+		}));
+		first.Add(onFailure([&failures](auto) {
+			++failures;
+		}));
+		first.Add(onCritical([&criticals](auto) {
+			++criticals;
+		}));
+
+		EXPECT_EQ(successes, 0);
+		EXPECT_EQ(failures, 0);
+		EXPECT_EQ(criticals, 0);
+
+		for(auto x = 0; x < 10000; x++) {
+			first();
+		}
+
+		EXPECT_GT(successes, 0);
+		EXPECT_GT(failures, 0);
+		EXPECT_GT(criticals, 0);
+	}
+
+	TEST(Result, isSuccess) {
+		Check::Result first(-5, 50, 5, {});
+		Check::Result second(10, 10, 5, {});
+
+		EXPECT_FALSE(first.isSuccess());
+		EXPECT_TRUE(second.isSuccess());
+		EXPECT_FALSE(first);
+		EXPECT_TRUE(second);
+	}
+
+	TEST(Result, isCritical) {
+		Check::Result first(-5, 96, 5, {});
+		Check::Result second(-5, 50, 5, {});
+		Check::Result third(10, 4, 5, {});
+		Check::Result fourth(5, 5, 5, {});
+
+		EXPECT_TRUE(first.isCritical());
+		EXPECT_FALSE(second.isCritical());
+		EXPECT_TRUE(third.isCritical());
+		EXPECT_FALSE(fourth.isCritical());
+	}
+
 	TEST(Result, Values) {
-		Check::Result empty(10, 5, {});
+		Check::Result empty(10, 10, 5, {});
 
 		EXPECT_EQ(empty.Value(), 10);
 
@@ -98,21 +164,21 @@ namespace {
 		l.push_back(make_shared<Modifier>(v, "stat"));
 		l.push_back(make_shared<Modifier>(v, "stat negative", negative));
 
-		Check::Result result(5, 5, l);
+		Check::Result result(5, 5, 5, l);
 
 		EXPECT_EQ(result.Value(), 5);
 	}
 
 	TEST(Result, Luck) {
-		Check::Result res1(10, 5, {});
-		Check::Result res2(10, 10, {});
+		Check::Result res1(10, 10, 5, {});
+		Check::Result res2(10, 10, 10, {});
 
 		EXPECT_EQ(res1.Luck(), 5);
 		EXPECT_EQ(res2.Luck(), 10);
 	}
 
 	TEST(Result, Iterate) {
-		Check::Result empty(10, 5, {});
+		Check::Result empty(10, 10, 5, {});
 		vector<shared_ptr<Modifier>> empty_list;
 
 		for(auto &i : empty) {
@@ -123,7 +189,7 @@ namespace {
 
 		stat s = 10;
 		skill k(5, s);
-		Check::Result result(5, 5, {
+		Check::Result result(5, 5, 5, {
 			make_shared<Modifier>(10, "value"),
 			make_shared<Modifier>(s, "stat"),
 			make_shared<Modifier>(k, "skill"),
@@ -140,7 +206,7 @@ namespace {
 
 	TEST(Result, Reference) {
 		auto t = make_shared<Modifier>(5, "value");
-		Check::Result res(10, 5, {t});
+		Check::Result res(10, 10, 5, {t});
 
 		EXPECT_EQ(res.begin()->modifier->Value(), 5);
 		EXPECT_EQ(res.begin()->current, 5);

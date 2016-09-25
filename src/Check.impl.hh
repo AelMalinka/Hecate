@@ -48,8 +48,13 @@
 					chance = default_luck;
 
 				// 2016-09-02 AMR NOTE: success if under not equal to the roll in question
-				int value = chance - Roll() - 1;
-				Result ret(value, _luck, modifiers);
+				PercentType roll = Roll();
+				PercentType value = chance - roll - 1;
+				Result ret(value, roll, _luck, modifiers);
+
+				for(auto &&f : _callbacks) {
+					f(ret);
+				}
 
 				return ret;
 			}
