@@ -11,28 +11,34 @@
 	{
 		namespace Hecate
 		{
-			template<typename tag>
-			Stat<tag>::Stat()
+			template<typename tag, CostType CostPer>
+			Stat<tag, CostPer>::Stat()
 				: _value(0)
 			{}
 
-			template<typename tag>
-			Stat<tag>::Stat(const PercentType v)
+			template<typename tag, CostType CostPer>
+			Stat<tag, CostPer>::Stat(const PercentType v)
 				: _value(v)
 			{}
 
-			template<typename tag> Stat<tag>::~Stat() = default;
+			template<typename tag, CostType CostPer> Stat<tag, CostPer>::~Stat() = default;
 
-			template<typename tag>
-			PercentType Stat<tag>::Value() const
+			template<typename tag, CostType CostPer>
+			PercentType Stat<tag, CostPer>::Value() const
 			{
 				return _value;
 			}
 
-			template<typename tag>
-			PercentType &Stat<tag>::Raw()
+			template<typename tag, CostType CostPer>
+			PercentType &Stat<tag, CostPer>::Raw()
 			{
 				return _value;
+			}
+
+			template<typename tag, CostType CostPer>
+			CostType Stat<tag, CostPer>::Cost() const
+			{
+				return _value * CostPer;
 			}
 		}
 	}

@@ -12,8 +12,8 @@ using namespace testing;
 using namespace std;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(stat);
-	ENTROPY_HECATE_DEFINE_SKILL(skill, stat);
+	ENTROPY_HECATE_DEFINE_STAT(stat, 2);
+	ENTROPY_HECATE_DEFINE_SKILL(skill, 1, stat);
 
 	TEST(Check, Instantiate) {
 		PercentType luck = 10;
@@ -39,6 +39,22 @@ namespace {
 
 		for(auto x = 0; x < 10000; x++) {
 			auto res = empty();
+
+			EXPECT_LT(res.Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
+			EXPECT_GE(res.Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
+		}
+
+		stat st = 10;
+		skill sk(0, st);
+
+		Check modifiers({
+			Modifier(st, "stat"),
+			Modifier(sk, "skill"),
+			Modifier(-10, "night")
+		});
+
+		for(auto x = 0; x < 10000; x++) {
+			auto res = modifiers();
 
 			EXPECT_LT(res.Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
 			EXPECT_GE(res.Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);

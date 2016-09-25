@@ -15,12 +15,12 @@ const string &Modifier::Reason() const
 	return _reason;
 }
 
-ModifierType Modifier::Value() const
+PercentType Modifier::Value() const
 {
 	return _value->Value() * _negate.multiplier;
 }
 
-ModifierType &Modifier::Raw()
+PercentType &Modifier::Raw()
 {
 	return _value->Raw();
 }
@@ -30,30 +30,6 @@ using namespace detail;
 negative_t::negative_t(const char v)
 	: multiplier(v)
 {}
-
-ModifierHolder<ModifierType>::ModifierHolder(ModifierType &t)
-	: _value(&t), _clean(false)
-{}
-
-ModifierHolder<ModifierType>::ModifierHolder(ModifierType &&t)
-	: _value(new ModifierType(t)), _clean(true)
-{}
-
-ModifierHolder<ModifierType>::~ModifierHolder()
-{
-	if(_clean)
-		delete _value;
-}
-
-ModifierType ModifierHolder<ModifierType>::Value() const
-{
-	return *_value;
-}
-
-ModifierType &ModifierHolder<ModifierType>::Raw()
-{
-	return *_value;
-}
 
 ModifierHolder<PercentType>::ModifierHolder(PercentType &t)
 	: _value(&t), _clean(false)
@@ -69,14 +45,14 @@ ModifierHolder<PercentType>::~ModifierHolder()
 		delete _value;
 }
 
-ModifierType ModifierHolder<PercentType>::Value() const
+PercentType ModifierHolder<PercentType>::Value() const
 {
 	return *_value;
 }
 
-ModifierType &ModifierHolder<PercentType>::Raw()
+PercentType &ModifierHolder<PercentType>::Raw()
 {
-	return reinterpret_cast<ModifierType &>(*_value);
+	return reinterpret_cast<PercentType &>(*_value);
 }
 
 ModifierHolder<Check>::ModifierHolder(Check &v)
@@ -93,12 +69,12 @@ ModifierHolder<Check>::~ModifierHolder()
 		delete _value;
 }
 
-ModifierType ModifierHolder<Check>::Value() const
+PercentType ModifierHolder<Check>::Value() const
 {
 	return (*_value)().Value();
 }
 
-ModifierType &ModifierHolder<Check>::Raw()
+PercentType &ModifierHolder<Check>::Raw()
 {
 	return (*_value->begin())->Raw();
 }

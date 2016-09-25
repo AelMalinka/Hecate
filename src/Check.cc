@@ -62,7 +62,7 @@ vector<shared_ptr<Modifier>>::iterator Check::end()
 	return _modifiers.end();
 }
 
-Check::Result::Result(const ModifierType value, const PercentType luck, const vector<shared_ptr<Modifier>> &vector)
+Check::Result::Result(const PercentType value, const PercentType luck, const vector<shared_ptr<Modifier>> &vector)
 	: _value(value), _luck(luck)
 {
 	for(auto &m : vector) {

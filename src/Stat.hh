@@ -8,7 +8,7 @@
 #	include "Percent.hh"
 
 #	ifndef ENTROPY_HECATE_DEFINE_STAT
-#		define ENTROPY_HECATE_DEFINE_STAT(name) struct name ## _tag {}; typedef ::Entropy::Hecate::Stat<name ## _tag> name
+#		define ENTROPY_HECATE_DEFINE_STAT(name, cost) struct name ## _tag {}; typedef ::Entropy::Hecate::Stat<name ## _tag, cost> name
 #	endif
 
 	namespace Entropy
@@ -16,7 +16,8 @@
 		namespace Hecate
 		{
 			template<
-				typename tag
+				typename tag,
+				CostType CostPer
 			>
 			class Stat :
 				public Percent
@@ -27,6 +28,7 @@
 					virtual ~Stat();
 					PercentType Value() const;
 					PercentType &Raw();
+					CostType Cost() const;
 				private:
 					PercentType _value;
 			};

@@ -14,8 +14,8 @@ using namespace testing;
 using namespace std;
 
 namespace {
-	ENTROPY_HECATE_DEFINE_STAT(TestStat);
-	ENTROPY_HECATE_DEFINE_SKILL(TestSkill, TestStat);
+	ENTROPY_HECATE_DEFINE_STAT(TestStat, 2);
+	ENTROPY_HECATE_DEFINE_SKILL(TestSkill, 1, TestStat);
 
 	TEST(Modifier, Instantiate) {
 		TestStat stat = 10;
@@ -45,7 +45,7 @@ namespace {
 
 	TEST(Modifier, Reference) {
 		PercentType perc = 10;
-		ModifierType mod = -5;
+		PercentType mod = -5;
 		TestStat stat = 15;
 		TestSkill skill(5, stat);
 
@@ -73,6 +73,34 @@ namespace {
 
 		EXPECT_EQ(reference.Value(), perc);
 		EXPECT_EQ(negative_reference.Value(), mod);
+		EXPECT_EQ(stat_mod.Value(), stat.Value());
+		EXPECT_EQ(skill_mod.Value(), skill.Value());
+	}
+
+	TEST(Modifier, Copy) {
+		PercentType perc = 10;
+		TestStat stat = 15;
+		TestSkill skill(5, stat);
+
+		Modifier reference(perc, "reference");
+		Modifier value(10, "value");
+		Modifier stat_mod(stat, "stat");
+		Modifier skill_mod(skill, "skill");
+
+		{
+			Modifier ref_copy(reference);
+			Modifier value_copy(value);
+			Modifier stat_copy(stat_mod);
+			Modifier skill_copy(skill_mod);
+
+			EXPECT_EQ(ref_copy.Value(), perc);
+			EXPECT_EQ(value_copy.Value(), 10);
+			EXPECT_EQ(stat_copy.Value(), stat.Value());
+			EXPECT_EQ(skill_copy.Value(), skill.Value());
+		}
+
+		EXPECT_EQ(reference.Value(), perc);
+		EXPECT_EQ(value.Value(), 10);
 		EXPECT_EQ(stat_mod.Value(), stat.Value());
 		EXPECT_EQ(skill_mod.Value(), skill.Value());
 	}

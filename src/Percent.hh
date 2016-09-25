@@ -16,6 +16,7 @@
 				public:
 					virtual PercentType Value() const = 0;
 					virtual PercentType &Raw() = 0;
+					virtual CostType Cost() const = 0;
 			};
 		}
 	}
