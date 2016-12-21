@@ -31,11 +31,11 @@
 
 			template<
 				typename tag,
-				CostType CostPer,
+				typename CostF,
 				typename ...skills
 			>
 			class Skill :
-				public Stat<Skill<tag, CostPer, skills...>, CostPer>
+				public Stat<Skill<tag, CostF, skills...>, CostF>
 			{
 				public:
 					template<typename ...Skills>
@@ -45,7 +45,7 @@
 					virtual ~Skill();
 					PercentType Value() const;
 				private:
-					typedef Stat<Skill<tag, CostPer, skills...>, CostPer> Base;
+					typedef Stat<Skill<tag, CostF, skills...>, CostF> Base;
 					tuple<skills &...> _base_skills;
 			};
 		}

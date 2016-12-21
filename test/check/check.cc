@@ -12,8 +12,8 @@ using namespace testing;
 using namespace std;
 
 namespace {
-	struct stat_tag{}; using stat = Stat<stat_tag, 2>;
-	struct skill_tag{}; using skill = Skill<skill_tag, 1, stat>;
+	struct stat_tag{}; using stat = Stat<stat_tag, Linear<2>>;
+	struct skill_tag{}; using skill = Skill<skill_tag, Linear<1>, stat>;
 
 	TEST(Check, Instantiate) {
 		PercentType luck = 10;

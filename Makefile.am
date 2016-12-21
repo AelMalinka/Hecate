@@ -27,6 +27,11 @@ mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
 	external/pcg-cpp/include/pcg_extras.hpp
 
+algorithmsdir = $(includedir)/Entropy/Hecate/Algorithms
+algorithms_HEADERS = \
+	src/Algorithms/Linear.hh \
+	src/Algorithms/Linear.impl.hh
+
 lib_LTLIBRARIES = libhecate.la
 
 libhecate_la_SOURCES = \

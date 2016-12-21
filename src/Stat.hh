@@ -14,7 +14,7 @@
 		{
 			template<
 				typename tag,
-				CostType CostPer
+				typename CostF
 			>
 			class Stat :
 				public Percent

@@ -54,22 +54,22 @@
 				}
 			}
 
-			template<typename tag, CostType CostPer, typename ...skills>
+			template<typename tag, typename CostF, typename ...skills>
 			template<typename ...Skills>
-			Skill<tag, CostPer, skills...>::Skill(const PercentType v, Skills &...s)
+			Skill<tag, CostF, skills...>::Skill(const PercentType v, Skills &...s)
 				: Base(v), _base_skills(s...)
 			{}
 
-			template<typename tag, CostType CostPer, typename ...skills>
+			template<typename tag, typename CostF, typename ...skills>
 			template<typename sl, typename>
-			Skill<tag, CostPer, skills...>::Skill(sl &s)
+			Skill<tag, CostF, skills...>::Skill(sl &s)
 				: Base(0), _base_skills(detail::get_values<skills &...>(s))
 			{}
 
-			template<typename tag, CostType CostPer, typename ...skills> Skill<tag, CostPer, skills...>::~Skill() = default;
+			template<typename tag, typename CostF, typename ...skills> Skill<tag, CostF, skills...>::~Skill() = default;
 
-			template<typename tag, CostType CostPer, typename ...skills>
-			PercentType Skill<tag, CostPer, skills...>::Value() const
+			template<typename tag, typename CostF, typename ...skills>
+			PercentType Skill<tag, CostF, skills...>::Value() const
 			{
 				int x = 0;
 				detail::for_each(_base_skills, [&x](auto &v){ x += v.Value(); });
