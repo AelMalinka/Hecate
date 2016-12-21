@@ -86,8 +86,8 @@
 			}
 
 			template<typename stats>
-			template<typename tag, CostType CostPer>
-			Stat<tag, CostPer> &Character<stats>::get(Stat<tag, CostPer> &s)
+			template<typename tag, typename CostF>
+			Stat<tag, CostF> &Character<stats>::get(Stat<tag, CostF> &s)
 			{
 				using std::get;
 				using std::remove_reference;
@@ -98,8 +98,8 @@
 			}
 
 			template<typename stats>
-			template<typename tag, CostType CostPer>
-			const Stat<tag, CostPer> &Character<stats>::get(Stat<tag, CostPer> &s) const
+			template<typename tag, typename CostF>
+			const Stat<tag, CostF> &Character<stats>::get(Stat<tag, CostF> &s) const
 			{
 				using std::get;
 				using std::remove_reference;
@@ -110,40 +110,40 @@
 			}
 
 			template<typename stats>
-			template<typename tag, CostType CostPer, typename ...sl>
-			Skill<tag, CostPer, sl...> &Character<stats>::set(Skill<tag, CostPer, sl...> &s)
+			template<typename tag, typename CostF, typename ...sl>
+			Skill<tag, CostF, sl...> &Character<stats>::set(Skill<tag, CostF, sl...> &s)
 			{
 				using std::dynamic_pointer_cast;
 				using std::make_shared;
 
-				_skills[typeid(s)] = make_shared<Skill<tag, CostPer, sl...>>(s);
+				_skills[typeid(s)] = make_shared<Skill<tag, CostF, sl...>>(s);
 
-				return *dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(_skills[typeid(s)]);
+				return *dynamic_pointer_cast<Skill<tag, CostF, sl...>>(_skills[typeid(s)]);
 			}
 
 			template<typename stats>
-			template<typename tag, CostType CostPer, typename ...sl>
-			Skill<tag, CostPer, sl...> &Character<stats>::get(Skill<tag, CostPer, sl...> &s)
+			template<typename tag, typename CostF, typename ...sl>
+			Skill<tag, CostF, sl...> &Character<stats>::get(Skill<tag, CostF, sl...> &s)
 			{
 				using std::dynamic_pointer_cast;
 				using std::make_shared;
 
 				if(_skills.find(typeid(s)) != _skills.end())
-					s = *dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(_skills[typeid(s)]);
+					s = *dynamic_pointer_cast<Skill<tag, CostF, sl...>>(_skills[typeid(s)]);
 				else
-					_skills[typeid(s)] = make_shared<Skill<tag, CostPer, sl...>>(s);
+					_skills[typeid(s)] = make_shared<Skill<tag, CostF, sl...>>(s);
 
-				return *dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(_skills[typeid(s)]);
+				return *dynamic_pointer_cast<Skill<tag, CostF, sl...>>(_skills[typeid(s)]);
 			}
 
 			template<typename stats>
-			template<typename tag, CostType CostPer, typename ...sl>
-			Skill<tag, CostPer, sl...> Character<stats>::get(Skill<tag, CostPer, sl...> &s) const
+			template<typename tag, typename CostF, typename ...sl>
+			Skill<tag, CostF, sl...> Character<stats>::get(Skill<tag, CostF, sl...> &s) const
 			{
 				using std::dynamic_pointer_cast;
 
 				if(_skills.find(typeid(s)) != _skills.end())
-					s = dynamic_pointer_cast<Skill<tag, CostPer, sl...>>(*_skills.find(typeid(s)));
+					s = dynamic_pointer_cast<Skill<tag, CostF, sl...>>(*_skills.find(typeid(s)));
 
 				return s;
 			}

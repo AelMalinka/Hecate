@@ -12,7 +12,7 @@
 #	endif
 
 #	ifndef ENTROPY_HECATE_COST_TYPE
-#		define ENTROPY_HECATE_COST_TYPE unsigned int
+#		define ENTROPY_HECATE_COST_TYPE int
 #	endif
 
 	namespace Entropy

@@ -10,15 +10,15 @@ using namespace testing;
 using namespace Entropy::Hecate;
 
 namespace {
-	struct St_tag{}; using St = Stat<St_tag, 2>;
-	struct Dx_tag{}; using Dx = Stat<Dx_tag, 2>;
-	struct Iq_tag{}; using Iq = Stat<Iq_tag, 2>;
-	struct Ht_tag{}; using Ht = Stat<Ht_tag, 2>;
+	struct St_tag{}; using St = Stat<St_tag, Linear<2>>;
+	struct Dx_tag{}; using Dx = Stat<Dx_tag, Linear<2>>;
+	struct Iq_tag{}; using Iq = Stat<Iq_tag, Linear<2>>;
+	struct Ht_tag{}; using Ht = Stat<Ht_tag, Linear<2>>;
 
-	struct Attack_tag{}; using Attack = Skill<Attack_tag, 1, St, St, Dx>;
-	struct Defense_tag{}; using Defense = Skill<Defense_tag, 1, Dx, Dx, Ht>;
-	struct Research_tag{}; using Research = Skill<Research_tag, 1, Iq>;
-	struct Experiment_tag{}; using Experiment = Skill<Experiment_tag, 1, Research, Iq>;
+	struct Attack_tag{}; using Attack = Skill<Attack_tag, Linear<1>, St, St, Dx>;
+	struct Defense_tag{}; using Defense = Skill<Defense_tag, Linear<1>, Dx, Dx, Ht>;
+	struct Research_tag{}; using Research = Skill<Research_tag, Linear<1>, Iq>;
+	struct Experiment_tag{}; using Experiment = Skill<Experiment_tag, Linear<1>, Research, Iq>;
 
 	TEST(Skill, Create) {
 		St st = 0;
@@ -60,7 +60,7 @@ namespace {
 		EXPECT_EQ(dx.Cost(), 30);
 
 		struct temp_tag {};
-		Skill<temp_tag, 10, St, Dx> temp(5, st, dx);
+		Skill<temp_tag, Linear<10>, St, Dx> temp(5, st, dx);
 		EXPECT_EQ(temp.Cost(), 50);
 
 		temp.Raw() = 10;

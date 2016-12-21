@@ -14,8 +14,8 @@ using namespace testing;
 using namespace std;
 
 namespace {
-	struct TestStat_tag{}; using TestStat = Stat<TestStat_tag, 2>;
-	struct TestSkill_tag{}; using TestSkill = Skill<TestSkill_tag, 1, TestStat>;
+	struct TestStat_tag{}; using TestStat = Stat<TestStat_tag, Linear<2>>;
+	struct TestSkill_tag{}; using TestSkill = Skill<TestSkill_tag, Linear<1>, TestStat>;
 
 	TEST(Modifier, Instantiate) {
 		TestStat stat = 10;

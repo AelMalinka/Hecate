@@ -14,10 +14,15 @@
 			class Percent
 			{
 				public:
-					virtual PercentType Value() const = 0;
-					virtual PercentType &Raw() = 0;
-					virtual const PercentType &Raw() const = 0;
+					Percent();
+					Percent(const PercentType);
+					virtual ~Percent();
+					virtual PercentType Value() const;
+					virtual PercentType &Raw();
+					virtual const PercentType &Raw() const;
 					virtual CostType Cost() const = 0;
+				private:
+					PercentType _value;
 			};
 		}
 	}
