@@ -33,7 +33,8 @@ libhecate_la_SOURCES = \
 	src/Random.cc \
 	src/Modifier.cc \
 	src/Check.cc \
-	src/Event.cc
+	src/Event.cc \
+	src/Percent.cc
 
 check_PROGRAMS = 
 

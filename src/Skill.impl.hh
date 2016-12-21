@@ -57,13 +57,13 @@
 			template<typename tag, CostType CostPer, typename ...skills>
 			template<typename ...Skills>
 			Skill<tag, CostPer, skills...>::Skill(const PercentType v, Skills &...s)
-				: _value(v), _base_skills(s...)
+				: Base(v), _base_skills(s...)
 			{}
 
 			template<typename tag, CostType CostPer, typename ...skills>
 			template<typename sl, typename>
 			Skill<tag, CostPer, skills...>::Skill(sl &s)
-				: _value(0), _base_skills(detail::get_values<skills &...>(s))
+				: Base(0), _base_skills(detail::get_values<skills &...>(s))
 			{}
 
 			template<typename tag, CostType CostPer, typename ...skills> Skill<tag, CostPer, skills...>::~Skill() = default;
@@ -73,25 +73,7 @@
 			{
 				int x = 0;
 				detail::for_each(_base_skills, [&x](auto &v){ x += v.Value(); });
-				return _value + (x / std::tuple_size<decltype(_base_skills)>::value);
-			}
-
-			template<typename tag, CostType CostPer, typename ...skills>
-			PercentType &Skill<tag, CostPer, skills...>::Raw()
-			{
-				return _value;
-			}
-
-			template<typename tag, CostType CostPer, typename ...skills>
-			const PercentType &Skill<tag, CostPer, skills...>::Raw() const
-			{
-				return _value;
-			}
-
-			template<typename tag, CostType CostPer, typename ...skills>
-			CostType Skill<tag, CostPer, skills...>::Cost() const
-			{
-				return _value * CostPer;
+				return this->Raw() + (x / std::tuple_size<decltype(_base_skills)>::value);
 			}
 		}
 	}

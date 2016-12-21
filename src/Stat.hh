@@ -6,6 +6,7 @@
 #	define ENTROPY_HECATE_STAT_INC
 
 #	include "Percent.hh"
+#	include "Algorithms/Linear.hh"
 
 	namespace Entropy
 	{
@@ -22,12 +23,7 @@
 					Stat();
 					Stat(const PercentType);
 					virtual ~Stat();
-					PercentType Value() const;
-					PercentType &Raw();
-					const PercentType &Raw() const;
-					CostType Cost() const;
-				private:
-					PercentType _value;
+					virtual CostType Cost() const;
 			};
 		}
 	}

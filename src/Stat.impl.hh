@@ -13,38 +13,20 @@
 		{
 			template<typename tag, CostType CostPer>
 			Stat<tag, CostPer>::Stat()
-				: _value(0)
+				: Percent(0)
 			{}
 
 			template<typename tag, CostType CostPer>
 			Stat<tag, CostPer>::Stat(const PercentType v)
-				: _value(v)
+				: Percent(v)
 			{}
 
 			template<typename tag, CostType CostPer> Stat<tag, CostPer>::~Stat() = default;
 
 			template<typename tag, CostType CostPer>
-			PercentType Stat<tag, CostPer>::Value() const
-			{
-				return _value;
-			}
-
-			template<typename tag, CostType CostPer>
-			PercentType &Stat<tag, CostPer>::Raw()
-			{
-				return _value;
-			}
-
-			template<typename tag, CostType CostPer>
-			const PercentType &Stat<tag, CostPer>::Raw() const
-			{
-				return _value;
-			}
-
-			template<typename tag, CostType CostPer>
 			CostType Stat<tag, CostPer>::Cost() const
 			{
-				return _value * CostPer;
+				return Raw() * CostPer;
 			}
 		}
 	}
