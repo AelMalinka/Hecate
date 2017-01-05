@@ -8,6 +8,7 @@
 #	include <memory>
 
 #	include "Exception.hh"
+#	include "ModifierType.hh"
 
 	namespace Entropy
 	{
@@ -57,15 +58,19 @@
 				public:
 					Modifier();
 					template<typename T>
-					Modifier(T &, const std::string &, const detail::negative_t & = detail::positive);
+					Modifier(T &, const ModifierType &);
 					template<typename T>
-					Modifier(T &&, const std::string &, const detail::negative_t & = detail::positive);
-					const std::string &Reason() const;
+					Modifier(T &&, const ModifierType &);
+					template<typename T>
+					explicit Modifier(T &, const detail::negative_t & = detail::positive, const ModifierType & = Untyped);
+					template<typename T>
+					explicit Modifier(T &&, const detail::negative_t & = detail::positive, const ModifierType & = Untyped);
+					const ModifierType &Type() const;
 					PercentType Value() const;
 					PercentType &Raw();
 				private:
 					std::shared_ptr<detail::ModifierHolderBase> _value;
-					std::string _reason;
+					ModifierType _type;
 					detail::negative_t _negate;
 			};
 		}

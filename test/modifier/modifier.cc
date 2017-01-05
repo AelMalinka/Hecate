@@ -21,14 +21,14 @@ namespace {
 		TestStat stat = 10;
 		TestSkill skill(10, stat);
 
-		Modifier number(10, "number");
-		Modifier negative_number(-10, "negative number");
-		Modifier negative_number_positive(-10, "negative number again", negative);
-		Modifier negative_number_multiplier(10, "negative number multiplier", negative);
-		Modifier stat_modifier(stat, "stat");
-		Modifier negative_stat(stat, "negative stat", negative);
-		Modifier skill_modifier(skill, "skill");
-		Modifier negative_skill(skill, "negative skill", negative);
+		Modifier number(10);
+		Modifier negative_number(-10);
+		Modifier negative_number_positive(-10, negative);
+		Modifier negative_number_multiplier(10, negative);
+		Modifier stat_modifier(stat);
+		Modifier negative_stat(stat, negative);
+		Modifier skill_modifier(skill);
+		Modifier negative_skill(skill, negative);
 
 		EXPECT_EQ(number.Value(), 10);
 		EXPECT_EQ(negative_number.Value(), -10);
@@ -49,13 +49,13 @@ namespace {
 		TestStat stat = 15;
 		TestSkill skill(5, stat);
 
-		Modifier reference(perc, "reference");
-		Modifier negative_reference(mod, "negative reference");
-		Modifier stat_mod(stat, "stat");
-		Modifier skill_mod(skill, "skill");
-		Modifier number(10, "number");
-		Modifier stat_rvalue(TestStat(20), "temporary stat");
-		Modifier skill_rvalue(TestSkill(10, stat), "temprorary skill");
+		Modifier reference(perc);
+		Modifier negative_reference(mod);
+		Modifier stat_mod(stat);
+		Modifier skill_mod(skill);
+		Modifier number(10);
+		Modifier stat_rvalue(TestStat(20));
+		Modifier skill_rvalue(TestSkill(10, stat));
 
 		EXPECT_EQ(reference.Value(), perc);
 		EXPECT_EQ(negative_reference.Value(), mod);
@@ -82,10 +82,10 @@ namespace {
 		TestStat stat = 15;
 		TestSkill skill(5, stat);
 
-		Modifier reference(perc, "reference");
-		Modifier value(10, "value");
-		Modifier stat_mod(stat, "stat");
-		Modifier skill_mod(skill, "skill");
+		Modifier reference(perc);
+		Modifier value(10);
+		Modifier stat_mod(stat);
+		Modifier skill_mod(skill);
 
 		{
 			Modifier ref_copy(reference);
