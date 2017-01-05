@@ -15,18 +15,6 @@
 	{
 		namespace Hecate
 		{
-			template<typename T>
-			Check &Check::Add(T &mod, const std::string &reason, const detail::negative_t &negate)
-			{
-				return Add(Modifier(mod, reason, negate));
-			}
-
-			template<typename T>
-			Check &Check::Add(T &&mod, const std::string &reason, const detail::negative_t &negate)
-			{
-				return Add(Modifier(std::move(mod, reason, negate)));
-			}
-
 			template<typename ...Mods>
 			Check::Result Check::operator () (const Mods &... mods) const
 			{

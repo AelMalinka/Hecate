@@ -53,10 +53,6 @@
 					Check(PercentType &, const std::vector<Modifier> &);
 					Check(const Check &) = default;
 					Check(Check &&) = default;
-					template<typename T>
-					Check &Add(T &, const std::string &, const detail::negative_t & = detail::positive);
-					template<typename T>
-					Check &Add(T &&, const std::string &, const detail::negative_t & = detail::positive);
 					Check &Add(const std::shared_ptr<Modifier> &);
 					Check &Add(const Modifier &);
 					Check &Add(const std::function<void(const Result &)> &);
