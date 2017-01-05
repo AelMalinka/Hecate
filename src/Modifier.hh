@@ -7,7 +7,7 @@
 
 #	include <memory>
 
-#	include "Skill.hh"
+#	include "Exception.hh"
 
 	namespace Entropy
 	{
