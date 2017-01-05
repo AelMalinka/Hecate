@@ -22,7 +22,8 @@ mainheaders_HEADERS = \
 	src/Trait.impl.hh \
 	src/Template.hh \
 	src/Template.impl.hh \
-	src/ModifierType.hh
+	src/ModifierType.hh \
+	src/ModifierList.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
@@ -41,7 +42,8 @@ libhecate_la_SOURCES = \
 	src/Check.cc \
 	src/Event.cc \
 	src/Percent.cc \
-	src/ModifierType.cc
+	src/ModifierType.cc \
+	src/ModifierList.cc
 
 check_PROGRAMS = 
 
@@ -57,7 +59,8 @@ check_PROGRAMS += \
 	trait-trait \
 	template-template \
 	modifier-type \
-	modifier-modifier
+	modifier-modifier \
+	modifier-list
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -106,6 +109,10 @@ modifier_modifier_LDFLAGS = $(testLDFLAGS)
 modifier_type_SOURCES = test/modifier/type.cc
 modifier_type_LDADD = $(testLDADD)
 modifier_type_LDFLAGS = $(testLDFLAGS)
+
+modifier_list_SOURCES = test/modifier/list.cc
+modifier_list_LDADD = $(testLDADD)
+modifier_list_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
