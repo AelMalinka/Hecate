@@ -33,16 +33,9 @@ Check::Check(PercentType &luck, const vector<Modifier> &modifiers)
 	}
 }
 
-Check &Check::Add(const shared_ptr<Modifier> &mod)
-{
-	_modifiers.push_back(mod);
-
-	return *this;
-}
-
 Check &Check::Add(const Modifier &mod)
 {
-	_modifiers.push_back(make_shared<Modifier>(mod));
+	_modifiers.Add(mod);
 
 	return *this;
 }
@@ -54,31 +47,28 @@ Check &Check::Add(const function<void(const Check::Result &)> &cb)
 	return *this;
 }
 
-size_t Check::size() const
+ModifierList &Check::Modifiers()
 {
-	return _modifiers.size();
+	return _modifiers;
 }
 
-vector<shared_ptr<Modifier>>::iterator Check::begin()
+const ModifierList &Check::Modifiers() const
 {
-	return _modifiers.begin();
+	return _modifiers;
 }
 
-vector<shared_ptr<Modifier>>::iterator Check::end()
-{
-	return _modifiers.end();
-}
-
-Check::Result::Result(const PercentType value, const PercentType roll, const PercentType luck, const vector<shared_ptr<Modifier>> &vector)
+Check::Result::Result(const PercentType value, const PercentType roll, const PercentType luck, const ModifierList &l)
 	: _value(value), _roll(roll), _luck(luck)
 {
-	for(auto &m : vector) {
-		result_modifier t;
+	for(auto &&i : l) {
+		for(auto &&m : i.second) {
+			result_modifier t;
 
-		t.current = m->Value();
-		t.modifier = m;
+			t.current = m.Value();
+			t.modifier = m;
 
-		_modifiers.push_back(t);
+			_modifiers.push_back(t);
+		}
 	}
 }
 

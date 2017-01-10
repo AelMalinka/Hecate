@@ -82,8 +82,8 @@ namespace {
 
 		auto iter = res.begin();
 		iter++;
-		EXPECT_LT(iter->modifier->Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
-		EXPECT_GE(iter->modifier->Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
+		EXPECT_LT(iter->modifier.Value(), 100 - ENTROPY_HECATE_DEFAULT_LUCK);
+		EXPECT_GE(iter->modifier.Value(), ENTROPY_HECATE_DEFAULT_LUCK - 100);
 	}
 
 	TEST(Check, Callback) {
@@ -158,11 +158,11 @@ namespace {
 		EXPECT_EQ(empty.Value(), 10);
 
 		stat v = 10;
-		vector<shared_ptr<Modifier>> l;
+		ModifierList l;
 
-		l.push_back(make_shared<Modifier>(10));
-		l.push_back(make_shared<Modifier>(v));
-		l.push_back(make_shared<Modifier>(v, negative));
+		l.Add(Modifier(10));
+		l.Add(Modifier(v));
+		l.Add(Modifier(v, negative));
 
 		Check::Result result(5, 5, 5, l);
 
@@ -179,9 +179,9 @@ namespace {
 
 	TEST(Result, Iterate) {
 		Check::Result empty(10, 10, 5, {});
-		vector<shared_ptr<Modifier>> empty_list;
+		vector<Modifier> empty_list;
 
-		for(auto &i : empty) {
+		for(auto &&i : empty) {
 			empty_list.push_back(i.modifier);
 		}
 
@@ -189,13 +189,13 @@ namespace {
 
 		stat s = 10;
 		skill k(5, s);
-		Check::Result result(5, 5, 5, {
-			make_shared<Modifier>(10),
-			make_shared<Modifier>(s),
-			make_shared<Modifier>(k),
-			make_shared<Modifier>(k, negative)
-		});
-		vector<shared_ptr<Modifier>> result_list;
+		Check::Result result(5, 5, 5, ModifierList({
+			Modifier(10),
+			Modifier(s),
+			Modifier(k),
+			Modifier(k, negative)
+		}));
+		vector<Modifier> result_list;
 
 		for(auto &i : result) {
 			result_list.push_back(i.modifier);
@@ -205,14 +205,14 @@ namespace {
 	}
 
 	TEST(Result, Reference) {
-		auto t = make_shared<Modifier>(5);
+		Modifier t(5);
 		Check::Result res(10, 10, 5, {t});
 
-		EXPECT_EQ(res.begin()->modifier->Value(), 5);
+		EXPECT_EQ(res.begin()->modifier.Value(), 5);
 		EXPECT_EQ(res.begin()->current, 5);
 
-		t->Raw() = 10;
-		EXPECT_EQ(res.begin()->modifier->Value(), 10);
+		t.Raw() = 10;
+		EXPECT_EQ(res.begin()->modifier.Value(), 10);
 		EXPECT_EQ(res.begin()->current, 5);
 	}
 }

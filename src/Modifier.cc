@@ -90,5 +90,5 @@ PercentType ModifierHolder<Check>::Value() const
 
 PercentType &ModifierHolder<Check>::Raw()
 {
-	return (*_value->begin())->Raw();
+	return (*_value->Modifiers().begin()).second.front().Raw();
 }
