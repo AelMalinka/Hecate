@@ -8,7 +8,7 @@ using namespace Entropy::Hecate;
 using namespace std;
 
 Percent::Percent()
-	: _value(0)
+	: _value(0), _modifiers()
 {}
 
 Percent::Percent(const PercentType v)
@@ -17,9 +17,24 @@ Percent::Percent(const PercentType v)
 
 Percent::~Percent() = default;
 
+void Percent::Add(const Modifier &mod)
+{
+	_modifiers.Add(mod);
+}
+
+ModifierList &Percent::Modifiers()
+{
+	return _modifiers;
+}
+
+const ModifierList &Percent::Modifiers() const
+{
+	return _modifiers;
+}
+
 PercentType Percent::Value() const
 {
-	return _value;
+	return _value + _modifiers.Value();
 }
 
 PercentType &Percent::Raw()
