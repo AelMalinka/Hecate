@@ -11,6 +11,10 @@ using namespace std;
 const detail::negative_t Entropy::Hecate::negative(-1);
 const detail::negative_t Entropy::Hecate::detail::positive;
 
+Modifier::Modifier()
+	: _value(), _reason(), _negate(detail::positive)
+{}
+
 const string &Modifier::Reason() const
 {
 	return _reason;

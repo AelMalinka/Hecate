@@ -55,6 +55,7 @@
 			class Modifier
 			{
 				public:
+					Modifier();
 					template<typename T>
 					Modifier(T &, const std::string &, const detail::negative_t & = detail::positive);
 					template<typename T>
