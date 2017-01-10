@@ -15,9 +15,14 @@
 		{
 			namespace detail
 			{
-				struct negative_t {
-					negative_t(const char);
-					const char multiplier;
+				class negative_t
+				{
+					public:
+						negative_t();
+						negative_t(const char);
+						char Multiplier() const;
+					private:
+						char _multiplier;
 				};
 
 				extern const negative_t positive;

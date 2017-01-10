@@ -9,7 +9,7 @@ using namespace Entropy::Hecate;
 using namespace std;
 
 const detail::negative_t Entropy::Hecate::negative(-1);
-const detail::negative_t Entropy::Hecate::detail::positive(1);
+const detail::negative_t Entropy::Hecate::detail::positive;
 
 const string &Modifier::Reason() const
 {
@@ -18,7 +18,7 @@ const string &Modifier::Reason() const
 
 PercentType Modifier::Value() const
 {
-	return _value->Value() * _negate.multiplier;
+	return _value->Value() * _negate.Multiplier();
 }
 
 PercentType &Modifier::Raw()
@@ -28,9 +28,18 @@ PercentType &Modifier::Raw()
 
 using namespace detail;
 
-negative_t::negative_t(const char v)
-	: multiplier(v)
+negative_t::negative_t()
+	: _multiplier(1)
 {}
+
+negative_t::negative_t(const char v)
+	: _multiplier(v)
+{}
+
+char negative_t::Multiplier() const
+{
+	return _multiplier;
+}
 
 ModifierHolder<PercentType>::ModifierHolder(PercentType &t)
 	: _value(&t), _clean(false)
