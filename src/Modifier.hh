@@ -7,7 +7,7 @@
 
 #	include <memory>
 
-#	include "Skill.hh"
+#	include "Exception.hh"
 
 	namespace Entropy
 	{
@@ -15,9 +15,14 @@
 		{
 			namespace detail
 			{
-				struct negative_t {
-					negative_t(const char);
-					const char multiplier;
+				class negative_t
+				{
+					public:
+						negative_t();
+						negative_t(const char);
+						char Multiplier() const;
+					private:
+						char _multiplier;
 				};
 
 				extern const negative_t positive;
@@ -50,6 +55,7 @@
 			class Modifier
 			{
 				public:
+					Modifier();
 					template<typename T>
 					Modifier(T &, const std::string &, const detail::negative_t & = detail::positive);
 					template<typename T>
