@@ -87,6 +87,4 @@
 		}
 	}
 
-#	include "Check.hh"
-
 #endif

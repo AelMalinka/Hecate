@@ -3,6 +3,7 @@
 */
 
 #include "Modifier.hh"
+#include "Check.hh"
 
 using namespace Entropy::Hecate;
 using namespace std;
