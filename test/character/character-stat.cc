@@ -53,4 +53,18 @@ namespace {
 		stat.Raw() = 10;
 		EXPECT_EQ(stat.Cost(), 50);
 	}
+
+	TEST(Stat, Modifiers) {
+		Strength st = 5;
+		EXPECT_EQ(st.Value(), 5);
+		EXPECT_EQ(st.Cost(), 5);
+
+		st.Add(Modifier(5));
+		EXPECT_EQ(st.Value(), 10);
+		EXPECT_EQ(st.Cost(), 5);
+
+		st.Raw() = 10;
+		EXPECT_EQ(st.Value(), 15);
+		EXPECT_EQ(st.Cost(), 10);
+	}
 }

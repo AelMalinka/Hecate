@@ -21,7 +21,9 @@ mainheaders_HEADERS = \
 	src/Trait.hh \
 	src/Trait.impl.hh \
 	src/Template.hh \
-	src/Template.impl.hh
+	src/Template.impl.hh \
+	src/ModifierType.hh \
+	src/ModifierList.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
@@ -39,7 +41,9 @@ libhecate_la_SOURCES = \
 	src/Modifier.cc \
 	src/Check.cc \
 	src/Event.cc \
-	src/Percent.cc
+	src/Percent.cc \
+	src/ModifierType.cc \
+	src/ModifierList.cc
 
 check_PROGRAMS = 
 
@@ -50,11 +54,13 @@ check_PROGRAMS += \
 	character-character \
 	random-pcg \
 	random-base \
-	check-modifier \
 	check-check \
 	trait-event \
 	trait-trait \
-	template-template
+	template-template \
+	modifier-type \
+	modifier-modifier \
+	modifier-list
 
 # 2013-09-30 AMR TODO: abstract some of this logic to autogeneration
 testLDADD = -lgtest_main -lgtest -lhecate $(AM_LDADD)
@@ -80,10 +86,6 @@ random_base_SOURCES = test/random/base.cc
 random_base_LDADD = $(testLDADD)
 random_base_LDFLAGS = $(testLDFLAGS)
 
-check_modifier_SOURCES = test/check/modifier.cc
-check_modifier_LDADD = $(testLDADD)
-check_modifier_LDFLAGS = $(testLDFLAGS)
-
 check_check_SOURCES = test/check/check.cc
 check_check_LDADD = $(testLDADD)
 check_check_LDFLAGS = $(testLDFLAGS)
@@ -99,6 +101,18 @@ trait_trait_LDFLAGS = $(testLDFLAGS)
 template_template_SOURCES = test/template/template.cc
 template_template_LDADD = $(testLDADD)
 template_template_LDFLAGS = $(testLDFLAGS)
+
+modifier_modifier_SOURCES = test/modifier/modifier.cc
+modifier_modifier_LDADD = $(testLDADD)
+modifier_modifier_LDFLAGS = $(testLDFLAGS)
+
+modifier_type_SOURCES = test/modifier/type.cc
+modifier_type_LDADD = $(testLDADD)
+modifier_type_LDFLAGS = $(testLDFLAGS)
+
+modifier_list_SOURCES = test/modifier/list.cc
+modifier_list_LDADD = $(testLDADD)
+modifier_list_LDFLAGS = $(testLDFLAGS)
 endif
 
 TESTSUITE = $(srcdir)/test/testsuite
@@ -107,7 +121,8 @@ TESTSUITE_FILES = \
 	$(srcdir)/test/random.at \
 	$(srcdir)/test/check.at \
 	$(srcdir)/test/trait.at \
-	$(srcdir)/test/template.at
+	$(srcdir)/test/template.at \
+	$(srcdir)/test/modifier.at
 
 EXTRA_DIST = \
 	$(TESTSUITE_FILES) \

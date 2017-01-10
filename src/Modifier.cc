@@ -12,12 +12,12 @@ const detail::negative_t Entropy::Hecate::negative(-1);
 const detail::negative_t Entropy::Hecate::detail::positive;
 
 Modifier::Modifier()
-	: _value(), _reason(), _negate(detail::positive)
+	: _value(), _type(Untyped), _negate(detail::positive)
 {}
 
-const string &Modifier::Reason() const
+const ModifierType &Modifier::Type() const
 {
-	return _reason;
+	return _type;
 }
 
 PercentType Modifier::Value() const
@@ -90,5 +90,5 @@ PercentType ModifierHolder<Check>::Value() const
 
 PercentType &ModifierHolder<Check>::Raw()
 {
-	return (*_value->begin())->Raw();
+	return (*_value->Modifiers().begin()).second.front().Raw();
 }

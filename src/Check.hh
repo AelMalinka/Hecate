@@ -6,10 +6,10 @@
 #	define ENTROPY_HECATE_CHECK_INC
 
 #	include <memory>
-#	include <vector>
 #	include <functional>
 
 #	include "Modifier.hh"
+#	include "ModifierList.hh"
 
 #	ifndef ENTROPY_HECATE_DEFAULT_LUCK
 #		define ENTROPY_HECATE_DEFAULT_LUCK 5
@@ -28,10 +28,10 @@
 							struct result_modifier
 							{
 								PercentType current;
-								std::shared_ptr<Modifier> modifier;
+								Modifier modifier;
 							};
 						public:
-							Result(const PercentType, const PercentType, const PercentType, const std::vector<std::shared_ptr<Modifier>> &);
+							Result(const PercentType, const PercentType, const PercentType, const ModifierList &);
 							operator bool () const;
 							bool isSuccess() const;
 							bool isCritical() const;
@@ -53,17 +53,15 @@
 					Check(PercentType &, const std::vector<Modifier> &);
 					Check(const Check &) = default;
 					Check(Check &&) = default;
-					Check &Add(const std::shared_ptr<Modifier> &);
 					Check &Add(const Modifier &);
 					Check &Add(const std::function<void(const Result &)> &);
 					template<typename ...mods>
 					Result operator () (const mods &...) const;
-					std::size_t size() const;
-					std::vector<std::shared_ptr<Modifier>>::iterator begin();
-					std::vector<std::shared_ptr<Modifier>>::iterator end();
+					ModifierList &Modifiers();
+					const ModifierList &Modifiers() const;
 				private:
 					static PercentType default_luck;
-					std::vector<std::shared_ptr<Modifier>> _modifiers;
+					ModifierList _modifiers;
 					std::vector<std::function<void(Result &)>> _callbacks;
 					PercentType &_luck;
 			};

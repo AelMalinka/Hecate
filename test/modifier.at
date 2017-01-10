@@ -1,0 +1,19 @@
+# Copyright 2017 (c) Michael Thomas (malinka) <malinka@entropy-development.com>
+# Distributed under the terms of the GNU Affero General Public License v3
+
+AT_BANNER([Modifier Tests])
+
+AT_SETUP([Modifier Type Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([modifier-type], [], [ignore], [ignore])
+AT_CLEANUP
+
+AT_SETUP([Modifier Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([modifier-modifier], [], [ignore], [ignore])
+AT_CLEANUP
+
+AT_SETUP([ModifierList Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([modifier-list], [], [ignore], [ignore])
+AT_CLEANUP

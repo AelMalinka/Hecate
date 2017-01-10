@@ -18,17 +18,14 @@
 			template<typename ...Mods>
 			Check::Result Check::operator () (const Mods &... mods) const
 			{
-				PercentType chance = 0; 
 				std::vector<Modifier> t{mods...};
-				std::vector<std::shared_ptr<Modifier>> modifiers(_modifiers);
+				ModifierList modifiers(_modifiers);
 
 				for(auto &i : t) {
-					modifiers.push_back(std::make_shared<Modifier>(i));
+					modifiers.Add(i);
 				}
 
-				for(auto &i : modifiers) {
-					chance += i->Value();
-				}
+				PercentType chance = modifiers.Value();
 
 				if(chance > 100 - _luck)
 					chance = 100 - _luck;

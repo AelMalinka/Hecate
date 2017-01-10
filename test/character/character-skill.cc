@@ -67,6 +67,29 @@ namespace {
 		EXPECT_EQ(temp.Cost(), 100);
 	}
 
+	TEST(Skill, Modifiers) {
+		St st = 10;
+		Dx dx = 15;
+
+		Attack at(5, st, st, dx);
+		EXPECT_EQ(at.Cost(), 5);
+		EXPECT_EQ(st.Cost(), 20);
+		EXPECT_EQ(dx.Cost(), 30);
+		EXPECT_EQ(at.Value(), 16);
+
+		at.Add(Modifier(10));
+		EXPECT_EQ(at.Cost(), 5);
+		EXPECT_EQ(st.Cost(), 20);
+		EXPECT_EQ(dx.Cost(), 30);
+		EXPECT_EQ(at.Value(), 26);
+
+		at.Raw() = 10;
+		EXPECT_EQ(at.Cost(), 10);
+		EXPECT_EQ(st.Cost(), 20);
+		EXPECT_EQ(dx.Cost(), 30);
+		EXPECT_EQ(at.Value(), 31);
+	}
+
 	TEST(Skill, Reference) {
 		St st = 10;
 		Dx dx = 15;

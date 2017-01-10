@@ -76,13 +76,23 @@
 			}
 
 			template<typename T>
-			Modifier::Modifier(T &t, const std::string &r, const detail::negative_t &p)
-				: _value(std::make_shared<detail::ModifierHolder<T>>(t)), _reason(r), _negate(p)
+			Modifier::Modifier(T &t, const ModifierType &type)
+				: _value(std::make_shared<detail::ModifierHolder<T>>(t)), _type(type), _negate(detail::positive)
 			{}
 
 			template<typename T>
-			Modifier::Modifier(T &&t, const std::string &r, const detail::negative_t &p)
-				: _value(std::make_shared<detail::ModifierHolder<T>>(std::move(t))), _reason(r), _negate(p)
+			Modifier::Modifier(T &&t, const ModifierType &type)
+				: _value(std::make_shared<detail::ModifierHolder<T>>(std::move(t))), _type(type), _negate(detail::positive)
+			{}
+
+			template<typename T>
+			Modifier::Modifier(T &t, const detail::negative_t &p, const ModifierType &type)
+				: _value(std::make_shared<detail::ModifierHolder<T>>(t)), _type(type), _negate(p)
+			{}
+
+			template<typename T>
+			Modifier::Modifier(T &&t, const detail::negative_t &p, const ModifierType &type)
+				: _value(std::make_shared<detail::ModifierHolder<T>>(std::move(t))), _type(type), _negate(p)
 			{}
 		}
 	}
