@@ -73,7 +73,7 @@
 			{
 				int x = 0;
 				detail::for_each(_base_skills, [&x](auto &v){ x += v.Value(); });
-				return this->Raw() + (x / std::tuple_size<decltype(_base_skills)>::value);
+				return Base::Value() + (x / std::tuple_size<decltype(_base_skills)>::value);
 			}
 		}
 	}
