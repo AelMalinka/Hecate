@@ -39,11 +39,11 @@
 			{
 				public:
 					template<typename ...Skills>
-					Skill(const PercentType, Skills &...);
+					explicit Skill(const PercentType, Skills &...);
 					template<typename sl, typename = typename std::enable_if<detail::is_specialization_of<sl, tuple>::value>::type>
 					Skill(sl &);
 					virtual ~Skill();
-					PercentType Value() const;
+					virtual PercentType Value() const;
 				private:
 					typedef Stat<Skill<tag, CostF, skills...>, CostF> Base;
 					tuple<skills &...> _base_skills;
