@@ -12,12 +12,12 @@
 		namespace Hecate
 		{
 			template<
-				CostType Multiplier
+				PercentType Multiplier
 			>
 			class Linear
 			{
 				public:
-					CostType operator () (const PercentType);
+					PercentType operator () (const PercentType);
 			};
 		}
 	}

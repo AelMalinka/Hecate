@@ -17,3 +17,8 @@ AT_SETUP([Character Tests])
 AT_SKIP_IF([test -z $GTEST])
 AT_CHECK([character-character], [], [ignore], [ignore])
 AT_CLEANUP
+
+AT_SETUP([Resource Tests])
+AT_SKIP_IF([test -z $GTEST])
+AT_CHECK([character-resource], [], [ignore], [ignore])
+AT_CLEANUP

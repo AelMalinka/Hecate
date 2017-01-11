@@ -23,7 +23,9 @@ mainheaders_HEADERS = \
 	src/Template.hh \
 	src/Template.impl.hh \
 	src/ModifierType.hh \
-	src/ModifierList.hh
+	src/ModifierList.hh \
+	src/Resource.hh \
+	src/Resource.impl.hh
 
 mainheaders_HEADERS += \
 	external/pcg-cpp/include/pcg_random.hpp \
@@ -52,6 +54,7 @@ check_PROGRAMS += \
 	character-stat \
 	character-skill \
 	character-character \
+	character-resource \
 	random-pcg \
 	random-base \
 	check-check \
@@ -77,6 +80,10 @@ character_stat_LDFLAGS = $(testLDFLAGS)
 character_skill_SOURCES = test/character/character-skill.cc
 character_skill_LDADD = $(testLDADD)
 character_skill_LDFLAGS = $(testLDFLAGS)
+
+character_resource_SOURCES = test/character/resource.cc
+character_resource_LDADD = $(testLDADD)
+character_resource_LDFLAGS = $(testLDFLAGS)
 
 random_pcg_SOURCES = test/random/pcg.cc
 random_pcg_LDADD = $(testLDADD)
