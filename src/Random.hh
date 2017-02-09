@@ -9,6 +9,11 @@
 
 #	include <random>
 #	include <functional>
+
+#	ifndef HAVE_ATTRIBUTE
+#		define __attribute__(x)
+#	endif
+
 #	include "pcg_random.hpp"
 
 	namespace Entropy
