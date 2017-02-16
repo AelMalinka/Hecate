@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4
 #2013-10-11 AMR XXX: non-portable assignment
-AM_CXXFLAGS := -I$(srcdir)/src -I$(srcdir)/external/pcg-cpp/include $(AM_CXXFLAGS)
+AM_CPPFLAGS = -I$(srcdir)/src -I$(srcdir)/external/pcg-cpp/include
 
 mainheadersdir = $(includedir)/Entropy/Hecate
 mainheaders_HEADERS = \
@@ -26,10 +26,6 @@ mainheaders_HEADERS = \
 	src/ModifierList.hh \
 	src/Resource.hh \
 	src/Resource.impl.hh
-
-mainheaders_HEADERS += \
-	external/pcg-cpp/include/pcg_random.hpp \
-	external/pcg-cpp/include/pcg_extras.hpp
 
 algorithmsdir = $(includedir)/Entropy/Hecate/Algorithms
 algorithms_HEADERS = \

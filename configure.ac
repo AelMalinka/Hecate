@@ -15,6 +15,8 @@ AM_INIT_AUTOMAKE([-Wall foreign subdir-objects dist-xz no-dist-gzip])
 AM_PROG_AR
 LT_INIT
 
+AX_C___ATTRIBUTE__
+
 AC_PROG_CXX
 AC_LANG_PUSH([C++])
 
