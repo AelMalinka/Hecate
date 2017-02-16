@@ -131,8 +131,8 @@ namespace {
 	}
 
 	TEST(Result, isSuccess) {
-		Check::Result first(-5, 50, 5, {});
-		Check::Result second(10, 10, 5, {});
+		Check::Result first(-5, 10, 50, 5, {});
+		Check::Result second(10, 10, 10, 5, {});
 
 		EXPECT_FALSE(first.isSuccess());
 		EXPECT_TRUE(second.isSuccess());
@@ -141,10 +141,10 @@ namespace {
 	}
 
 	TEST(Result, isCritical) {
-		Check::Result first(-5, 96, 5, {});
-		Check::Result second(-5, 50, 5, {});
-		Check::Result third(10, 4, 5, {});
-		Check::Result fourth(5, 5, 5, {});
+		Check::Result first(-5, 10, 96, 5, {});
+		Check::Result second(-5, 10, 50, 5, {});
+		Check::Result third(10, 10, 4, 5, {});
+		Check::Result fourth(5, 10, 5, 5, {});
 
 		EXPECT_TRUE(first.isCritical());
 		EXPECT_FALSE(second.isCritical());
@@ -153,9 +153,11 @@ namespace {
 	}
 
 	TEST(Result, Values) {
-		Check::Result empty(10, 10, 5, {});
+		Check::Result empty(10, 10, 10, 5, {});
 
 		EXPECT_EQ(empty.Value(), 10);
+		EXPECT_EQ(empty.Chance(), 10);
+		EXPECT_EQ(empty.Luck(), 5);
 
 		stat v = 10;
 		ModifierList l;
@@ -164,21 +166,23 @@ namespace {
 		l.Add(Modifier(v));
 		l.Add(Modifier(v, negative));
 
-		Check::Result result(5, 5, 5, l);
+		Check::Result result(5, 5, 5, 5, l);
 
 		EXPECT_EQ(result.Value(), 5);
+		EXPECT_EQ(result.Chance(), 5);
+		EXPECT_EQ(result.Luck(), 5);
 	}
 
 	TEST(Result, Luck) {
-		Check::Result res1(10, 10, 5, {});
-		Check::Result res2(10, 10, 10, {});
+		Check::Result res1(10, 10, 10, 5, {});
+		Check::Result res2(10, 10, 10, 10, {});
 
 		EXPECT_EQ(res1.Luck(), 5);
 		EXPECT_EQ(res2.Luck(), 10);
 	}
 
 	TEST(Result, Iterate) {
-		Check::Result empty(10, 10, 5, {});
+		Check::Result empty(10, 10, 10, 5, {});
 		vector<Modifier> empty_list;
 
 		for(auto &&i : empty) {
@@ -189,7 +193,7 @@ namespace {
 
 		stat s = 10;
 		skill k(5, s);
-		Check::Result result(5, 5, 5, ModifierList({
+		Check::Result result(5, 5, 5, 5, ModifierList({
 			Modifier(10),
 			Modifier(s),
 			Modifier(k),
@@ -206,7 +210,7 @@ namespace {
 
 	TEST(Result, Reference) {
 		Modifier t(5);
-		Check::Result res(10, 10, 5, {t});
+		Check::Result res(10, 10, 10, 5, {t});
 
 		EXPECT_EQ(res.begin()->modifier.Value(), 5);
 		EXPECT_EQ(res.begin()->current, 5);

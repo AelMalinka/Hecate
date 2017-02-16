@@ -29,13 +29,13 @@
 
 				if(chance > 100 - _luck)
 					chance = 100 - _luck;
-				if(chance < default_luck)
-					chance = default_luck;
+				if(chance < _luck)
+					chance = _luck;
 
 				// 2016-09-02 AMR NOTE: success if under not equal to the roll in question
 				PercentType roll = Roll();
 				PercentType value = chance - roll - 1;
-				Result ret(value, roll, _luck, modifiers);
+				Result ret(value, chance, roll, _luck, modifiers);
 
 				for(auto &&f : _callbacks) {
 					f(ret);
