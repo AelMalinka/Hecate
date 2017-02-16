@@ -31,17 +31,19 @@
 								Modifier modifier;
 							};
 						public:
-							Result(const PercentType, const PercentType, const PercentType, const ModifierList &);
+							Result(const PercentType, const PercentType, const PercentType, const PercentType, const ModifierList &);
 							operator bool () const;
 							bool isSuccess() const;
 							bool isCritical() const;
 							PercentType Value() const;
+							PercentType Chance() const;
 							PercentType Luck() const;
 							std::size_t size() const;
 							std::vector<result_modifier>::iterator begin();
 							std::vector<result_modifier>::iterator end();
 						private:
 							PercentType _value;
+							PercentType _chance;
 							PercentType _roll;
 							PercentType _luck;
 							std::vector<result_modifier> _modifiers;

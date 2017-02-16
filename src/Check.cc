@@ -57,8 +57,8 @@ const ModifierList &Check::Modifiers() const
 	return _modifiers;
 }
 
-Check::Result::Result(const PercentType value, const PercentType roll, const PercentType luck, const ModifierList &l)
-	: _value(value), _roll(roll), _luck(luck)
+Check::Result::Result(const PercentType value, const PercentType chance, const PercentType roll, const PercentType luck, const ModifierList &l)
+	: _value(value), _chance(chance), _roll(roll), _luck(luck)
 {
 	for(auto &&i : l) {
 		for(auto &&m : i.second) {
@@ -87,9 +87,14 @@ bool Check::Result::isCritical() const
 	return _roll > 100 - _luck || _roll < _luck;
 }
 
-int Check::Result::Value() const
+PercentType Check::Result::Value() const
 {
 	return _value;
+}
+
+PercentType Check::Result::Chance() const
+{
+	return _chance;
 }
 
 PercentType Check::Result::Luck() const
