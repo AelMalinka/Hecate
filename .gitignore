@@ -3,7 +3,6 @@
 #autotools stuff
 /autom4te.cache
 /configure
-/config.cache
 /Makefile.in
 /aclocal.m4
 /build-aux
@@ -21,3 +20,11 @@ Makefile
 #libtool
 /m4/libtool.m4
 /m4/lt*.m4
+
+#visual studio
+Debug
+Release
+win/.vs
+win/*.VC.db
+win/*.VC.opendb
+win/*/*.user
