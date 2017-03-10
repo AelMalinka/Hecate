@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hecate", "Hecate\Hecate.vcxproj", "{5178136E-9A3E-4E1A-A83E-38C2C8A21902}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Entropy", "F:\Source\Repos\Entropy\win\Entropy\Entropy.vcxproj", "{25B626B2-690C-4EEE-A3A9-2AA486E31542}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Entropy", "..\..\Entropy\win\Entropy\Entropy.vcxproj", "{25B626B2-690C-4EEE-A3A9-2AA486E31542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
