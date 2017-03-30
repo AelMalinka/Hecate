@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\..\..\boost_1_63_0;..\..\..\..\libpng;..\..\..\..\libpng\build;..\..\..\Entropy\win\include;..\..\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4146</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -88,6 +88,7 @@
       <AdditionalIncludeDirectories>..\..\..\..\boost_1_63_0;..\..\..\..\libpng;..\..\..\..\libpng\build;..\..\..\Entropy\win\include;..\..\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -100,6 +101,7 @@
       <AdditionalIncludeDirectories>..\..\..\..\boost_1_63_0;..\..\..\..\libpng;..\..\..\..\libpng\build;..\..\..\Entropy\win\include;..\..\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -116,6 +118,7 @@
       <AdditionalIncludeDirectories>..\..\..\..\boost_1_63_0;..\..\..\..\libpng;..\..\..\..\libpng\build;..\..\..\Entropy\win\include;..\..\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
