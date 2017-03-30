@@ -23,7 +23,7 @@ namespace {
 		TestSkill skill(10, stat);
 
 		ModifierList a;
-		EXPECT_EQ(a.size(), 0);
+		EXPECT_EQ(a.size(), 0ul);
 		EXPECT_EQ(a.Value(), 0);
 
 		ModifierList b({
@@ -31,7 +31,7 @@ namespace {
 			Modifier(stat),
 			Modifier(skill)
 		});
-		EXPECT_EQ(b.size(), 1);
+		EXPECT_EQ(b.size(), 1ul);
 		EXPECT_EQ(b.Value(), 40);
 
 		ModifierList c({
@@ -41,7 +41,7 @@ namespace {
 			Modifier(10, mytype2),
 			Modifier(10, mytype1)
 		});
-		EXPECT_EQ(c.size(), 2);
+		EXPECT_EQ(c.size(), 2ul);
 		EXPECT_EQ(c.Value(), 40);
 	}
 
@@ -50,31 +50,31 @@ namespace {
 		TestSkill skill(10, stat);
 
 		ModifierList a;
-		EXPECT_EQ(a.size(), 0);
+		EXPECT_EQ(a.size(), 0ul);
 		EXPECT_EQ(a.Value(), 0);
 
 		a.Add(Modifier(10));
-		EXPECT_EQ(a.size(), 1);
+		EXPECT_EQ(a.size(), 1ul);
 		EXPECT_EQ(a.Value(), 10);
 
 		a.Add(Modifier(10));
-		EXPECT_EQ(a.size(), 1);
+		EXPECT_EQ(a.size(), 1ul);
 		EXPECT_EQ(a.Value(), 20);
 
 		a.Add(Modifier(10, mytype1));
-		EXPECT_EQ(a.size(), 2);
+		EXPECT_EQ(a.size(), 2ul);
 		EXPECT_EQ(a.Value(), 30);
 
 		a.Add(Modifier(10, mytype1));
-		EXPECT_EQ(a.size(), 2);
+		EXPECT_EQ(a.size(), 2ul);
 		EXPECT_EQ(a.Value(), 30);
 
 		a.Add(Modifier(10, mytype2));
-		EXPECT_EQ(a.size(), 3);
+		EXPECT_EQ(a.size(), 3ul);
 		EXPECT_EQ(a.Value(), 40);
 
 		a.Add(Modifier(10, mytype2));
-		EXPECT_EQ(a.size(), 3);
+		EXPECT_EQ(a.size(), 3ul);
 		EXPECT_EQ(a.Value(), 50);
 	}
 }

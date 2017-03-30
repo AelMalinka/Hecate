@@ -78,7 +78,7 @@ namespace {
 
 		auto res = second();
 
-		EXPECT_EQ(res.size(), 2);
+		EXPECT_EQ(res.size(), 2ul);
 
 		auto iter = res.begin();
 		iter++;
@@ -189,7 +189,7 @@ namespace {
 			empty_list.push_back(i.modifier);
 		}
 
-		EXPECT_EQ(empty_list.size(), 0);
+		EXPECT_EQ(empty_list.size(), 0ul);
 
 		stat s = 10;
 		skill k(5, s);
@@ -205,7 +205,7 @@ namespace {
 			result_list.push_back(i.modifier);
 		}
 
-		EXPECT_EQ(result_list.size(), 4);
+		EXPECT_EQ(result_list.size(), 4ul);
 	}
 
 	TEST(Result, Reference) {

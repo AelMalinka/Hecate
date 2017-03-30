@@ -55,10 +55,10 @@ namespace {
 			make_shared<TraitHolder>(Trait("held trait"s, 20, [](auto &, auto &){}))
 		});
 
-		EXPECT_EQ(empty.size(), 0);
-		EXPECT_EQ(stat.size(), 1);
-		EXPECT_EQ(trait.size(), 1);
-		EXPECT_EQ(many.size(), 2);
+		EXPECT_EQ(empty.size(), 0ul);
+		EXPECT_EQ(stat.size(), 1ul);
+		EXPECT_EQ(trait.size(), 1ul);
+		EXPECT_EQ(many.size(), 2ul);
 	}
 
 	TEST(Template, Add) {
@@ -84,7 +84,7 @@ namespace {
 			});
 
 			EXPECT_EQ(test.Cost(), 0);
-			EXPECT_EQ(many.size(), 3);
+			EXPECT_EQ(many.size(), 3ul);
 
 			test.Add(many);
 			EXPECT_EQ(test.Strength().Value(), 10);

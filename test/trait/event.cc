@@ -36,7 +36,7 @@ namespace {
 		EXPECT_EQ(night.When(), TimeChange::Night);
 		EXPECT_EQ(day.When(), TimeChange::Day);
 
-		EXPECT_EQ(ev.Id(), 10);
+		EXPECT_EQ(ev.Id(), 10ul);
 		EXPECT_EQ(night.Id(), day.Id());
 		EXPECT_NE(ev.Id(), night.Id());
 	}

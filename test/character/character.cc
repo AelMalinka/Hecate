@@ -112,10 +112,10 @@ namespace {
 		Check att = test.attack();
 
 		auto res = att();
-		EXPECT_EQ(res.size(), 1);
+		EXPECT_EQ(res.size(), 1ul);
 
 		auto night = att(Modifier(10, negative));
-		EXPECT_EQ(night.size(), 2);
+		EXPECT_EQ(night.size(), 2ul);
 	}
 
 	template<typename ...sl>
