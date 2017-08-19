@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hecate", "Hecate\Hecate.vcxproj", "{5178136E-9A3E-4E1A-A83E-38C2C8A21902}"
+	ProjectSection(ProjectDependencies) = postProject
+		{25B626B2-690C-4EEE-A3A9-2AA486E31542} = {25B626B2-690C-4EEE-A3A9-2AA486E31542}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Entropy", "..\..\Entropy\win\Entropy\Entropy.vcxproj", "{25B626B2-690C-4EEE-A3A9-2AA486E31542}"
 EndProject
@@ -34,5 +37,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBAE9DFC-D840-480E-93C5-EE0E6E33691A}
 	EndGlobalSection
 EndGlobal
