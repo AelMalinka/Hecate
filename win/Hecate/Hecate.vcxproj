@@ -75,7 +75,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>F:\Source\boost;F:\Source\libpng;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>PCG_LITTLE_ENDIAN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;PCG_LITTLE_ENDIAN</PreprocessorDefinitions>
       <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
     </ClCompile>
@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\..\..\..\boost_1_63_0;..\..\..\..\libpng;..\..\..\..\libpng\build;..\..\..\Entropy\win\include;..\..\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
-      <PreprocessorDefinitions>PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
       <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
