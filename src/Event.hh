@@ -6,21 +6,18 @@
 #	define ENTROPY_HECATE_EVENT_INC
 
 #	include "Exception.hh"
+#	include <Entropy/Event.hh>
 
 	namespace Entropy
 	{
 		namespace Hecate
 		{
-			class Event
+			class Event :
+				public Entropy::Event
 			{
 				public:
 					Event(const std::size_t &);
-					Event(const Event &);
-					Event(Event &&);
 					virtual ~Event();
-					const std::size_t &Id() const;
-				private:
-					const std::size_t _id;
 			};
 		}
 	}

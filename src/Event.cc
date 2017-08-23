@@ -8,14 +8,7 @@ using namespace std;
 using namespace Entropy::Hecate;
 
 Event::Event(const size_t &id)
-	: _id(id)
+	: Entropy::Event(id)
 {}
 
-Event::Event(const Event &) = default;
-Event::Event(Event &&) = default;
 Event::~Event() = default;
-
-const size_t &Event::Id() const
-{
-	return _id;
-}
