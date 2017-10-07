@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hecate", "Hecate\Hecate.vcxproj", "{5178136E-9A3E-4E1A-A83E-38C2C8A21902}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hecate", "Hecate\Hecate.vcx
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Entropy", "..\..\Entropy\win\Entropy\Entropy.vcxproj", "{25B626B2-690C-4EEE-A3A9-2AA486E31542}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HecateTests", "HecateTests\HecateTests.vcxproj", "{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,14 @@ Global
 		{25B626B2-690C-4EEE-A3A9-2AA486E31542}.Release|x64.Build.0 = Release|x64
 		{25B626B2-690C-4EEE-A3A9-2AA486E31542}.Release|x86.ActiveCfg = Release|Win32
 		{25B626B2-690C-4EEE-A3A9-2AA486E31542}.Release|x86.Build.0 = Release|Win32
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Debug|x64.ActiveCfg = Debug|x64
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Debug|x64.Build.0 = Debug|x64
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Debug|x86.ActiveCfg = Debug|Win32
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Debug|x86.Build.0 = Debug|Win32
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Release|x64.ActiveCfg = Release|x64
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Release|x64.Build.0 = Release|x64
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Release|x86.ActiveCfg = Release|Win32
+		{E6540C7B-FFE2-464B-BBF0-8531623C6E0F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
