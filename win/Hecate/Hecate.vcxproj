@@ -75,7 +75,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;F:\Source\External\libpng\projects\vstudio\Release Library</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;PCG_LITTLE_ENDIAN</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PCG_LITTLE_ENDIAN;DEBUG</PreprocessorDefinitions>
       <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
     </ClCompile>
@@ -100,7 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;F:\Source\External\libpng\projects\vstudio\Release Library</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
-      <PreprocessorDefinitions>PCG_LITTLE_ENDIAN=1</PreprocessorDefinitions>
+      <PreprocessorDefinitions>PCG_LITTLE_ENDIAN</PreprocessorDefinitions>
       <DisableSpecificWarnings>4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -159,6 +159,11 @@
     <ClCompile Include="..\..\src\ModifierType.cc" />
     <ClCompile Include="..\..\src\Percent.cc" />
     <ClCompile Include="..\..\src\Random.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Entropy\win\Entropy\Entropy.vcxproj">
+      <Project>{25b626b2-690c-4eee-a3a9-2aa486e31542}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -24,7 +24,9 @@ Makefile
 #visual studio
 Debug
 Release
-win/.vs
+.vs
 win/*.VC.db
 win/*.VC.opendb
 win/*/*.user
+win/External
+win/packages

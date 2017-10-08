@@ -5,6 +5,15 @@
 #include <random>
 #include <functional>
 #include <gtest/gtest.h>
+
+#ifdef HAVE_CONFIG_H
+#	include "config.h"
+#endif
+
+#ifndef HAVE___ATTRIBUTE__
+#	define __attribute__(x)
+#endif
+
 #include <pcg_random.hpp>
 
 using namespace std;
