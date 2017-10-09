@@ -72,13 +72,14 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
       <DisableSpecificWarnings>4146</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <ImageHasSafeExceptionHandlers />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -93,7 +94,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
@@ -111,7 +112,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
       <DisableSpecificWarnings>4146</DisableSpecificWarnings>
     </ClCompile>
@@ -120,6 +121,7 @@
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImageHasSafeExceptionHandlers />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,7 +134,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\src;F:\Source\External\boost;F:\Source\External\libpng;F:\Source\External\zlib;F:\Source\Repos\Entropy\win\include;F:\Source\Repos\Hecate\external\pcg-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)a\b\%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
