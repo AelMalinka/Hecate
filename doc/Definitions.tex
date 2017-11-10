@@ -7,13 +7,13 @@
 	name=Success,
 	plural=Successes,
 	description={
-		When a \gls{Check} succeeds
+		When a Check succeeds
 	}
 }
 \newglossaryentry{Failure}{
 	name=Failure,
 	description={
-		When a \gls{Check} fails
+		When a Check fails
 	}
 }
 \newglossaryentry{Critical}{
@@ -37,83 +37,88 @@
 \newglossaryentry{Modifier}{
 	name=Modifier,
 	description={
-		A Change to a Value, usually \gls{Stat}, \gls{Skill}, or \gls{Check}, be
-		it temporary or otherwise; Does not effect \gls{Cost}
+		A Change to a Value, usually Stat, Skill, or Check, be
+		it temporary or otherwise; Does not effect Cost
 	}
 }
 \newglossaryentry{Cost}{
 	name=Cost,
 	description={
-		A value associated with a given \gls{Stat}, \gls{Skill}, \gls{Resource},
+		A value associated with a given Stat, Skill, Resource,
 		etc. can be used to calculate a numerical `level' of a Character
 	}
 }
 \newglossaryentry{Skill}{
 	name=Skill,
+	see={Stat},
 	description={
-		An attribute built up of zero or more depedant \glspl{Stat} or
-		\glspl{Skill} which averages out to calculate a `default'
-		value for this skill, and an associated \gls{Cost} to raise this
+		An attribute built up of zero or more depedant Stats or
+		Skills which averages out to calculate a `default'
+		value for this skill, and an associated Cost to raise this
 		particular value
 	}
 }
 \newglossaryentry{Check}{
 	name=Check,
+	see={Modifier,Skill,Stat},
 	description={
-		A collection of \glspl{Modifier} and \glspl{Skill} or \glspl{Stat},
-		sometimes opposed, combined together to create a Chance of \gls{Success}
-		or \gls{Failure} and then rolled against
+		A collection of Modifiers and Skills or Stats,
+		sometimes opposed, combined together to create a Chance of Success
+		or Failure and then rolled against
 	}
 }
 \newglossaryentry{Resource}{
 	name=Resource,
 	description={
-		A Value (and associated \gls{Cost}) usually with a \gls{Stat} or \gls{Skill} base
+		A Value (and associated Cost) usually with a Stat or Skill base
 	}
 }
 \newglossaryentry{gls-GM}{
 	name={Game Master},
-	see={GM},
+	see={GM,Campaign},
 	description={
-		The story teller and/or god of a \gls{Campaign}.  They make all the
-		final calls of \gls{Success} or \gls{Failure} and will determine
-		how the results of \glspl{Check} actually effect the game world
+		The story teller and/or god of a Campaign.  They make all the
+		final calls of Success or Failure and will determine
+		how the results of Checks actually effect the game world
 	}
 }
 \newglossaryentry{Campaign}{
 	name=Campaign,
+	see={Character,gls-GM},
 	description={
-		A series of Events that happen to a collection of \glspl{Character}
-		usually overseen by one or more \glspl{GM}
+		A series of Events that happen to a collection of Characters
+		usually overseen by one or more GMs
 	}
 }
 \newglossaryentry{Trait}{
 	name=Trait,
+	see={Event,Modifier},
 	description={
 		An attribute to a character that is non-numerical in nature, will
-		usually trigger and/or be triggered by one or more \glspl{Event}
-		and generally affect \glspl{Modifier}
+		usually trigger and/or be triggered by one or more Events
+		and generally affect Modifiers
 	}
 }
 \newglossaryentry{Template}{
 	name=Template,
 	description={
-		A collection of \glspl{Stat}, \glspl{Skill}, and \glspl{Trait}
+		A collection of Stats, Skills, and Traits
 		in an easier to handle single piece
 	}
 }
 \newglossaryentry{Character}{
 	name=Character,
+	see={gls-GM},
 	description={
 		An entity in a game world, some are Player controlled and some are
-		\gls{GM} controlled
+		GM controlled
 	}
 }
 \newglossaryentry{Event}{
 	name=Event,
 	description={
 		Something that happens during normal progress of the story in a game
-		world, and will usually effect \glspl{Character} in some way
+		world, and will usually effect Character in some way
 	}
 }
 

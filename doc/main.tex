@@ -28,8 +28,11 @@
 \include{Campaign}
 
 % 2017-11-09 AMR NOTE: add all unused glossary entries without references
-{\glsdisablehyper\glsaddallunused\glsenablehyper}
+% 2017-11-10 AMR NOTE: adds a nasty comma before any references after this
+\glsdisablehyper\glsaddallunused
 
+
+% 2017-11-10 AMR TODO: do we want an index?
 \printglossary
 \printglossary[type=\acronymtype]
 
