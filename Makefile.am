@@ -45,6 +45,12 @@ libhecate_la_SOURCES = \
 
 check_PROGRAMS = 
 
+LATEX_DOC_FILES = \
+	main.pdf \
+	notes.pdf
+
+doc_DATA = $(LATEX_DOC_FILES)
+
 if GTEST
 check_PROGRAMS += \
 	character-stat \
@@ -127,12 +133,41 @@ TESTSUITE_FILES = \
 	$(srcdir)/test/template.at \
 	$(srcdir)/test/modifier.at
 
+LATEXMKRC = $(srcdir)/doc/latexmkrc
+
+LATEX_TEX_FILES = \
+	$(srcdir)/doc/notes.tex \
+	$(srcdir)/doc/main.tex \
+	$(srcdir)/doc/packages.tex \
+	$(srcdir)/doc/Campaign/Combat.tex \
+	$(srcdir)/doc/Campaign/Setting.tex \
+	$(srcdir)/doc/Campaign/Stats-Skills.tex \
+	$(srcdir)/doc/Campaign/Traits-Events.tex \
+	$(srcdir)/doc/Character/Skills.tex \
+	$(srcdir)/doc/Character/Statistics.tex \
+	$(srcdir)/doc/Character/Templates.tex \
+	$(srcdir)/doc/Character/Traits.tex \
+	$(srcdir)/doc/Checks/Events.tex \
+	$(srcdir)/doc/Checks/Modifiers.tex \
+	$(srcdir)/doc/Combat/Resources.tex \
+	$(srcdir)/doc/Combat/Turns.tex \
+	$(srcdir)/doc/Campaign.tex \
+	$(srcdir)/doc/Character.tex \
+	$(srcdir)/doc/Checks.tex \
+	$(srcdir)/doc/Combat.tex \
+	$(srcdir)/doc/Definitions.tex \
+	$(srcdir)/doc/Introduction.tex
+
 EXTRA_DIST = \
 	$(TESTSUITE_FILES) \
 	$(srcdir)/test/testsuite.at \
 	$(srcdir)/package.m4 \
 	$(TESTSUITE) \
-	$(srcdir)/test/atlocal.in
+	$(srcdir)/test/atlocal.in \
+	$(LATEXMKRC) \
+	$(LATEX_TEX_FILES)
+
+LATEXMK ?= latexmk
 
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac
 	:; {\
@@ -158,9 +193,13 @@ check-local: test/atconfig atlocal $(TESTSUITE)
 clean-local:
 	test ! -f '$(TESTSUITE)' || \
 		$(SHELL) '$(TESTSUITE)' --clean
+	$(LATEXMK) -r $(LATEXMKRC) $(LATEX_TEX_FILES) -C
 
 AUTOM4TE = $(SHELL) $(srcdir)/build-aux/missing --run autom4te
 AUTOTEST = $(AUTOM4TE) --language=autotest
 $(TESTSUITE): $(srcdir)/test/testsuite.at $(TESTSUITE_FILES) $(srcdir)/package.m4
 	$(AUTOTEST) -I '$(srcdir)/test' -I $(srcdir) -o $@.tmp $@.at
 	mv $@.tmp $@
+
+$(LATEX_DOC_FILES): $(LATEX_TEX_FILES) $(LATEXMKRC)
+	$(LATEXMK) -silent -r $(LATEXMKRC) $(top_srcdir)/doc/$(@:%.pdf=%)
