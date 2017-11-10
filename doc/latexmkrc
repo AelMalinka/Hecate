@@ -1,0 +1,36 @@
+# Copyright 2017 (c) Michael Thomas (malinka) <malinka@entropy-development.com>
+# Distributed under the terms of the GNU Affero General Public License v3
+
+use File::Basename;
+use Cwd;
+
+# 2017-11-09 AMR NOTE: automatically allow out of tree build
+$do_cd = 1;
+$out_dir = cwd();
+
+# 2017-11-09 AMR NOTE: pdf mode is required due to doclicense
+$pdf_mode = 1;
+
+@default_files = ();
+
+push @default_files, 'main.tex';
+push @default_files, 'notes.tex';
+
+add_cus_dep('acn', 'acr', 0, 'makeglossaries');
+add_cus_dep('glo', 'gls', 0, 'makeglossaries');
+
+sub makeglossaries {
+	my $dir = dirname($_[0]);
+	my $file = basename($_[0]);
+	my $q = '';
+
+	if($silent) {
+		$q = '-q'
+	}
+
+	system("makeglossaries $q -d '$dir' '$file'");
+}
+
+push @generated_exts, 'glo', 'gls', 'glg';
+push @generated_exts, 'acn', 'acr', 'alg';
+$clean_ext .= '%R.ist %R.xdy';
