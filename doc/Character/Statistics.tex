@@ -3,27 +3,36 @@
 % Character/Statistics.tex - stats section of character chapter
 
 \subsection{Introduction}
-Stats are pretty straight forwrad a concept.  Any good character
+Stats are pretty straight forward a concept.  Any good character
 has a number of attributes some important to the game rules and
 some that have no effect on the game.  Here we'll be discussing
-the most basic building blocks for these attributes in this game
-system.
+the most basic building blocks for these attributes are Stats.
 
 \subsection{Stat}
 In Hecate a \gls{Stat} is a Percentage value, a name, any
 \glspl{Modifier} Temporary or Permanent currently on said \gls{Stat}
 as well as a \gls{Cost} function associated with said \gls{Stat}.
-\glspl{Stat}
 
 \subsection{Cost}
 The \gls{Cost} of a \gls{Stat} is calucated with a \gls{Cost}
 function, and the \gls{Cost} of a \gls{Character} is the summation
 of all that \glsdisp{Character}{Character's} \glspl{Stat},
 \glspl{Skill}, and \glspl{Trait}.  You could think of a
-\glsdisp{Character}{Character's} as their `level' or `power'
-so if all things are held equal a \gls{Character} with a lower
-total \gls{Cost} should win out against a higher \gls{Cost}
-\gls{Character}.  Throught the course of a \gls{Campaign} the
-\gls{GM} will give you points which you can then assign possibly
-with conditions to your \glspl{Stat}, \glspl{Skill}, \glspl{Trait}
-or even to accquire new \glspl{Template}
+\glsdisp{Character}{Character's} \gls{Cost} as their `level' or `power'
+so if all things are held equal a \gls{Character} with a higher
+total \gls{Cost} should win out against a lower \gls{Cost}
+\gls{Character}.  Throughout the course of a \gls{Campaign} the
+\gls{GM} will somehow reward you with improved \glspl{Stat}, \glspl{Skill},
+and \glspl{Trait} or give you new \glspl{Template}, possibly by
+allowing you to accquire them directly with assigned points.
+
+% 2017-11-10 AMR TODO: bibliographical entries for references?
+\subsection{Examples}
+The below examples are pulled from Asteria, a Fantasy based \gls{RPG}
+
+\samplestat{Strength}{The physical power of a character}{Melee, Unarmed}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Agility}{The physical finesse of a character}{Ranged, Unarmored}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Endurance}{The physical longevity of a character}{Melee, Armored, Unarmored}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Perception}{The observational prowess of a character}{Find}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Magic}{The magical power of a character}{}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Willpower}{The magical resistance of a character}{}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
