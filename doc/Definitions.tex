@@ -2,20 +2,122 @@
 % Distributed under the terms of the Creative Commons Attribution Share-Alike v4.0
 % Definitions.tex - definitions
 
+% 2017-11-10 AMR TODO: should these be capitalized already?
 \newglossaryentry{Success}{
 	name=Success,
-	description={When a check succeeds},
 	plural=Successes,
+	description={
+		When a \gls{Check} succeeds
+	}
 }
 \newglossaryentry{Failure}{
 	name=Failure,
-	description={When a check fails},
+	description={
+		When a \gls{Check} fails
+	}
 }
 \newglossaryentry{Critical}{
 	name=Critical,
-	description={Extreme Success or Failure on a check, resulting in an exagerated result},
+	description={
+		Extreme Success or Failure on a check, resulting in an exagerated result
+	}
 }
 \newglossaryentry{Luck}{
 	name=Luck,
-	description={Percent Chance of automatic and/or Critical Success/Failure},
+	description={
+		Percent Chance of automatic and/or Critical Success/Failure
+	}
 }
+\newglossaryentry{Stat}{
+	name=Stat,
+	description={
+		Basic building block of a Character
+	}
+}
+\newglossaryentry{Modifier}{
+	name=Modifier,
+	description={
+		A Change to a Value, usually \gls{Stat}, \gls{Skill}, or \gls{Check}, be
+		it temporary or otherwise; Does not effect \gls{Cost}
+	}
+}
+\newglossaryentry{Cost}{
+	name=Cost,
+	description={
+		A value associated with a given \gls{Stat}, \gls{Skill}, \gls{Resource},
+		etc. can be used to calculate a numerical `level' of a Character
+	}
+}
+\newglossaryentry{Skill}{
+	name=Skill,
+	description={
+		An attribute built up of zero or more depedant \glspl{Stat} or
+		\glspl{Skill} which averages out to calculate a `default'
+		value for this skill, and an associated \gls{Cost} to raise this
+		particular value
+	}
+}
+\newglossaryentry{Check}{
+	name=Check,
+	description={
+		A collection of \glspl{Modifier} and \glspl{Skill} or \glspl{Stat},
+		sometimes opposed, combined together to create a Chance of \gls{Success}
+		or \gls{Failure} and then rolled against
+	}
+}
+\newglossaryentry{Resource}{
+	name=Resource,
+	description={
+		A Value (and associated \gls{Cost}) usually with a \gls{Stat} or \gls{Skill} base
+	}
+}
+\newglossaryentry{gls-GM}{
+	name={Game Master},
+	see={GM},
+	description={
+		The story teller and/or god of a \gls{Campaign}.  They make all the
+		final calls of \gls{Success} or \gls{Failure} and will determine
+		how the results of \glspl{Check} actually effect the game world
+	}
+}
+\newglossaryentry{Campaign}{
+	name=Campaign,
+	description={
+		A series of Events that happen to a collection of \glspl{Character}
+		usually overseen by one or more \glspl{GM}
+	}
+}
+\newglossaryentry{Trait}{
+	name=Trait,
+	description={
+		An attribute to a character that is non-numerical in nature, will
+		usually trigger and/or be triggered by one or more \glspl{Event}
+		and generally affect \glspl{Modifier}
+	}
+}
+\newglossaryentry{Template}{
+	name=Template,
+	description={
+		A collection of \glspl{Stat}, \glspl{Skill}, and \glspl{Trait}
+		in an easier to handle single piece
+	}
+}
+\newglossaryentry{Character}{
+	name=Character,
+	description={
+		An entity in a game world, some are Player controlled and some are
+		\gls{GM} controlled
+	}
+}
+\newglossaryentry{Event}{
+	name=Event,
+	description={
+		Something that happens during normal progress of the story in a game
+		world, and will usually effect \glspl{Character} in some way
+	}
+}
+
+\makeglossaries
+
+\newacronym{RPG}{RPG}{Role Playing Game}
+\newacronym[see={[Glossary:]{gls-GM}}]{GM}{GM}{Game Master}
