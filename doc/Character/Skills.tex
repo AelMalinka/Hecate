@@ -1,3 +1,27 @@
 % Copyright 2017 (c) Michael Thomas (malinka) <malinka@entropy-development.com>
 % Distributed under the terms of the Creative Commons Attribution Share-Alike v4.0
 % Character/Skills.tex - skills section of character chapter
+
+\subsection{Introduction}
+\Glspl{Skill} are a fairly direct extension from \glspl{Stat}.
+A \gls{Skill} is a in essence a \gls{Stat} that depends on and
+defaults to an average of zero or more other \glspl{Skill}. I.e.
+you have a some \glspl{Stat} $A$ $B$ $C$ and some \glspl{Skill}
+$X$ $Y$ $Z$ \glspl{Skill}. \gls{Skill} $X$ could be based on \gls{Stat} $A$,
+\gls{Skill} $Y$ on the average of $X$ and $B$, and finally $Z$
+based on $B$ and $C$. So given a \gls{Character} \emph{Alice} who has
+\mbox{25} in $X$, \mbox{10} in $B$, and \mbox{15} in $C$; without any points in
+\glspl{Skill} \emph{Alice's} $X$ would be \mbox{25}, $Y$ $ \frac{10 + 25}{2} $ or \mbox{\textasciitilde{}18}
+and $Z$ would be $ \frac{10 + 15}{2} $ or \mbox{\textasciitilde{}13}
+
+\subsection{Cost}
+For a \gls{Skill} the \gls{Cost} is for the points above and beyond the default.
+So give the above example, let's assume \emph{Alice} has the above \glspl{Stat}
+but then also put $10$ points into $Z$, assuming $Z$ has a cost of $1$ per point,
+her actual value for $Z$ would be \mbox{23}
+
+\subsection{Examples}
+
+\samplestat{Melee}{The Character's skill with weapons that are melee}{Sword, Blunt, Unarmed}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Ranged}{The Character's skill with weapons that are Ranged}{Bow, Thrown}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
+\samplestat{Unarmored}{The Character's skill with Armor}{Light, Heavy}{Linear}{\mbox{Value} \times \mbox{Number of Dependants}}
