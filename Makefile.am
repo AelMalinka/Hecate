@@ -128,6 +128,9 @@ TESTSUITE_FILES = \
 	$(srcdir)/test/modifier.at
 
 EXTRA_DIST = \
+	$(srcdir)/external/pcg-cpp/include/pcg_extras.hpp \
+	$(srcdir)/external/pcg-cpp/include/pcg_random.hpp \
+	$(srcdir)/external/pcg-cpp/include/pcg_uint128.hpp \
 	$(TESTSUITE_FILES) \
 	$(srcdir)/test/testsuite.at \
 	$(srcdir)/package.m4 \
