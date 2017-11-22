@@ -139,10 +139,8 @@ LATEX_TEX_FILES = \
 	$(srcdir)/doc/notes.tex \
 	$(srcdir)/doc/main.tex \
 	$(srcdir)/doc/packages.tex \
-	$(srcdir)/doc/Campaign/Combat.tex \
 	$(srcdir)/doc/Campaign/Setting.tex \
 	$(srcdir)/doc/Campaign/Stats-Skills.tex \
-	$(srcdir)/doc/Campaign/Traits-Events.tex \
 	$(srcdir)/doc/Character/Skills.tex \
 	$(srcdir)/doc/Character/Statistics.tex \
 	$(srcdir)/doc/Character/Templates.tex \
