@@ -57,8 +57,12 @@ const ModifierList &Check::Modifiers() const
 	return _modifiers;
 }
 
+Check::Result::Result()
+	: _value(), _chance(), _roll(), _luck(), _invalid(true)
+{}
+
 Check::Result::Result(const PercentType value, const PercentType chance, const PercentType roll, const PercentType luck, const ModifierList &l)
-	: _value(value), _chance(chance), _roll(roll), _luck(luck)
+	: _value(value), _chance(chance), _roll(roll), _luck(luck), _invalid(false)
 {
 	for(auto &&i : l) {
 		for(auto &&m : i.second) {
@@ -79,41 +83,65 @@ Check::Result::operator bool() const
 
 bool Check::Result::isSuccess() const
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _value > 0;
 }
 
 bool Check::Result::isCritical() const
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _roll > 100 - _luck || _roll < _luck;
 }
 
 PercentType Check::Result::Value() const
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _value;
 }
 
 PercentType Check::Result::Chance() const
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _chance;
 }
 
 PercentType Check::Result::Luck() const
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _luck;
 }
 
 size_t Check::Result::size() const
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _modifiers.size();
 }
 
 vector<Check::Result::result_modifier>::iterator Check::Result::begin()
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _modifiers.begin();
 }
 
 vector<Check::Result::result_modifier>::iterator Check::Result::end()
 {
+	if(_invalid)
+		ENTROPY_THROW(Exception("Invalid Result"));
+
 	return _modifiers.end();
 }
 

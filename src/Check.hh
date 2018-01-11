@@ -31,6 +31,7 @@
 								Modifier modifier;
 							};
 						public:
+							Result();
 							Result(const PercentType, const PercentType, const PercentType, const PercentType, const ModifierList &);
 							operator bool () const;
 							bool isSuccess() const;
@@ -47,6 +48,7 @@
 							PercentType _roll;
 							PercentType _luck;
 							std::vector<result_modifier> _modifiers;
+							bool _invalid;
 					};
 				public:
 					Check();
