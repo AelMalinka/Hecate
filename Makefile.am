@@ -1,5 +1,4 @@
 ACLOCAL_AMFLAGS = -I m4
-#2013-10-11 AMR XXX: non-portable assignment
 AM_CPPFLAGS = -I$(srcdir)/src -I$(srcdir)/external/pcg-cpp/include
 
 mainheadersdir = $(includedir)/Entropy/Hecate
